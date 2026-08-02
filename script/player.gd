@@ -10,18 +10,20 @@ const SPREAD_PROJECTILE = preload("uid://ccggqqp0kwq08")
 const ORBITAL_PROJECTILE = preload("uid://dj45eavxxr0yv")
 
 @export var weapon_settings : WeaponSettings
+#@export var weapon_stat : WeaponsStat
 var orbitals
 
 func _ready() -> void:
-	orbitals = ORBITAL_PROJECTILE.instantiate()
-	get_tree().current_scene.add_child.call_deferred(orbitals)
-	await get_tree().process_frame
-	orbitals.add_orbiting_object(5)
+	if weapon_settings.orbital:
+		orbitals = ORBITAL_PROJECTILE.instantiate()
+		get_tree().current_scene.add_child.call_deferred(orbitals)
+		await get_tree().process_frame
+		orbitals.add_orbiting_object(1)
 	GameEvents.fire_rate.connect(_on_fire_rate)
 	fire_timer.wait_time = player_stats.fire_rate
 	pass
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if orbitals:
 		orbitals.position = global_position
 	pass

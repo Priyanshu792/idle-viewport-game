@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cxvy8hgpm3e82" path="res://script/projectile.gd" id="1_u6xv6"]
 [ext_resource type="Texture2D" uid="uid://cc8epefbko3kw" path="res://assets/sprites/projectile.png" id="2_c0tm2"]
+[ext_resource type="Resource" uid="uid://bjadmbcw7rymc" path="res://resources/Base_Weapon_stats.tres" id="2_ujo14"]
 [ext_resource type="Script" uid="uid://cu7o4w5xfiup2" path="res://script/damage.gd" id="3_c0tm2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v1jrq"]
@@ -9,6 +10,7 @@ radius = 64.0
 
 [node name="projectile" type="Node2D" unique_id=1410275379]
 script = ExtResource("1_u6xv6")
+stats = ExtResource("2_ujo14")
 metadata/_edit_horizontal_guides_ = [-16.0]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1133949098]

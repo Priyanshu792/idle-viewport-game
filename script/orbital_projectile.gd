@@ -4,11 +4,10 @@ extends Node2D
 
 const ORBITAL_PROJECTILE_ELEMENT = preload("uid://q60os21xfer0")
 
-@export var speed := 10.0
-@export var radius := 100
+@export var stats: WeaponsStat
 
 func _process(delta):
-	rotator.rotation += speed * delta
+	rotator.rotation += stats.orbital_speed * delta
 
 
 func add_orbiting_object(num:int):
@@ -25,4 +24,4 @@ func update_positions():
 	for i in range(count):
 		var child = rotator.get_child(i)
 		var angle = TAU * i / count
-		child.position = Vector2(cos(angle), sin(angle)) * radius
+		child.position = Vector2(cos(angle), sin(angle)) * stats.orbital_radius

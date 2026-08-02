@@ -1,7 +1,6 @@
 extends Node2D
 
-@export var speed := 600.0
-@export var damage := 0.2
+@export var damage : WeaponsStat
 
 const EXPLOSION_PARTICLE = preload("uid://rmf1psipscka")
 
@@ -16,7 +15,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy"):
 		var enemy_health = body.get_node("health")
 		
-		enemy_health.remove_health(damage)
+		enemy_health.remove_health(damage.orbital_damage)
 		
 		
 		#queue_free()         # Destroy projectile

@@ -27,7 +27,7 @@ metadata/_custom_type_script = "uid://bgck85jj7vkfj"
 
 [sub_resource type="Resource" id="Resource_tqoya"]
 script = ExtResource("5_b5f6u")
-fire_blast = false
+spread_fire = true
 orbital = true
 metadata/_custom_type_script = "uid://rw5inik056kt"
 
@@ -107,11 +107,13 @@ spawn_interval = 1.5
 
 [node name="player" parent="." unique_id=1949432662 instance=ExtResource("1_itxqv")]
 position = Vector2(136, 240)
+collision_mask = 9
 player_stats = SubResource("Resource_k65ib")
 weapon_settings = SubResource("Resource_tqoya")
 
 [node name="enemy" parent="." unique_id=839634914 instance=ExtResource("2_v0l8b")]
 position = Vector2(251, 400)
+collision_mask = 20
 
 [node name="UI" type="Control" parent="." unique_id=1980353190]
 layout_mode = 3
