@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dj45eavxxr0yv"]
+
+[ext_resource type="Script" uid="uid://cbr5gpbjsb1fn" path="res://script/orbital_projectile.gd" id="1_fcawh"]
+[ext_resource type="PackedScene" uid="uid://q60os21xfer0" path="res://scene/orbital_projectile_element.tscn" id="2_fcawh"]
+
+[node name="orbital_projectiles" type="Node2D" unique_id=1854451201]
+script = ExtResource("1_fcawh")
+
+[node name="Rotation_Timer" type="Timer" parent="." unique_id=129001097]
+wait_time = 3.0
+
+[node name="rotator" type="Node2D" parent="." unique_id=210285099]
+
+[node name="projectile" parent="rotator" unique_id=680357297 instance=ExtResource("2_fcawh")]
+
+[node name="projectile2" parent="rotator" unique_id=1632640189 instance=ExtResource("2_fcawh")]
+
+[node name="projectile3" parent="rotator" unique_id=530747854 instance=ExtResource("2_fcawh")]

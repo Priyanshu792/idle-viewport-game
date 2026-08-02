@@ -5,3 +5,4 @@ class_name WeaponSettings
 @export var spread_fire := false
 @export var nuclear_blast := false
 @export var laser := false
+@export var orbital := false

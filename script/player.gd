@@ -1,35 +1,36 @@
 extends CharacterBody2D
 
+@export var player_stats: PlayerStats
+
 const PROJECTILE = preload("uid://bd61w7ff8rjfq")
 @onready var fire_timer: Timer = $fire_timer
 
-const MAX_SPEED = 300.0
-const ACCELERATION = 1000.0
-const FRICTION = 800.0
-@export var fire_rate := 1.0
-
 const NUCLEAR_BLAST = preload("uid://shut12leynj3")
 const SPREAD_PROJECTILE = preload("uid://ccggqqp0kwq08")
+const ORBITAL_PROJECTILE = preload("uid://dj45eavxxr0yv")
 
 @export var weapon_settings : WeaponSettings
-
+var orbitals
 
 func _ready() -> void:
+	orbitals = ORBITAL_PROJECTILE.instantiate()
+	get_tree().current_scene.add_child.call_deferred(orbitals)
 	GameEvents.fire_rate.connect(_on_fire_rate)
-	fire_timer.wait_time = fire_rate
+	fire_timer.wait_time = player_stats.fire_rate
 	pass
 
 func _process(delta: float) -> void:
-	
+	if orbitals:
+		orbitals.position = global_position
 	pass
 
 func _physics_process(delta):
 	var input_direction = Input.get_vector("move_left","move_right","move_forward","move_backward")
 
 	if input_direction != Vector2.ZERO:
-		velocity = velocity.move_toward(input_direction * MAX_SPEED,ACCELERATION * delta)
+		velocity = velocity.move_toward(input_direction * player_stats.move_speed,player_stats.acceleration * delta)
 	else:
-		velocity = velocity.move_toward(Vector2.ZERO,FRICTION * delta)
+		velocity = velocity.move_toward(Vector2.ZERO,player_stats.friction * delta)
 	var target = get_nearest_enemy()
 	if target:
 		var target_angle = (target.global_position - global_position).angle()
@@ -82,9 +83,9 @@ func _on_fire_timer_timeout() -> void:
 	pass # Replace with function body.
 	
 func _on_fire_rate():
-	
-	fire_rate = clamp(fire_rate - 0.05, 0.1, 1.0)
-	fire_timer.wait_time = fire_rate
+	#player_stats.fire_rate = clamp(player_stats.fire_rate - 0.05, 0.1, 1.0)
+	player_stats.fire_rate = max(0.1, player_stats.fire_rate - 0.05)
+	fire_timer.wait_time = player_stats.fire_rate
 	pass
 
 

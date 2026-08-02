@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cnywkubysvv3o" path="res://assets/UI/settings.png" id="3_p1hux"]
 [ext_resource type="PackedScene" uid="uid://botienaqgsvm6" path="res://scene/spawner.tscn" id="3_wp4xf"]
 [ext_resource type="Script" uid="uid://rw5inik056kt" path="res://resources/weapon_settings.gd" id="5_b5f6u"]
+[ext_resource type="Script" uid="uid://bgck85jj7vkfj" path="res://resources/player_stat.gd" id="5_tqoya"]
 [ext_resource type="PackedScene" uid="uid://bk5emitaiug0y" path="res://scene/settings.tscn" id="6_4j5ol"]
 
 [sub_resource type="Environment" id="Environment_p1hux"]
@@ -20,8 +21,15 @@ adjustment_enabled = true
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_brvut"]
 
+[sub_resource type="Resource" id="Resource_k65ib"]
+script = ExtResource("5_tqoya")
+metadata/_custom_type_script = "uid://bgck85jj7vkfj"
+
 [sub_resource type="Resource" id="Resource_tqoya"]
 script = ExtResource("5_b5f6u")
+spread_fire = true
+nuclear_blast = true
+orbital = true
 metadata/_custom_type_script = "uid://rw5inik056kt"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p1hux"]
@@ -100,7 +108,7 @@ spawn_interval = 1.5
 
 [node name="player" parent="." unique_id=1949432662 instance=ExtResource("1_itxqv")]
 position = Vector2(136, 240)
-fire_rate = 0.5
+player_stats = SubResource("Resource_k65ib")
 weapon_settings = SubResource("Resource_tqoya")
 
 [node name="enemy" parent="." unique_id=839634914 instance=ExtResource("2_v0l8b")]
