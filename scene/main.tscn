@@ -27,8 +27,7 @@ metadata/_custom_type_script = "uid://bgck85jj7vkfj"
 
 [sub_resource type="Resource" id="Resource_tqoya"]
 script = ExtResource("5_b5f6u")
-spread_fire = true
-nuclear_blast = true
+fire_blast = false
 orbital = true
 metadata/_custom_type_script = "uid://rw5inik056kt"
 

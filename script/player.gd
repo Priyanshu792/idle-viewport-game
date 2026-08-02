@@ -15,6 +15,8 @@ var orbitals
 func _ready() -> void:
 	orbitals = ORBITAL_PROJECTILE.instantiate()
 	get_tree().current_scene.add_child.call_deferred(orbitals)
+	await get_tree().process_frame
+	orbitals.add_orbiting_object(5)
 	GameEvents.fire_rate.connect(_on_fire_rate)
 	fire_timer.wait_time = player_stats.fire_rate
 	pass

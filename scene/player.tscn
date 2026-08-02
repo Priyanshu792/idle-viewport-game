@@ -22,7 +22,6 @@ texture = ExtResource("2_hjaqi")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=50395418]
 visible = false
 shape = SubResource("CircleShape2D_xo3ru")
-disabled = true
 
 [node name="fire_timer" type="Timer" parent="." unique_id=1074065205]
 autostart = true
