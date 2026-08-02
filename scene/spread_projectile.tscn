@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://ccggqqp0kwq08"]
+
+[ext_resource type="Script" uid="uid://cau7o6cv3dtcg" path="res://script/spread_projectile.gd" id="1_aipai"]
+[ext_resource type="PackedScene" uid="uid://bpush3uayisnn" path="res://scene/spread_projectile_element.tscn" id="2_8x0mt"]
+
+[sub_resource type="Curve2D" id="Curve2D_s00in"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1000, 0)
+}
+point_count = 2
+
+[node name="spread_projectile" type="Node2D" unique_id=553709530]
+script = ExtResource("1_aipai")
+
+[node name="Path2D" type="Path2D" parent="." unique_id=1835310230]
+curve = SubResource("Curve2D_s00in")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D" unique_id=1814174513]
+
+[node name="projectile" parent="Path2D/PathFollow2D" unique_id=1129531622 instance=ExtResource("2_8x0mt")]
+
+[node name="Path2D2" type="Path2D" parent="." unique_id=1237326502]
+rotation = -0.5235988
+curve = SubResource("Curve2D_s00in")
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="Path2D2" unique_id=1205420690]
+scale = Vector2(1.0000001, 1.0000001)
+
+[node name="projectile2" parent="Path2D2/PathFollow2D2" unique_id=1047799175 instance=ExtResource("2_8x0mt")]
+rotation = 0.2617994
+scale = Vector2(0.4999999, 0.4999999)
+
+[node name="Path2D3" type="Path2D" parent="." unique_id=483374278]
+rotation = -1.0471976
+curve = SubResource("Curve2D_s00in")
+
+[node name="PathFollow2D3" type="PathFollow2D" parent="Path2D3" unique_id=775899606]
+scale = Vector2(1.0000001, 1.0000001)
+
+[node name="projectile3" parent="Path2D3/PathFollow2D3" unique_id=1192438012 instance=ExtResource("2_8x0mt")]
+rotation = 0.5235988
+scale = Vector2(0.49999988, 0.49999988)
+
+[node name="Path2D4" type="Path2D" parent="." unique_id=1827062855]
+rotation = 1.0471976
+curve = SubResource("Curve2D_s00in")
+
+[node name="PathFollow2D4" type="PathFollow2D" parent="Path2D4" unique_id=346972275]
+scale = Vector2(1.0000001, 1.0000001)
+
+[node name="projectile4" parent="Path2D4/PathFollow2D4" unique_id=1948433194 instance=ExtResource("2_8x0mt")]
+rotation = -0.5235988
+scale = Vector2(0.49999988, 0.49999988)
+
+[node name="Path2D5" type="Path2D" parent="." unique_id=159475035]
+rotation = 0.5235988
+curve = SubResource("Curve2D_s00in")
+
+[node name="PathFollow2D5" type="PathFollow2D" parent="Path2D5" unique_id=1994278801]
+scale = Vector2(1.0000002, 1.0000002)
+
+[node name="projectile5" parent="Path2D5/PathFollow2D5" unique_id=1395389314 instance=ExtResource("2_8x0mt")]
+rotation = -0.2617994
+scale = Vector2(0.49999982, 0.49999982)
+
+[node name="Death_timer" type="Timer" parent="." unique_id=727958925]
+wait_time = 1.5
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Death_timer" to="." method="_on_death_timer_timeout"]

@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://dlmmnyoqrqnpg"]
+
+[ext_resource type="Script" uid="uid://l244jnmktror" path="res://script/enemy.gd" id="1_f87vc"]
+[ext_resource type="Texture2D" uid="uid://cf7oyheo5vw2o" path="res://assets/sprites/enemy_1-Sheet.png" id="2_8u16h"]
+[ext_resource type="Script" uid="uid://cf3jtte757j5j" path="res://script/health.gd" id="3_8u16h"]
+
+[sub_resource type="Gradient" id="Gradient_8u16h"]
+offsets = PackedFloat32Array(0.14880952, 1)
+colors = PackedColorArray(1, 0, 0, 1, 0.0666666, 1, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_b7koy"]
+gradient = SubResource("Gradient_8u16h")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 0)
+metadata/_snap_count = 2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8u16h"]
+atlas = ExtResource("2_8u16h")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b7koy"]
+atlas = ExtResource("2_8u16h")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yvcfn"]
+atlas = ExtResource("2_8u16h")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ulb22"]
+atlas = ExtResource("2_8u16h")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f87vc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8u16h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b7koy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yvcfn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ulb22")
+}],
+"loop": true,
+"name": &"default",
+"speed": 16.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h08p8"]
+radius = 64.03124
+
+[node name="enemy" type="CharacterBody2D" unique_id=839634914 groups=["enemy"]]
+scale = Vector2(0.5, 0.5)
+collision_layer = 4
+collision_mask = 22
+script = ExtResource("1_f87vc")
+metadata/_edit_horizontal_guides_ = [-32.0, 32.0]
+
+[node name="health_bar" type="TextureProgressBar" parent="." unique_id=1895049057]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 100.0
+fill_mode = 4
+nine_patch_stretch = true
+texture_progress = SubResource("GradientTexture2D_b7koy")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=101756865]
+scale = Vector2(2.142857, 2.142857)
+sprite_frames = SubResource("SpriteFrames_f87vc")
+autoplay = "default"
+frame_progress = 0.6584623
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=955424751]
+visible = false
+scale = Vector2(0.51309466, 0.51309466)
+shape = SubResource("CircleShape2D_h08p8")
+
+[node name="health" type="Node" parent="." unique_id=650171592]
+script = ExtResource("3_8u16h")

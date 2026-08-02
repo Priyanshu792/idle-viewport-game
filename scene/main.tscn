@@ -1,0 +1,176 @@
+[gd_scene format=3 uid="uid://r3t7dx8pfdun"]
+
+[ext_resource type="Script" uid="uid://dmsaqy83ewfdv" path="res://script/main.gd" id="1_brvut"]
+[ext_resource type="PackedScene" uid="uid://betenash78fnb" path="res://scene/player.tscn" id="1_itxqv"]
+[ext_resource type="Script" uid="uid://cah8l2avb3u76" path="res://script/ui.gd" id="2_4j5ol"]
+[ext_resource type="Texture2D" uid="uid://bcm4vjlx56b5m" path="res://assets/sprites/backround.png" id="2_b5f6u"]
+[ext_resource type="PackedScene" uid="uid://dlmmnyoqrqnpg" path="res://scene/enemy.tscn" id="2_v0l8b"]
+[ext_resource type="Texture2D" uid="uid://cnywkubysvv3o" path="res://assets/UI/settings.png" id="3_p1hux"]
+[ext_resource type="PackedScene" uid="uid://botienaqgsvm6" path="res://scene/spawner.tscn" id="3_wp4xf"]
+[ext_resource type="PackedScene" uid="uid://bk5emitaiug0y" path="res://scene/settings.tscn" id="6_4j5ol"]
+
+[sub_resource type="Environment" id="Environment_p1hux"]
+background_mode = 3
+glow_enabled = true
+glow_normalized = true
+glow_bloom = 1.0
+glow_blend_mode = 0
+adjustment_enabled = true
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_brvut"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p1hux"]
+bg_color = Color(0.61, 0.5978, 0.6097967, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b5f6u"]
+bg_color = Color(0.8039216, 0.7921569, 0.019607844, 1)
+
+[sub_resource type="Theme" id="Theme_p1hux"]
+Button/colors/font_color = Color(1, 0.9843137, 0, 1)
+Button/styles/normal = SubResource("StyleBoxFlat_p1hux")
+Label/colors/font_color = Color(1, 0.98333335, 0, 1)
+Label/colors/font_outline_color = Color(1, 0.9843137, 0, 1)
+Label/colors/font_shadow_color = Color(1, 0.9843137, 0, 1)
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_b5f6u")
+
+[sub_resource type="Theme" id="Theme_of57s"]
+
+[node name="main" type="Node2D" unique_id=371940320]
+script = ExtResource("1_brvut")
+
+[node name="Game_Timer" type="Timer" parent="." unique_id=976722247]
+unique_name_in_owner = true
+wait_time = 300.0
+autostart = true
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1945818820]
+visible = false
+offset_right = 504.0
+offset_bottom = 504.0
+texture = ExtResource("2_b5f6u")
+expand_mode = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1290499441]
+environment = SubResource("Environment_p1hux")
+
+[node name="Area2D" type="StaticBody2D" parent="." unique_id=88702385 groups=["walls"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2105794058]
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_brvut")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" unique_id=1130602749]
+rotation = 3.1415927
+shape = SubResource("WorldBoundaryShape2D_brvut")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D" unique_id=1867764310]
+position = Vector2(504, 504)
+rotation = 4.712389
+shape = SubResource("WorldBoundaryShape2D_brvut")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Area2D" unique_id=876970093]
+position = Vector2(504, 504)
+rotation = 6.2831855
+shape = SubResource("WorldBoundaryShape2D_brvut")
+
+[node name="spawner" parent="." unique_id=825467392 instance=ExtResource("3_wp4xf")]
+position = Vector2(80, -56)
+spawn_interval = 1.5
+switch_ON_OFF = false
+
+[node name="spawner2" parent="." unique_id=1286613805 instance=ExtResource("3_wp4xf")]
+position = Vector2(432, -40)
+spawn_interval = 1.5
+switch_ON_OFF = false
+
+[node name="spawner3" parent="." unique_id=416084391 instance=ExtResource("3_wp4xf")]
+position = Vector2(608, 216)
+spawn_interval = 1.5
+switch_ON_OFF = false
+
+[node name="spawner4" parent="." unique_id=786976420 instance=ExtResource("3_wp4xf")]
+position = Vector2(251, 528)
+spawn_interval = 1.5
+switch_ON_OFF = false
+
+[node name="spawner5" parent="." unique_id=358141832 instance=ExtResource("3_wp4xf")]
+position = Vector2(-112, 208)
+spawn_interval = 1.5
+switch_ON_OFF = false
+
+[node name="player" parent="." unique_id=1949432662 instance=ExtResource("1_itxqv")]
+position = Vector2(136, 240)
+fire_rate = 0.5
+
+[node name="enemy" parent="." unique_id=839634914 instance=ExtResource("2_v0l8b")]
+position = Vector2(251, 400)
+
+[node name="UI" type="Control" parent="." unique_id=1980353190]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 502.0
+offset_bottom = 502.0
+theme = SubResource("Theme_p1hux")
+script = ExtResource("2_4j5ol")
+
+[node name="SettingsButton" type="Button" parent="UI" unique_id=598129211]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -78.0
+offset_top = 16.0
+offset_right = -14.0
+offset_bottom = 80.0
+grow_horizontal = 0
+icon = ExtResource("3_p1hux")
+
+[node name="settings" parent="UI" unique_id=1742019507 instance=ExtResource("6_4j5ol")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+
+[node name="Score_Label" type="Label" parent="UI" unique_id=918434706]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -5.0
+offset_top = 16.0
+offset_right = 5.0
+offset_bottom = 65.0
+grow_horizontal = 2
+text = "0"
+
+[node name="fire_rate" type="Button" parent="UI" unique_id=1551309823]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = SubResource("Theme_of57s")
+text = "^
+^"
+
+[node name="ProgressBar" type="ProgressBar" parent="UI" unique_id=300705021]
+layout_mode = 0
+offset_right = 504.0
+offset_bottom = 5.604
+max_value = 300.0
+step = 0.001
+value = 300.0
+show_percentage = false
+
+[connection signal="pressed" from="UI/SettingsButton" to="UI" method="_on_settings_button_pressed"]
+[connection signal="pressed" from="UI/fire_rate" to="UI" method="_on_fire_rate_pressed"]

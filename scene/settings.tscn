@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://bk5emitaiug0y"]
+
+[ext_resource type="Script" uid="uid://dltofb8aaxpeg" path="res://script/settings.gd" id="1_likc5"]
+[ext_resource type="Theme" uid="uid://w87rnglpb5v3" path="res://assets/theme/Theme_global.tres" id="1_ok4lx"]
+
+[node name="settings" type="Control" unique_id=1742019507]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ok4lx")
+script = ExtResource("1_likc5")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=835997065]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -54.5
+offset_top = 146.0
+offset_right = 54.5
+offset_bottom = 186.0
+grow_horizontal = 2
+size_flags_horizontal = 0
+
+[node name="Label" type="Label" parent="HBoxContainer" unique_id=2026872383]
+layout_mode = 2
+text = "ANCHOR:"
+
+[node name="OptionButton" type="OptionButton" parent="HBoxContainer" unique_id=354657217]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+alignment = 1
+
+[node name="ResumeButton" type="Button" parent="." unique_id=1530426007]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -35.0
+offset_top = -183.0
+offset_right = 35.0
+offset_bottom = -152.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Resume"
+
+[connection signal="pressed" from="ResumeButton" to="." method="_on_resume_button_pressed"]

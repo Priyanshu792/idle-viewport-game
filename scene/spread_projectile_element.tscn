@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://bpush3uayisnn"]
+
+[ext_resource type="Script" uid="uid://c3iietc34ej52" path="res://script/spread_projectile_element.gd" id="1_4fmmp"]
+[ext_resource type="Texture2D" uid="uid://cc8epefbko3kw" path="res://assets/sprites/projectile.png" id="1_knt72"]
+[ext_resource type="Script" uid="uid://cu7o4w5xfiup2" path="res://script/damage.gd" id="2_4fmmp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v1jrq"]
+radius = 64.0
+
+[node name="spread_projectile_element" type="Node2D" unique_id=1129531622]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_4fmmp")
+metadata/_edit_horizontal_guides_ = [-16.0]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1204080729]
+scale = Vector2(1.009289, 1.0092891)
+texture = ExtResource("1_knt72")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=136471425]
+scale = Vector2(0.12637654, 0.12637654)
+collision_layer = 16
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=883440391]
+shape = SubResource("CircleShape2D_v1jrq")
+
+[node name="damage" type="Node" parent="." unique_id=609339232]
+script = ExtResource("2_4fmmp")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
