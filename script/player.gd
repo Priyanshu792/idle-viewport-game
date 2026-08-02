@@ -11,12 +11,8 @@ const FRICTION = 800.0
 const NUCLEAR_BLAST = preload("uid://shut12leynj3")
 const SPREAD_PROJECTILE = preload("uid://ccggqqp0kwq08")
 
-enum Weapon {
-	FIRE_BLAST,
-	SPREAD_FIRE
-}
+@export var weapon_settings : WeaponSettings
 
-@export var weapons_switch: Array[bool] = [true,true]
 
 func _ready() -> void:
 	GameEvents.fire_rate.connect(_on_fire_rate)
@@ -43,14 +39,12 @@ func _physics_process(delta):
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("nuclear"):
-		var target = get_nearest_enemy()
-		if target == null:
-			return
-		var nuclear_blast = NUCLEAR_BLAST.instantiate()
-		
-		get_tree().current_scene.add_child(nuclear_blast)
-		
-		nuclear_blast.global_position = global_position
+		if weapon_settings.nuclear_blast:
+			var nuclear_blast = NUCLEAR_BLAST.instantiate()
+			
+			get_tree().current_scene.add_child(nuclear_blast)
+			
+			nuclear_blast.global_position = global_position
 		
 
 		pass
@@ -82,7 +76,7 @@ func fire():
 
 
 func _on_fire_timer_timeout() -> void:
-	if weapons_switch[Weapon.FIRE_BLAST]:
+	if weapon_settings.fire_blast:
 		fire()
 
 	pass # Replace with function body.
@@ -95,7 +89,7 @@ func _on_fire_rate():
 
 
 func _on_spread_projectile_timeout() -> void:
-	if weapons_switch[Weapon.SPREAD_FIRE]:
+	if weapon_settings.spread_fire:
 		var spread_projectile = SPREAD_PROJECTILE.instantiate()
 		get_tree().current_scene.add_child(spread_projectile)
 		spread_projectile.global_position = global_position

@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dlmmnyoqrqnpg" path="res://scene/enemy.tscn" id="2_v0l8b"]
 [ext_resource type="Texture2D" uid="uid://cnywkubysvv3o" path="res://assets/UI/settings.png" id="3_p1hux"]
 [ext_resource type="PackedScene" uid="uid://botienaqgsvm6" path="res://scene/spawner.tscn" id="3_wp4xf"]
+[ext_resource type="Script" uid="uid://rw5inik056kt" path="res://resources/weapon_settings.gd" id="5_b5f6u"]
 [ext_resource type="PackedScene" uid="uid://bk5emitaiug0y" path="res://scene/settings.tscn" id="6_4j5ol"]
 
 [sub_resource type="Environment" id="Environment_p1hux"]
@@ -18,6 +19,10 @@ glow_blend_mode = 0
 adjustment_enabled = true
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_brvut"]
+
+[sub_resource type="Resource" id="Resource_tqoya"]
+script = ExtResource("5_b5f6u")
+metadata/_custom_type_script = "uid://rw5inik056kt"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p1hux"]
 bg_color = Color(0.61, 0.5978, 0.6097967, 0)
@@ -76,31 +81,27 @@ shape = SubResource("WorldBoundaryShape2D_brvut")
 [node name="spawner" parent="." unique_id=825467392 instance=ExtResource("3_wp4xf")]
 position = Vector2(80, -56)
 spawn_interval = 1.5
-switch_ON_OFF = false
 
 [node name="spawner2" parent="." unique_id=1286613805 instance=ExtResource("3_wp4xf")]
 position = Vector2(432, -40)
 spawn_interval = 1.5
-switch_ON_OFF = false
 
 [node name="spawner3" parent="." unique_id=416084391 instance=ExtResource("3_wp4xf")]
 position = Vector2(608, 216)
 spawn_interval = 1.5
-switch_ON_OFF = false
 
 [node name="spawner4" parent="." unique_id=786976420 instance=ExtResource("3_wp4xf")]
 position = Vector2(251, 528)
 spawn_interval = 1.5
-switch_ON_OFF = false
 
 [node name="spawner5" parent="." unique_id=358141832 instance=ExtResource("3_wp4xf")]
 position = Vector2(-112, 208)
 spawn_interval = 1.5
-switch_ON_OFF = false
 
 [node name="player" parent="." unique_id=1949432662 instance=ExtResource("1_itxqv")]
 position = Vector2(136, 240)
 fire_rate = 0.5
+weapon_settings = SubResource("Resource_tqoya")
 
 [node name="enemy" parent="." unique_id=839634914 instance=ExtResource("2_v0l8b")]
 position = Vector2(251, 400)
