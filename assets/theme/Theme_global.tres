@@ -4,6 +4,9 @@
 [ext_resource type="StyleBox" uid="uid://bqsgsjl0wd0i6" path="res://assets/theme/yellow_style_box_flat.tres" id="2_1c8uu"]
 [ext_resource type="StyleBox" uid="uid://dnier4ajud5rw" path="res://assets/theme/blue_style_box_flat.tres" id="2_bykx0"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bykx0"]
+bg_color = Color(0.5999999, 0, 1, 1)
+
 [resource]
 Button/colors/font_color = Color(0, 0, 0, 1)
 Button/colors/font_hover_color = Color(1, 1, 1, 1)
@@ -21,3 +24,4 @@ PopupMenu/colors/font_color = Color(0, 0, 0, 1)
 PopupMenu/fonts/font = ExtResource("1_xbov7")
 PopupMenu/fonts/title_font = ExtResource("1_xbov7")
 PopupMenu/styles/panel = ExtResource("2_1c8uu")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_bykx0")

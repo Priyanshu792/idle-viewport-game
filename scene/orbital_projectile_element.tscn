@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://q60os21xfer0"]
 
 [ext_resource type="Script" uid="uid://ba8lgahm0hquj" path="res://script/orbital_projectile_element.gd" id="1_14owg"]
+[ext_resource type="Resource" uid="uid://bjadmbcw7rymc" path="res://resources/Base_Weapon_stats.tres" id="2_i78wk"]
 [ext_resource type="Texture2D" uid="uid://cc8epefbko3kw" path="res://assets/sprites/projectile.png" id="2_k5eat"]
 [ext_resource type="Script" uid="uid://cu7o4w5xfiup2" path="res://script/damage.gd" id="3_i78wk"]
 
@@ -11,6 +12,7 @@ radius = 64.0
 rotation = -0.12253573
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_14owg")
+damage = ExtResource("2_i78wk")
 metadata/_edit_horizontal_guides_ = [-16.0]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1854641950]

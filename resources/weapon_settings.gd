@@ -6,3 +6,15 @@ class_name WeaponSettings
 @export var nuclear_blast := false
 @export var laser := false
 @export var orbital := false
+
+
+#Energy Orb
+#Plasma Ball
+#Pulse
+#Shockwave
+#Beam
+#Light Ray
+#Prism
+#Photon
+#Spark
+#Glow Bolt

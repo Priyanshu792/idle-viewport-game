@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://cny8nefj8h3jr"]
+
+[ext_resource type="Script" uid="uid://b4tv63qjcn81s" path="res://script/dropped_orb.gd" id="1_li2n0"]
+
+[sub_resource type="Gradient" id="Gradient_vnx6f"]
+interpolation_mode = 1
+interpolation_color_space = 2
+offsets = PackedFloat32Array(0.31268883, 0.42145014, 0.66012084)
+colors = PackedColorArray(1, 0.55, 0, 1, 0.5666666, 0, 1, 1, 0, 0.7833333, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_li2n0"]
+gradient = SubResource("Gradient_vnx6f")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_li2n0"]
+radius = 7.0
+
+[node name="dropped_orb" type="Node2D" unique_id=1010418163]
+script = ExtResource("1_li2n0")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1715894979]
+scale = Vector2(0.25, 0.25)
+texture = SubResource("GradientTexture2D_li2n0")
+
+[node name="Timer" type="Timer" parent="." unique_id=1415021991]
+wait_time = 1.5
+one_shot = true
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1581989821]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=69008475]
+visible = false
+shape = SubResource("CircleShape2D_li2n0")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

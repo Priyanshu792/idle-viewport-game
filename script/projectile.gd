@@ -3,12 +3,15 @@ extends Node2D
 #@export var speed := 600.0
 #@export var damage := 0.5
 
-@export var stats : WeaponsStat
-
+@export var base_stats : WeaponsStat
+var stats:WeaponsStat
 const EXPLOSION_PARTICLE = preload("uid://rmf1psipscka")
 
 var direction := Vector2.ZERO
 
+func _ready() -> void:
+	stats = base_stats.duplicate(true)
+	pass
 
 func _physics_process(delta):
 	position += direction * stats.projectile_speed * delta

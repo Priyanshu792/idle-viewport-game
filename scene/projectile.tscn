@@ -10,7 +10,7 @@ radius = 64.0
 
 [node name="projectile" type="Node2D" unique_id=1410275379]
 script = ExtResource("1_u6xv6")
-stats = ExtResource("2_ujo14")
+base_stats = ExtResource("2_ujo14")
 metadata/_edit_horizontal_guides_ = [-16.0]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1133949098]
