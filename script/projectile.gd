@@ -4,23 +4,25 @@ extends Node2D
 #@export var damage := 0.5
 
 @export var base_stats : WeaponsStat
-var stats:WeaponsStat
+#var stats:WeaponsStat
 const EXPLOSION_PARTICLE = preload("uid://rmf1psipscka")
+var damage := 0.0
+var is_crit := false
 
 var direction := Vector2.ZERO
 
 func _ready() -> void:
-	stats = base_stats.duplicate(true)
+	#stats = base_stats.duplicate(true)
 	pass
 
 func _physics_process(delta):
-	position += direction * stats.projectile_speed * delta
+	position += direction * base_stats.projectile_speed * delta
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy"):
 		var enemy_health = body.get_node("health")
 		
-		enemy_health.remove_health(stats.projectile_damage)
+		enemy_health.remove_health(damage, is_crit)
 		
 		queue_free()         # Destroy projectile
 		if enemy_health.health<=0.0:
@@ -32,3 +34,15 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			dying_explosion.explode()
 	if body.is_in_group("walls"):
 		queue_free()  
+		
+func setup(player_stats: PlayerStats, weapon_stats: WeaponsStat):
+	base_stats = weapon_stats
+
+	var result = DamageCalculator.get_damage(
+		player_stats,
+		weapon_stats.projectile_damage
+	)
+
+	damage = result.damage
+	is_crit = result.is_crit
+	

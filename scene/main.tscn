@@ -4,12 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://betenash78fnb" path="res://scene/player.tscn" id="1_itxqv"]
 [ext_resource type="Script" uid="uid://cah8l2avb3u76" path="res://script/ui.gd" id="2_4j5ol"]
 [ext_resource type="Texture2D" uid="uid://bcm4vjlx56b5m" path="res://assets/sprites/backround.png" id="2_b5f6u"]
-[ext_resource type="PackedScene" uid="uid://dlmmnyoqrqnpg" path="res://scene/enemy.tscn" id="2_v0l8b"]
 [ext_resource type="Texture2D" uid="uid://cnywkubysvv3o" path="res://assets/UI/settings.png" id="3_p1hux"]
 [ext_resource type="PackedScene" uid="uid://botienaqgsvm6" path="res://scene/spawner.tscn" id="3_wp4xf"]
 [ext_resource type="Script" uid="uid://rw5inik056kt" path="res://resources/weapon_settings.gd" id="5_b5f6u"]
 [ext_resource type="Resource" uid="uid://b7xmd1xacdhp0" path="res://resources/Base_Player_stats.tres" id="5_wscrc"]
 [ext_resource type="PackedScene" uid="uid://bk5emitaiug0y" path="res://scene/settings.tscn" id="6_4j5ol"]
+[ext_resource type="Resource" uid="uid://bjadmbcw7rymc" path="res://resources/Base_Weapon_stats.tres" id="7_mswub"]
 [ext_resource type="PackedScene" uid="uid://cny8nefj8h3jr" path="res://scene/dropped_orb.tscn" id="11_k65ib"]
 [ext_resource type="Theme" uid="uid://w87rnglpb5v3" path="res://assets/theme/Theme_global.tres" id="11_wscrc"]
 
@@ -25,8 +25,8 @@ adjustment_enabled = true
 
 [sub_resource type="Resource" id="Resource_tqoya"]
 script = ExtResource("5_b5f6u")
+fire_blast = false
 spread_fire = true
-orbital = true
 metadata/_custom_type_script = "uid://rw5inik056kt"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p1hux"]
@@ -108,10 +108,7 @@ position = Vector2(136, 240)
 collision_mask = 9
 player_stats = ExtResource("5_wscrc")
 weapon_settings = SubResource("Resource_tqoya")
-
-[node name="enemy" parent="." unique_id=839634914 instance=ExtResource("2_v0l8b")]
-position = Vector2(251, 400)
-collision_mask = 20
+weapon_stat = ExtResource("7_mswub")
 
 [node name="UI" type="Control" parent="." unique_id=1980353190]
 layout_mode = 3
@@ -155,7 +152,7 @@ offset_bottom = 65.0
 grow_horizontal = 2
 text = "0"
 
-[node name="fire_rate" type="Button" parent="UI" unique_id=1551309823]
+[node name="Upgrade_Button" type="Button" parent="UI" unique_id=1551309823]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -192,4 +189,3 @@ text = "0"
 position = Vector2(352, 264)
 
 [connection signal="pressed" from="UI/SettingsButton" to="UI" method="_on_settings_button_pressed"]
-[connection signal="pressed" from="UI/fire_rate" to="UI" method="_on_fire_rate_pressed"]

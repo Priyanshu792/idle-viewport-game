@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://7sqehslm3ik0" path="res://script/player.gd" id="1_hjaqi"]
 [ext_resource type="Texture2D" uid="uid://cyic1ytp0nq1u" path="res://assets/sprites/player.png" id="2_hjaqi"]
+[ext_resource type="Script" uid="uid://cf3jtte757j5j" path="res://script/health.gd" id="3_fvtld"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xo3ru"]
 radius = 37.054016
@@ -29,6 +30,9 @@ autostart = true
 [node name="spread_projectile" type="Timer" parent="." unique_id=1605716023]
 wait_time = 0.6
 autostart = true
+
+[node name="health" type="Node" parent="." unique_id=1840665192]
+script = ExtResource("3_fvtld")
 
 [connection signal="timeout" from="fire_timer" to="." method="_on_fire_timer_timeout"]
 [connection signal="timeout" from="spread_projectile" to="." method="_on_spread_projectile_timeout"]

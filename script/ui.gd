@@ -6,12 +6,14 @@ extends Control
 @onready var progress_bar: ProgressBar = $ProgressBar
 
 @onready var settings: Control = $settings
-@onready var fire_rate: Button = $fire_rate
+
 @onready var settings_button: Button = $SettingsButton
 
 @onready var orbs_label: Label = $Orbs_Label
 
 @export var score := 0
+
+@onready var upgrade_button: Button = $Upgrade_Button
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -40,12 +42,6 @@ func _on_enemy_killed():
 	add_score(1)
 	score_label.text = str(score)
 	pass
-
-
-func _on_fire_rate_pressed() -> void:
-	GameEvents.fire_rate.emit()
-	pass # Replace with function body.
-
 
 func _on_orb_collected():
 	orbs_label.text = str(LevelManager.xp)

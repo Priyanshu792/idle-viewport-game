@@ -7,11 +7,11 @@ extends Resource
 
 @export var orb_distance_threshold := 100
 
-@export var damage := 10.0
-@export var fire_rate := 1.0
+#@export var damage := 10.0
+#@export var fire_rate := 1.0
 
-@export var projectile_speed := 700.0
-@export var projectile_size := 1.0
+#@export var projectile_speed := 700.0
+#@export var projectile_size := 1.0
 
 @export var pierce := 0
 @export var bounce := 0
