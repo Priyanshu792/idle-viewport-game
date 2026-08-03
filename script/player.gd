@@ -19,7 +19,7 @@ func _ready() -> void:
 		get_tree().current_scene.add_child.call_deferred(orbitals)
 		await get_tree().process_frame
 		orbitals.setup(player_stats, weapon_stat)
-		orbitals.add_orbiting_object(1)
+		orbitals.add_orbiting_object(5)
 		
 	#GameEvents.fire_rate.connect(_on_fire_rate)
 	#fire_timer.wait_time = player_stats.fire_rate

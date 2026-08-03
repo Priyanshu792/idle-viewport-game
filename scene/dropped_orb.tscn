@@ -20,6 +20,7 @@ radius = 7.0
 
 [node name="dropped_orb" type="Node2D" unique_id=1010418163]
 script = ExtResource("1_li2n0")
+speed = 350.0
 distance_thresh = ExtResource("2_amjie")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1715894979]

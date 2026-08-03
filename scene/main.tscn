@@ -10,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://b7xmd1xacdhp0" path="res://resources/Base_Player_stats.tres" id="5_wscrc"]
 [ext_resource type="PackedScene" uid="uid://bk5emitaiug0y" path="res://scene/settings.tscn" id="6_4j5ol"]
 [ext_resource type="Resource" uid="uid://bjadmbcw7rymc" path="res://resources/Base_Weapon_stats.tres" id="7_mswub"]
+[ext_resource type="PackedScene" uid="uid://dlmmnyoqrqnpg" path="res://scene/enemy.tscn" id="8_mswub"]
 [ext_resource type="PackedScene" uid="uid://cny8nefj8h3jr" path="res://scene/dropped_orb.tscn" id="11_k65ib"]
 [ext_resource type="Theme" uid="uid://w87rnglpb5v3" path="res://assets/theme/Theme_global.tres" id="11_wscrc"]
 
@@ -25,25 +26,14 @@ adjustment_enabled = true
 
 [sub_resource type="Resource" id="Resource_tqoya"]
 script = ExtResource("5_b5f6u")
-fire_blast = false
 spread_fire = true
+nuclear_blast = true
+orbital = true
 metadata/_custom_type_script = "uid://rw5inik056kt"
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p1hux"]
-bg_color = Color(0.61, 0.5978, 0.6097967, 0)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mswub"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b5f6u"]
-bg_color = Color(0.8039216, 0.7921569, 0.019607844, 1)
-
-[sub_resource type="Theme" id="Theme_p1hux"]
-Button/colors/font_color = Color(1, 0.9843137, 0, 1)
-Button/styles/normal = SubResource("StyleBoxFlat_p1hux")
-Label/colors/font_color = Color(1, 0.98333335, 0, 1)
-Label/colors/font_outline_color = Color(1, 0.9843137, 0, 1)
-Label/colors/font_shadow_color = Color(1, 0.9843137, 0, 1)
-ProgressBar/styles/fill = SubResource("StyleBoxFlat_b5f6u")
-
-[sub_resource type="Theme" id="Theme_of57s"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hybxs"]
 
 [node name="main" type="Node2D" unique_id=371940320]
 script = ExtResource("1_brvut")
@@ -110,12 +100,15 @@ player_stats = ExtResource("5_wscrc")
 weapon_settings = SubResource("Resource_tqoya")
 weapon_stat = ExtResource("7_mswub")
 
+[node name="enemy" parent="." unique_id=839634914 instance=ExtResource("8_mswub")]
+position = Vector2(280, 336)
+
 [node name="UI" type="Control" parent="." unique_id=1980353190]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 502.0
 offset_bottom = 502.0
-theme = SubResource("Theme_p1hux")
+theme = ExtResource("11_wscrc")
 script = ExtResource("2_4j5ol")
 
 [node name="SettingsButton" type="Button" parent="UI" unique_id=598129211]
@@ -128,6 +121,7 @@ offset_top = 16.0
 offset_right = -14.0
 offset_bottom = 80.0
 grow_horizontal = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_mswub")
 icon = ExtResource("3_p1hux")
 
 [node name="settings" parent="UI" unique_id=1742019507 instance=ExtResource("6_4j5ol")]
@@ -164,7 +158,8 @@ offset_top = -20.0
 offset_bottom = 20.0
 grow_horizontal = 0
 grow_vertical = 2
-theme = SubResource("Theme_of57s")
+theme = ExtResource("11_wscrc")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hybxs")
 text = "^
 ^"
 

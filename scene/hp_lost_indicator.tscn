@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://cjvtav2pn62af"]
+
+[ext_resource type="Script" uid="uid://bo7lwl0ctwmiv" path="res://script/hp_lost_indicator.gd" id="1_05x71"]
+[ext_resource type="Theme" uid="uid://w87rnglpb5v3" path="res://assets/theme/Theme_global.tres" id="2_xr8cp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5e164"]
+
+[node name="hp_lost_indicator" type="Control" unique_id=350637573]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_05x71")
+
+[node name="hp_lost_Label" type="Label" parent="." unique_id=1298276911]
+layout_mode = 0
+offset_right = 23.0
+offset_bottom = 20.0
+theme = ExtResource("2_xr8cp")
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5e164")
+text = "00"
+
+[node name="Timer" type="Timer" parent="." unique_id=2013975938]
+wait_time = 1.5
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -25,7 +25,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		enemy_health.remove_health(damage, is_crit)
 		
 		queue_free()         # Destroy projectile
-		if enemy_health.health<=0.0:
+		if enemy_health.current_health<=0.0:
 			var dying_explosion = EXPLOSION_PARTICLE.instantiate()
 			dying_explosion.global_transform = global_transform
 			get_tree().current_scene.add_child(dying_explosion)

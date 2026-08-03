@@ -1,10 +1,11 @@
 extends CharacterBody2D
 
 @export var stats: EnemyStat
-var move_speed := 0.0
+var move_speed:float
 var player: CharacterBody2D
 
 func _ready():
+	#print(stats)
 	move_speed = stats.enemy_1_speed
 	player = get_tree().get_first_node_in_group("player")
 
