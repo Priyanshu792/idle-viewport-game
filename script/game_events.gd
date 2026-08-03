@@ -6,3 +6,5 @@ signal player_damaged
 signal level_up
 signal fire_rate
 signal damage
+
+signal orb

@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cnywkubysvv3o" path="res://assets/UI/settings.png" id="3_p1hux"]
 [ext_resource type="PackedScene" uid="uid://botienaqgsvm6" path="res://scene/spawner.tscn" id="3_wp4xf"]
 [ext_resource type="Script" uid="uid://rw5inik056kt" path="res://resources/weapon_settings.gd" id="5_b5f6u"]
-[ext_resource type="Script" uid="uid://bgck85jj7vkfj" path="res://resources/player_stat.gd" id="5_tqoya"]
+[ext_resource type="Resource" uid="uid://b7xmd1xacdhp0" path="res://resources/Base_Player_stats.tres" id="5_wscrc"]
 [ext_resource type="PackedScene" uid="uid://bk5emitaiug0y" path="res://scene/settings.tscn" id="6_4j5ol"]
 [ext_resource type="PackedScene" uid="uid://cny8nefj8h3jr" path="res://scene/dropped_orb.tscn" id="11_k65ib"]
 [ext_resource type="Theme" uid="uid://w87rnglpb5v3" path="res://assets/theme/Theme_global.tres" id="11_wscrc"]
@@ -22,10 +22,6 @@ glow_blend_mode = 0
 adjustment_enabled = true
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_brvut"]
-
-[sub_resource type="Resource" id="Resource_k65ib"]
-script = ExtResource("5_tqoya")
-metadata/_custom_type_script = "uid://bgck85jj7vkfj"
 
 [sub_resource type="Resource" id="Resource_tqoya"]
 script = ExtResource("5_b5f6u")
@@ -110,7 +106,7 @@ spawn_interval = 1.5
 [node name="player" parent="." unique_id=1949432662 instance=ExtResource("1_itxqv")]
 position = Vector2(136, 240)
 collision_mask = 9
-player_stats = SubResource("Resource_k65ib")
+player_stats = ExtResource("5_wscrc")
 weapon_settings = SubResource("Resource_tqoya")
 
 [node name="enemy" parent="." unique_id=839634914 instance=ExtResource("2_v0l8b")]
@@ -182,8 +178,15 @@ offset_bottom = 5.604
 theme = ExtResource("11_wscrc")
 max_value = 300.0
 step = 0.001
-value = 300.0
 show_percentage = false
+
+[node name="Orbs_Label" type="Label" parent="UI" unique_id=924444067]
+layout_mode = 1
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 34.0
+offset_bottom = 39.0
+text = "0"
 
 [node name="dropped_orb" parent="." unique_id=1010418163 instance=ExtResource("11_k65ib")]
 position = Vector2(352, 264)

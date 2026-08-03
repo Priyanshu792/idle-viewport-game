@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cny8nefj8h3jr"]
 
 [ext_resource type="Script" uid="uid://b4tv63qjcn81s" path="res://script/dropped_orb.gd" id="1_li2n0"]
+[ext_resource type="Resource" uid="uid://b7xmd1xacdhp0" path="res://resources/Base_Player_stats.tres" id="2_amjie"]
 
 [sub_resource type="Gradient" id="Gradient_vnx6f"]
 interpolation_mode = 1
@@ -19,6 +20,7 @@ radius = 7.0
 
 [node name="dropped_orb" type="Node2D" unique_id=1010418163]
 script = ExtResource("1_li2n0")
+distance_thresh = ExtResource("2_amjie")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1715894979]
 scale = Vector2(0.25, 0.25)

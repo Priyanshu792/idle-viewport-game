@@ -2,8 +2,10 @@ extends Node2D
 @onready var game_timer: Timer = %Game_Timer
 @onready var progress_bar: ProgressBar = $UI/ProgressBar
 
+#var orb :int
 
 func _ready() -> void:
+	#GameEvents.orb.connect(_on_orb_collected)
 	get_window().mouse_passthrough = false
 	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_TRANSPARENT,true)
 	DisplayServer.window_set_mouse_passthrough([])
@@ -12,7 +14,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	var game_time = game_timer.wait_time - game_timer.time_left
-	progress_bar.value = game_time
+	#progress_bar.value = game_time
 	#print(game_timer.wait_time-game_timer.time_left)
 	if game_time == 60:
 		GameEvents.level_mark.emit(game_time)
@@ -22,4 +24,9 @@ func _process(delta: float) -> void:
 
 func get_enemy_count():
 	return get_tree().get_nodes_in_group("enemy").size()
+	pass
+
+func _on_orb_collected():
+	#orb+=1
+	#LevelManager.add_xp(1)
 	pass
