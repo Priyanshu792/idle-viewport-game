@@ -35,6 +35,9 @@ metadata/_custom_type_script = "uid://rw5inik056kt"
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hybxs"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mswub"]
+bg_color = Color(0, 1, 0.099999905, 1)
+
 [node name="main" type="Node2D" unique_id=371940320]
 script = ExtResource("1_brvut")
 
@@ -84,14 +87,17 @@ spawn_interval = 1.5
 [node name="spawner3" parent="." unique_id=416084391 instance=ExtResource("3_wp4xf")]
 position = Vector2(608, 216)
 spawn_interval = 1.5
+switch_ON_OFF = false
 
 [node name="spawner4" parent="." unique_id=786976420 instance=ExtResource("3_wp4xf")]
 position = Vector2(251, 528)
 spawn_interval = 1.5
+switch_ON_OFF = false
 
 [node name="spawner5" parent="." unique_id=358141832 instance=ExtResource("3_wp4xf")]
 position = Vector2(-112, 208)
 spawn_interval = 1.5
+switch_ON_OFF = false
 
 [node name="player" parent="." unique_id=1949432662 instance=ExtResource("1_itxqv")]
 position = Vector2(136, 240)
@@ -103,7 +109,11 @@ weapon_stat = ExtResource("7_mswub")
 [node name="enemy" parent="." unique_id=839634914 instance=ExtResource("8_mswub")]
 position = Vector2(280, 336)
 
+[node name="dropped_orb" parent="." unique_id=1010418163 instance=ExtResource("11_k65ib")]
+position = Vector2(352, 264)
+
 [node name="UI" type="Control" parent="." unique_id=1980353190]
+z_index = 1
 layout_mode = 3
 anchors_preset = 0
 offset_right = 502.0
@@ -180,7 +190,19 @@ offset_right = 34.0
 offset_bottom = 39.0
 text = "0"
 
-[node name="dropped_orb" parent="." unique_id=1010418163 instance=ExtResource("11_k65ib")]
-position = Vector2(352, 264)
+[node name="health_bar" type="ProgressBar" parent="UI" unique_id=1025652573]
+visible = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/fill = SubResource("StyleBoxFlat_mswub")
+value = 36.8
+show_percentage = false
 
 [connection signal="pressed" from="UI/SettingsButton" to="UI" method="_on_settings_button_pressed"]
+[connection signal="pressed" from="UI/Upgrade_Button" to="UI" method="_on_upgrade_button_pressed"]

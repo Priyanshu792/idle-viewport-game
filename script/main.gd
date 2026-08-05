@@ -10,7 +10,12 @@ func _ready() -> void:
 	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_TRANSPARENT,true)
 	DisplayServer.window_set_mouse_passthrough([])
 	Performance.add_custom_monitor("game/enemies",get_enemy_count)
+	
 	pass # Replace with function body.
+
+func signal_test():
+	print("hewo")
+	pass
 
 func _process(delta: float) -> void:
 	var game_time = game_timer.wait_time - game_timer.time_left

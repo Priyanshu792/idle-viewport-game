@@ -30,7 +30,8 @@ func remove_health(amount: float, crit := false) -> void:
 	current_health -= amount
 
 	if crit:
-		print("CRITICAL!", amount)
+		#print("CRITICAL!", amount)
+		pass
 
 	if health_bar:
 		health_bar.value = current_health
@@ -42,7 +43,7 @@ func remove_health(amount: float, crit := false) -> void:
 	
 	hp_lost_indicator.global_position = get_parent().global_position
 	get_tree().current_scene.add_child(hp_lost_indicator)
-	hp_lost_indicator.add_label_text(amount)
+	hp_lost_indicator.add_label_text(amount,crit)
 	
 	
 func die() -> void:

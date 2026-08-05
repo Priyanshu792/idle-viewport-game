@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 WindowsManager="*uid://cbsg5d4kbhm42"
 GameEvents="*uid://bsfha10kkry0y"
 LevelManager="*uid://bo1i02edh4tna"
+SignalLens="*uid://85rkx60vm7a7"
 
 [display]
 
@@ -35,6 +36,10 @@ window/per_pixel_transparency/allowed=true
 
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/signal_lens/plugin.cfg")
 
 [global_group]
 

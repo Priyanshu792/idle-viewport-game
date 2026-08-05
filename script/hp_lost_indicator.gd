@@ -18,8 +18,13 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func add_label_text(amount:float):
-	hp_lost_label.text = str(amount)
+func add_label_text(amount:float,is_crit:bool = false):
+	if is_crit:
+		hp_lost_label.text = "Critical "+str(amount)
+		hp_lost_label.add_theme_font_size_override("font_size",30)
+	else:
+		hp_lost_label.text = str(amount)
+	
 	pass
 
 func _on_timer_timeout() -> void:

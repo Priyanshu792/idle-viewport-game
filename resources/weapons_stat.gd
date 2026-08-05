@@ -1,6 +1,12 @@
 extends Resource
 class_name WeaponsStat
 
+enum projectile_types{
+	projectile,
+	spread_fire,
+	orbital
+}
+
 @export_group("Fire Blast") 
 @export var projectile_speed := 600.0
 @export var projectile_damage := 0.5
