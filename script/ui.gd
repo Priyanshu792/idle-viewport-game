@@ -15,7 +15,7 @@ extends Control
 @export var score := 0
 
 @onready var upgrade_button: Button = $Upgrade_Button
-@onready var upgrade_menu: Control = $upgrade_menu
+#@onready var upgrade_menu: Control = $upgrade_menu
 
 var player : CharacterBody2D
 # Called when the node enters the scene tree for the first time.

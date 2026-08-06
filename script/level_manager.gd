@@ -13,7 +13,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func add_xp(amount: int):
@@ -28,7 +28,7 @@ func add_xp(amount: int):
 
 		level_up.emit(level)
 
-func get_next_requirement(level: int) -> int:
+func get_next_requirement(_level: int) -> int:
 	return int(5 * pow(1.25, level - 1))
 
 func _on_orb_collected():

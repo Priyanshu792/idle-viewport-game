@@ -66,3 +66,27 @@ func load_settings():
 func get_game_state():
 	
 	pass
+	
+	
+func update_walls(size:Vector2):
+	var walls = get_tree().get_nodes_in_group("walls")
+	print(walls)
+	for wall in walls:
+		if !(wall is CollisionShape2D):
+			continue
+		match wall.name:
+			"Top":
+				wall.position = Vector2(size.x / 2, 0)
+				print("Top ", wall.position)
+			"Bottom":
+				wall.position = Vector2(size.x / 2, size.y)
+				print("Bottom ", wall.position)
+			"Left":
+				wall.position = Vector2(0, size.y / 2)
+				print("Left ", wall.position)
+			"Right":
+				wall.position = Vector2(size.x, size.y / 2)
+				print("Right ", wall.position)
+	
+	load_settings()
+	apply_window_settings()

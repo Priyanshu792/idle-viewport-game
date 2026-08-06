@@ -9,7 +9,7 @@ const EXPLOSION_PARTICLE = preload("uid://rmf1psipscka")
 #var direction := Vector2.ZERO
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	#position += direction * speed * delta
 	pass
 

@@ -20,6 +20,7 @@ theme = ExtResource("1_3er1b")
 script = ExtResource("2_hxu56")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=112460510]
+custom_minimum_size = Vector2(90, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -60,6 +61,19 @@ icon = ExtResource("3_2fwvj")
 [node name="settings" parent="." unique_id=1742019507 instance=ExtResource("4_0iwki")]
 visible = false
 layout_mode = 1
+
+[node name="Label" type="Label" parent="." unique_id=121642967]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -84.5
+offset_top = 128.0
+offset_right = 84.5
+offset_bottom = 148.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 38
+text = "IDLE GAME NO NAME"
 
 [connection signal="pressed" from="VBoxContainer/Start_button" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit_button" to="." method="_on_quit_button_pressed"]

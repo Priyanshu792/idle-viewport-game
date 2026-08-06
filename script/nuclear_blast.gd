@@ -11,7 +11,7 @@ func _ready() -> void:
 	death_timer.start()
 	gpu_particles_2d.emitting = true
 	pass
-func _physics_process(delta):
+func _physics_process(_delta):
 	#position += direction * speed * delta
 	pass
 	
