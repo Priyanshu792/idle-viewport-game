@@ -4,7 +4,9 @@ extends Control
 
 @onready var score_label: Label = %Score_Label
 @onready var progress_bar: ProgressBar = $ProgressBar
-@onready var health_bar: ProgressBar = $health_bar
+#@onready var health_bar: ProgressBar = $health_bar
+
+@onready var health_bar_player: ProgressBar = $health_bar_player
 
 @onready var settings: Control = $settings
 
@@ -28,7 +30,11 @@ func _ready() -> void:
 	#health_bar.max_value = player.
 	pass # Replace with function body.
 
-
+func _process(_delta: float) -> void:
+	#if player:
+		##health_bar_player.position = get_tree().get_first_node_in_group("player").position - Vector2(32.0,40.0)
+		#health_bar_player.position = player.position - Vector2(32.0,40.0)
+	pass
 
 func _on_settings_button_pressed() -> void:
 	get_tree().paused = true

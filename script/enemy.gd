@@ -18,3 +18,12 @@ func _physics_process(_delta):
 	velocity = direction * move_speed
 
 	move_and_slide()
+	
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		#print(player)
+		var health_node = body.get_node("health")
+		health_node.remove_health(0.01)
+	pass # Replace with function body.

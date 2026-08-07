@@ -51,6 +51,9 @@ animations = [{
 "speed": 16.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_b7koy"]
+radius = 58.84
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_h08p8"]
 radius = 64.03124
 
@@ -88,11 +91,20 @@ autoplay = "default"
 frame_progress = 0.6584623
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=955424751]
-visible = false
 scale = Vector2(0.51309466, 0.51309466)
-shape = SubResource("CircleShape2D_h08p8")
+shape = SubResource("CircleShape2D_b7koy")
 
 [node name="health" type="Node" parent="." unique_id=650171592 node_paths=PackedStringArray("health_bar")]
 script = ExtResource("3_8u16h")
 stat = ExtResource("4_b7koy")
 health_bar = NodePath("../health_bar")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1281163357]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" unique_id=819939054]
+scale = Vector2(0.51309466, 0.51309466)
+shape = SubResource("CircleShape2D_h08p8")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

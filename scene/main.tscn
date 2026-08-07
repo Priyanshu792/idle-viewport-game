@@ -35,8 +35,8 @@ metadata/_custom_type_script = "uid://rw5inik056kt"
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hybxs"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mswub"]
-bg_color = Color(0, 1, 0.099999905, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hybxs"]
+bg_color = Color(0, 1, 0, 1)
 
 [node name="main" type="Node2D" unique_id=371940320]
 script = ExtResource("1_brvut")
@@ -102,15 +102,16 @@ spawn_interval = 1.5
 position = Vector2(-112, 208)
 spawn_interval = 1.5
 
-[node name="player" parent="." unique_id=1949432662 instance=ExtResource("1_itxqv")]
-position = Vector2(257, 256)
+[node name="player" parent="." unique_id=1949432662 node_paths=PackedStringArray("player_health_bar") instance=ExtResource("1_itxqv")]
+position = Vector2(264, 256)
 collision_mask = 9
 player_stats = ExtResource("5_wscrc")
 weapon_settings = SubResource("Resource_tqoya")
 weapon_stat = ExtResource("7_mswub")
+player_health_bar = NodePath("../UI/health_bar_player")
 
 [node name="enemy" parent="." unique_id=839634914 instance=ExtResource("8_mswub")]
-position = Vector2(256, 384)
+position = Vector2(216, 368)
 
 [node name="dropped_orb" parent="." unique_id=1010418163 instance=ExtResource("11_k65ib")]
 position = Vector2(352, 264)
@@ -191,8 +192,7 @@ offset_right = 34.0
 offset_bottom = 39.0
 text = "0"
 
-[node name="health_bar" type="ProgressBar" parent="UI" unique_id=1025652573]
-visible = false
+[node name="health_bar_player" type="ProgressBar" parent="UI" unique_id=373473404]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -201,8 +201,7 @@ anchor_bottom = 1.0
 offset_top = -4.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/fill = SubResource("StyleBoxFlat_mswub")
-value = 36.8
+theme_override_styles/fill = SubResource("StyleBoxFlat_hybxs")
 show_percentage = false
 
 [connection signal="pressed" from="UI/SettingsButton" to="UI" method="_on_settings_button_pressed"]

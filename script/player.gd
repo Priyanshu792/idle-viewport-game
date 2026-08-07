@@ -13,6 +13,8 @@ const ORBITAL_PROJECTILE = preload("uid://dj45eavxxr0yv")
 @export var weapon_stat : WeaponsStat
 var orbitals
 
+@export var player_health_bar:ProgressBar
+
 func _ready() -> void:
 	if weapon_settings.orbital:
 		orbitals = ORBITAL_PROJECTILE.instantiate()

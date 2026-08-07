@@ -22,9 +22,9 @@ func _ready() -> void:
 	pass
 
 func add_health(amount: float) -> void:
-	stat.enemy_1_hp += amount
+	current_health += amount
 	if health_bar:
-		health_bar.value = stat.enemy_1_hp
+		health_bar.value = current_health
 
 func remove_health(amount: float, crit := false) -> void:
 	current_health -= amount
@@ -40,7 +40,6 @@ func remove_health(amount: float, crit := false) -> void:
 		call_deferred("die")
 	
 	var hp_lost_indicator = HP_LOST_INDICATOR.instantiate()
-	
 	hp_lost_indicator.global_position = get_parent().global_position
 	get_tree().current_scene.add_child(hp_lost_indicator)
 	hp_lost_indicator.add_label_text(amount,crit)
@@ -52,9 +51,6 @@ func die() -> void:
 		orb.global_position = get_parent().global_position
 		get_tree().current_scene.add_child(orb)
 		
-		#var hp_lost_indicator = HP_LOST_INDICATOR.instantiate()
-		#hp_lost_indicator.add_label_text(lost_health)
-		#hp_lost_indicator.global_position = get_parent().global_position
-		#get_tree().current_scene.add_child(hp_lost_indicator)
+	
 		
 	get_parent().queue_free()
