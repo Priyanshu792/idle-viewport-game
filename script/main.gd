@@ -1,6 +1,7 @@
 extends Node2D
 @onready var game_timer: Timer = %Game_Timer
 @onready var progress_bar: ProgressBar = $UI/ProgressBar
+@onready var settings_button: Button = $UI/SettingsButton
 
 @onready var ui: Control = $UI
 
@@ -14,6 +15,8 @@ func _ready() -> void:
 	get_window().mouse_passthrough = false
 	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_TRANSPARENT,true)
 	DisplayServer.window_set_mouse_passthrough([])
+	#DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_TRANSPARENT, true)
+	#update_mouse_passthrough()
 	Performance.add_custom_monitor("game/enemies",get_enemy_count)
 	WindowsManager.update_walls(DisplayServer.window_get_size())
 	ui.size.x = DisplayServer.window_get_size().x
@@ -26,6 +29,18 @@ func update_game_bounds(width: int, height: int):
 	ui.size.x = width
 	ui.size.y = height
 	progress_bar.size.x = DisplayServer.window_get_size().x
+
+func update_mouse_passthrough():
+	var rect = settings_button.get_global_rect()
+
+	var polygon := PackedVector2Array([
+		rect.position,
+		rect.position + Vector2(rect.size.x, 0),
+		rect.position + rect.size,
+		rect.position + Vector2(0, rect.size.y)
+	])
+
+	get_window().mouse_passthrough_polygon = polygon
 
 func signal_test():
 	print("hewo")

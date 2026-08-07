@@ -98,6 +98,10 @@ spawn_interval = 1.5
 position = Vector2(-112, 208)
 spawn_interval = 1.5
 
+[node name="spawner6" parent="." unique_id=457930926 instance=ExtResource("3_wp4xf")]
+position = Vector2(-112, 208)
+spawn_interval = 1.5
+
 [node name="player" parent="." unique_id=1949432662 instance=ExtResource("1_itxqv")]
 position = Vector2(257, 256)
 collision_mask = 9
@@ -200,10 +204,6 @@ grow_vertical = 0
 theme_override_styles/fill = SubResource("StyleBoxFlat_mswub")
 value = 36.8
 show_percentage = false
-
-[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1173556138]
-visible = false
-polygon = PackedVector2Array(504, 64, 504, 0, 440, 0, 440, 64)
 
 [connection signal="pressed" from="UI/SettingsButton" to="UI" method="_on_settings_button_pressed"]
 [connection signal="pressed" from="UI/Upgrade_Button" to="UI" method="_on_upgrade_button_pressed"]
