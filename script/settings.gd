@@ -1,12 +1,13 @@
 extends Control
 
 #@onready var option_button: OptionButton = $VBoxContainer/OptionButton
-@onready var option_button: OptionButton = $HBoxContainer/VBoxContainer2/OptionButton
-@onready var option_button_2: OptionButton = $HBoxContainer/VBoxContainer2/OptionButton2
+@onready var option_button: OptionButton = $VBoxContainer/HBoxContainer/VBoxContainer2/OptionButton
+@onready var option_button_2: OptionButton = $VBoxContainer/HBoxContainer/VBoxContainer2/OptionButton2
+@onready var option_button_3: OptionButton = $VBoxContainer/HBoxContainer/VBoxContainer2/OptionButton3
 
-@onready var custom_res: HBoxContainer = $HBoxContainer/VBoxContainer2/custom_res
-@onready var custom_res_val_1: LineEdit = $HBoxContainer/VBoxContainer2/custom_res/custom_res_val1
-@onready var custom_res_val_2: LineEdit = $HBoxContainer/VBoxContainer2/custom_res/custom_res_val2
+@onready var custom_res: HBoxContainer = $VBoxContainer/HBoxContainer/VBoxContainer2/custom_res
+@onready var custom_res_val_1: LineEdit = $VBoxContainer/HBoxContainer/VBoxContainer2/custom_res/custom_res_val1
+@onready var custom_res_val_2: LineEdit = $VBoxContainer/HBoxContainer/VBoxContainer2/custom_res/custom_res_val2
 
 var custom_size:Vector2i
 var current_size = DisplayServer.window_get_size()
@@ -31,6 +32,10 @@ var RESOLUTIONS: Array[String] = [
 
 
 func _ready():
+	var screen_count = DisplayServer.get_screen_count()
+	for i in range(screen_count):
+		option_button_3.add_item(str(i))
+	
 	option_button.clear()
 
 	option_button.add_item("Top Left")
@@ -110,7 +115,10 @@ func _apply_custom_resolution() -> void:
 
 	var width := int(custom_res_val_1.text)
 	var height := int(custom_res_val_2.text)
-
+	
+	width = clampi(width, 320, 1920)
+	height = clampi(height, 180, 1080)
+	
 	if width <= 0 or height <= 0:
 		return
 
@@ -126,3 +134,16 @@ func _apply_custom_resolution() -> void:
 		option_button_2.add_item(resolution_string)
 
 	option_button_2.select(RESOLUTIONS.find(resolution_string))
+
+
+func _on_option_button_3_item_selected(index: int) -> void:
+	WindowsManager.set_current_screen(index)
+	pass # Replace with function body.
+
+
+func _on_debug_button_pressed() -> void:
+	var player = get_tree().get_first_node_in_group("player")
+	var size = DisplayServer.window_get_size()
+	player.position = size/2.0
+	print(size)
+	pass # Replace with function body.

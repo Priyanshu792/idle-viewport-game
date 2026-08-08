@@ -7,7 +7,7 @@ extends Resource
 @export var health :=1.0
 @export var infinite_health:bool
 @export var orb_distance_threshold := 100
-
+@export var multi_hit_count := 3
 #@export var damage := 10.0
 #@export var fire_rate := 1.0
 

@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://dltofb8aaxpeg" path="res://script/settings.gd" id="1_likc5"]
 [ext_resource type="Theme" uid="uid://w87rnglpb5v3" path="res://assets/theme/Theme_global.tres" id="1_ok4lx"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ok4lx"]
+bg_color = Color(1, 0, 0, 1)
+
 [node name="settings" type="Control" unique_id=1742019507]
 process_mode = 3
 layout_mode = 3
@@ -14,22 +17,7 @@ grow_vertical = 2
 theme = ExtResource("1_ok4lx")
 script = ExtResource("1_likc5")
 
-[node name="ResumeButton" type="Button" parent="." unique_id=1530426007]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -67.0
-offset_top = -170.0
-offset_right = 67.0
-offset_bottom = -139.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "Resume"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=835997065]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1919074508]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -37,57 +25,80 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -60.5
-offset_top = -22.0
+offset_top = -51.0
 offset_right = 60.5
-offset_bottom = 22.0
+offset_bottom = 51.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="ResumeButton" type="Button" parent="VBoxContainer" unique_id=1530426007]
+layout_mode = 2
+text = "Resume"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=835997065]
+layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=1992954468]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer" unique_id=1992954468]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=2026872383]
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer" unique_id=2026872383]
 layout_mode = 2
 text = "ANCHOR:"
 
-[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=373021080]
+[node name="Label3" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1674747592]
+layout_mode = 2
+text = "SCREEN:"
+
+[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer" unique_id=373021080]
 layout_mode = 2
 text = "RESOLUTION:"
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer" unique_id=1914015778]
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/HBoxContainer" unique_id=1914015778]
 layout_mode = 2
 
-[node name="OptionButton" type="OptionButton" parent="HBoxContainer/VBoxContainer2" unique_id=354657217]
-layout_mode = 2
-theme_override_font_sizes/font_size = 16
-alignment = 1
-
-[node name="OptionButton2" type="OptionButton" parent="HBoxContainer/VBoxContainer2" unique_id=418767532]
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=354657217]
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
 alignment = 1
 
-[node name="custom_res" type="HBoxContainer" parent="HBoxContainer/VBoxContainer2" unique_id=943923644]
+[node name="OptionButton3" type="OptionButton" parent="VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=353088026]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+alignment = 1
+
+[node name="OptionButton2" type="OptionButton" parent="VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=418767532]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+alignment = 1
+
+[node name="custom_res" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=943923644]
 visible = false
 layout_mode = 2
 
-[node name="custom_res_val1" type="LineEdit" parent="HBoxContainer/VBoxContainer2/custom_res" unique_id=1251387451]
+[node name="custom_res_val1" type="LineEdit" parent="VBoxContainer/HBoxContainer/VBoxContainer2/custom_res" unique_id=1251387451]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer2/custom_res" unique_id=564774838]
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer2/custom_res" unique_id=564774838]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "X"
 horizontal_alignment = 1
 
-[node name="custom_res_val2" type="LineEdit" parent="HBoxContainer/VBoxContainer2/custom_res" unique_id=661492581]
+[node name="custom_res_val2" type="LineEdit" parent="VBoxContainer/HBoxContainer/VBoxContainer2/custom_res" unique_id=661492581]
 layout_mode = 2
 alignment = 1
 
-[connection signal="pressed" from="ResumeButton" to="." method="_on_resume_button_pressed"]
-[connection signal="item_selected" from="HBoxContainer/VBoxContainer2/OptionButton" to="." method="_on_option_button_item_selected"]
-[connection signal="item_selected" from="HBoxContainer/VBoxContainer2/OptionButton2" to="." method="_on_option_button_2_item_selected"]
-[connection signal="text_submitted" from="HBoxContainer/VBoxContainer2/custom_res/custom_res_val1" to="." method="_on_custom_res_val_1_text_submitted"]
-[connection signal="text_submitted" from="HBoxContainer/VBoxContainer2/custom_res/custom_res_val2" to="." method="_on_custom_res_val_2_text_submitted"]
+[node name="DebugButton" type="Button" parent="VBoxContainer" unique_id=892133606]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ok4lx")
+text = "DEBUG"
+
+[connection signal="pressed" from="VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="item_selected" from="VBoxContainer/HBoxContainer/VBoxContainer2/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/HBoxContainer/VBoxContainer2/OptionButton3" to="." method="_on_option_button_3_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/HBoxContainer/VBoxContainer2/OptionButton2" to="." method="_on_option_button_2_item_selected"]
+[connection signal="text_submitted" from="VBoxContainer/HBoxContainer/VBoxContainer2/custom_res/custom_res_val1" to="." method="_on_custom_res_val_1_text_submitted"]
+[connection signal="text_submitted" from="VBoxContainer/HBoxContainer/VBoxContainer2/custom_res/custom_res_val2" to="." method="_on_custom_res_val_2_text_submitted"]
+[connection signal="pressed" from="VBoxContainer/DebugButton" to="." method="_on_debug_button_pressed"]

@@ -9,6 +9,7 @@ const PROJECTILE = preload("uid://bd61w7ff8rjfq")
 const NUCLEAR_BLAST = preload("uid://shut12leynj3")
 const SPREAD_PROJECTILE = preload("uid://ccggqqp0kwq08")
 const ORBITAL_PROJECTILE = preload("uid://dj45eavxxr0yv")
+const PROJECTILE_MULTI_HIT = preload("uid://vq8cujmvgd38")
 
 @export var weapon_settings : WeaponSettings
 @export var weapon_stat : WeaponsStat
@@ -23,13 +24,10 @@ func _ready() -> void:
 		await get_tree().process_frame
 		orbitals.setup(player_stats, weapon_stat)
 		orbitals.add_orbiting_object(5)
-		
-	#GameEvents.fire_rate.connect(_on_fire_rate)
-	#fire_timer.wait_time = player_stats.fire_rate
 	pass
 
 func _process(_delta: float) -> void:
-	if orbitals:
+	if weapon_settings.orbital:
 		orbitals.position = global_position
 	pass
 
@@ -44,16 +42,13 @@ func _physics_process(delta):
 	if target:
 		var target_angle = (target.global_position - global_position).angle()
 		rotation = lerp_angle(rotation, target_angle, 5.0 * delta)
-	
 	move_and_slide()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("nuclear"):
 		if weapon_settings.nuclear_blast:
 			var nuclear_blast = NUCLEAR_BLAST.instantiate()
-			
 			get_tree().current_scene.add_child(nuclear_blast)
-			
 			nuclear_blast.global_position = global_position
 		
 
@@ -70,12 +65,10 @@ func get_nearest_enemy() -> CharacterBody2D:
 			if distance < nearest_distance:
 				nearest_distance = distance
 				nearest = enemy
-
 	return nearest
 
 func fire():
 	var target = get_nearest_enemy()
-
 	if target == null:
 		return
 	var projectile = PROJECTILE.instantiate()
@@ -88,7 +81,6 @@ func fire():
 func _on_fire_timer_timeout() -> void:
 	if weapon_settings.fire_blast:
 		fire()
-
 	pass # Replace with function body.
 	
 #func _on_fire_rate():
@@ -105,4 +97,46 @@ func _on_spread_projectile_timeout() -> void:
 		spread_projectile.global_position = global_position
 		spread_projectile.rotation = global_rotation
 		spread_projectile.setup(player_stats, weapon_stat)
+	pass # Replace with function body.
+	
+
+func get_closest_number_of_enemies():
+	var enemies = get_tree().get_nodes_in_group("enemy")
+	var closest_enemies:Array = []
+	var enemy_distances:= []
+	for i in enemies:
+		var distances := global_position.distance_squared_to(i.global_position)
+		enemy_distances.append({
+			"enemy": i,
+			"distance": distances
+		})
+	enemy_distances.sort_custom(func(a,b): return a.distance<b.distance)
+	var count = min(player_stats.multi_hit_count,enemy_distances.size())
+	for i in range(count):
+		closest_enemies.append(enemy_distances[i].enemy)
+	#distances.sort()
+	#distances.resize(player_stats.multi_hit_count)
+	return closest_enemies
+	
+	pass
+
+func fire_multi():
+	var target = get_closest_number_of_enemies()
+	print(target)
+	if target == null:
+		return
+	var count = min(player_stats.multi_hit_count,target.size())
+	for i in range(count):
+		print(i)
+		if i == null:
+			return
+		var projectile = PROJECTILE_MULTI_HIT.instantiate()
+		get_tree().current_scene.add_child(projectile)
+		projectile.global_position = global_position
+		projectile.direction = (target[i].global_position - global_position).normalized()
+		projectile.setup(player_stats, weapon_stat)
+
+func _on_multi_hit_timer_timeout() -> void:
+	if weapon_settings.multi_hit:
+		fire_multi()
 	pass # Replace with function body.

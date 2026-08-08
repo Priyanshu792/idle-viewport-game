@@ -13,12 +13,17 @@ enum WindowAnchor {
 }
 
 const SETTINGS_PATH := "res://configs.cfg"
+var config := ConfigFile.new()
 
 var anchor: WindowAnchor = WindowAnchor.BOTTOM_RIGHT
+var screen_idx := 0
+var screen_count = DisplayServer.get_screen_count()
+var current_screen = DisplayServer.window_get_current_screen()
 
 func _ready():
 	load_settings()
 	apply_window_settings()
+	set_current_screen(screen_idx)
 
 func apply_window_settings():
 	var screen := DisplayServer.screen_get_usable_rect()
@@ -53,8 +58,8 @@ func set_anchor(new_anchor: WindowAnchor):
 	apply_window_settings()
 
 func save_settings():
-	var config := ConfigFile.new()
 	config.set_value("window", "anchor", anchor)
+	config.set_value("window", "screen", screen_idx)
 	config.save(SETTINGS_PATH)
 
 func load_settings():
@@ -62,6 +67,7 @@ func load_settings():
 
 	if config.load(SETTINGS_PATH) == OK:
 		anchor = config.get_value("window","anchor",WindowAnchor.BOTTOM_RIGHT)
+		screen_idx = config.get_value("window","screen")
 
 func get_game_state():
 	
@@ -90,3 +96,11 @@ func update_walls(size:Vector2):
 #	
 	load_settings()
 	apply_window_settings()
+
+func set_current_screen(idx:int):
+	screen_idx = idx
+	if screen_idx < screen_count:
+		DisplayServer.window_set_current_screen(screen_idx)
+		pass
+	save_settings()
+	pass

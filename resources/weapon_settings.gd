@@ -6,7 +6,7 @@ class_name WeaponSettings
 @export var nuclear_blast := false
 @export var laser := false
 @export var orbital := false
-
+@export var multi_hit := false
 
 #Energy Orb
 #Plasma Ball

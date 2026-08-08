@@ -26,9 +26,8 @@ adjustment_enabled = true
 
 [sub_resource type="Resource" id="Resource_tqoya"]
 script = ExtResource("5_b5f6u")
-spread_fire = true
-nuclear_blast = true
-orbital = true
+fire_blast = false
+multi_hit = true
 metadata/_custom_type_script = "uid://rw5inik056kt"
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mswub"]

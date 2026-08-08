@@ -35,5 +35,9 @@ autostart = true
 script = ExtResource("3_fvtld")
 stat = ExtResource("4_ct4mp")
 
+[node name="multi_hit_timer" type="Timer" parent="." unique_id=1300433162]
+autostart = true
+
 [connection signal="timeout" from="fire_timer" to="." method="_on_fire_timer_timeout"]
 [connection signal="timeout" from="spread_projectile" to="." method="_on_spread_projectile_timeout"]
+[connection signal="timeout" from="multi_hit_timer" to="." method="_on_multi_hit_timer_timeout"]
