@@ -23,24 +23,25 @@ func add_health(amount: float) -> void:
 		health_bar.value = current_health
 
 func remove_health(amount: float, _crit := false) -> void:
-	current_health -= amount
+	if !stat.infinite_health:
+		current_health -= amount
 
-	if _crit:
-		#print("CRITICAL!", amount)
-		pass
+		if _crit:
+			#print("CRITICAL!", amount)
+			pass
 
-	if health_bar:
-		health_bar.value = current_health
+		if health_bar:
+			health_bar.value = current_health
 
-	if current_health <= 0:
-		call_deferred("die")
-	
-	var hp_lost_indicator = HP_LOST_INDICATOR.instantiate()
-	hp_lost_indicator.add_theme_color_override("font_color", Color.GREEN)
-	hp_lost_indicator.global_position = get_parent().global_position
-	get_tree().current_scene.add_child(hp_lost_indicator)
-	hp_lost_indicator.add_label_text(amount,_crit)
-	#print(current_health)
+		if current_health <= 0:
+			call_deferred("die")
+		
+		var hp_lost_indicator = HP_LOST_INDICATOR.instantiate()
+		hp_lost_indicator.add_theme_color_override("font_color", Color.GREEN)
+		hp_lost_indicator.global_position = get_parent().global_position
+		get_tree().current_scene.add_child(hp_lost_indicator)
+		hp_lost_indicator.add_label_text(amount,_crit)
+		#print(current_health)
 	
 func die() -> void:
 

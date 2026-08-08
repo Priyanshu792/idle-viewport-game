@@ -17,5 +17,11 @@ enum projectile_types{
 
 @export_group("Orbital")
 @export var orbital_speed := 10.0
-@export var orbital_radius := 100
 @export var orbital_damage := 0.2
+@export var orbital_radius := 100
+
+
+@export_group("multi_target")
+@export var multi_target_speed := 600.0
+@export var multi_target_damage := 0.5
+@export var multi_target_count := 3

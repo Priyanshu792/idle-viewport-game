@@ -68,6 +68,26 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 16
 alignment = 1
 
+[node name="custom_res" type="HBoxContainer" parent="HBoxContainer/VBoxContainer2" unique_id=943923644]
+visible = false
+layout_mode = 2
+
+[node name="custom_res_val1" type="LineEdit" parent="HBoxContainer/VBoxContainer2/custom_res" unique_id=1251387451]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer2/custom_res" unique_id=564774838]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "X"
+horizontal_alignment = 1
+
+[node name="custom_res_val2" type="LineEdit" parent="HBoxContainer/VBoxContainer2/custom_res" unique_id=661492581]
+layout_mode = 2
+alignment = 1
+
 [connection signal="pressed" from="ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="item_selected" from="HBoxContainer/VBoxContainer2/OptionButton" to="." method="_on_option_button_item_selected"]
 [connection signal="item_selected" from="HBoxContainer/VBoxContainer2/OptionButton2" to="." method="_on_option_button_2_item_selected"]
+[connection signal="text_submitted" from="HBoxContainer/VBoxContainer2/custom_res/custom_res_val1" to="." method="_on_custom_res_val_1_text_submitted"]
+[connection signal="text_submitted" from="HBoxContainer/VBoxContainer2/custom_res/custom_res_val2" to="." method="_on_custom_res_val_2_text_submitted"]

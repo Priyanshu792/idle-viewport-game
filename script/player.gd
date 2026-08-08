@@ -2,9 +2,10 @@ extends CharacterBody2D
 
 @export var player_stats: PlayerStats
 
-const PROJECTILE = preload("uid://bd61w7ff8rjfq")
+
 @onready var fire_timer: Timer = $fire_timer
 
+const PROJECTILE = preload("uid://bd61w7ff8rjfq")
 const NUCLEAR_BLAST = preload("uid://shut12leynj3")
 const SPREAD_PROJECTILE = preload("uid://ccggqqp0kwq08")
 const ORBITAL_PROJECTILE = preload("uid://dj45eavxxr0yv")

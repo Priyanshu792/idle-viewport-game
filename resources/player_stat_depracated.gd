@@ -5,6 +5,7 @@ extends Resource
 @export var acceleration := 1000.0
 @export var friction := 800.0
 @export var health :=1.0
+@export var infinite_health:bool
 @export var orb_distance_threshold := 100
 
 #@export var damage := 10.0

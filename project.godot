@@ -27,7 +27,6 @@ SignalLens="*uid://85rkx60vm7a7"
 window/size/viewport_width=504
 window/size/viewport_height=504
 window/size/borderless=true
-window/size/always_on_top=true
 window/size/transparent=true
 window/per_pixel_transparency/allowed=true
 
