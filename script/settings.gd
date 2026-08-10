@@ -145,5 +145,5 @@ func _on_debug_button_pressed() -> void:
 	var player = get_tree().get_first_node_in_group("player")
 	var size = DisplayServer.window_get_size()
 	player.position = size/2.0
-	print(size)
+	#print(size)
 	pass # Replace with function body.

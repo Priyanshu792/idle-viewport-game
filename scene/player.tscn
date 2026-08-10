@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cyic1ytp0nq1u" path="res://assets/sprites/player.png" id="2_hjaqi"]
 [ext_resource type="Script" uid="uid://cjpepihq2l1hl" path="res://script/health_player.gd" id="3_fvtld"]
 [ext_resource type="Resource" uid="uid://b7xmd1xacdhp0" path="res://resources/Base_Player_stats.tres" id="4_ct4mp"]
+[ext_resource type="PackedScene" uid="uid://bka4mos6b641n" path="res://scene/laser_projectile.tscn" id="5_s4jxa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xo3ru"]
 radius = 37.054016
@@ -15,6 +16,8 @@ collision_mask = 13
 motion_mode = 1
 script = ExtResource("1_hjaqi")
 metadata/_edit_horizontal_guides_ = [-32.0, 32.0]
+
+[node name="laser_projectile" parent="." unique_id=641401130 instance=ExtResource("5_s4jxa")]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=613800877]
 rotation = 1.5707964

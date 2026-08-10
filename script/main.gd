@@ -43,7 +43,7 @@ func update_mouse_passthrough():
 	get_window().mouse_passthrough_polygon = polygon
 
 func signal_test():
-	print("hewo")
+	#print("hewo")
 	pass
 
 func _process(_delta: float) -> void:

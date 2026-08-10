@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bka4mos6b641n"]
+
+[ext_resource type="Script" uid="uid://dhv1lmcuwrcn3" path="res://script/laser_projectile.gd" id="1_cckke"]
+[ext_resource type="Texture2D" uid="uid://cc8epefbko3kw" path="res://assets/sprites/projectile.png" id="2_myx2v"]
+
+[sub_resource type="Gradient" id="Gradient_cckke"]
+offsets = PackedFloat32Array(0.55, 1)
+colors = PackedColorArray(0, 0.5333333, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cckke"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_max = 44.52
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -9.260002
+linear_accel_max = 0.61999774
+scale_min = 0.0
+color = Color(0, 1.1704671, 3.4235666, 1)
+
+[node name="laser_projectile" type="RayCast2D" unique_id=641401130]
+target_position = Vector2(1000, 0)
+collision_mask = 4
+collide_with_areas = true
+script = ExtResource("1_cckke")
+
+[node name="line_2d" type="Line2D" parent="." unique_id=1260943242]
+points = PackedVector2Array(0, 0, 100, 0)
+width = 0.0
+gradient = SubResource("Gradient_cckke")
+
+[node name="Hit_particles" type="GPUParticles2D" parent="." unique_id=1675427551]
+amount = 44
+texture = ExtResource("2_myx2v")
+lifetime = 1.5
+preprocess = 1.5
+speed_scale = 1.5
+randomness = 0.92
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_cckke")

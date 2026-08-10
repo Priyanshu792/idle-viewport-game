@@ -4,6 +4,7 @@ extends CharacterBody2D
 
 
 @onready var fire_timer: Timer = $fire_timer
+@onready var multi_hit_timer: Timer = $multi_hit_timer
 
 const PROJECTILE = preload("uid://bd61w7ff8rjfq")
 const NUCLEAR_BLAST = preload("uid://shut12leynj3")
@@ -14,7 +15,7 @@ const PROJECTILE_MULTI_HIT = preload("uid://vq8cujmvgd38")
 @export var weapon_settings : WeaponSettings
 @export var weapon_stat : WeaponsStat
 var orbitals
-
+#var multi_hit_projectiles: Array[Node2D]
 @export var player_health_bar:ProgressBar
 
 func _ready() -> void:
@@ -29,6 +30,9 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if weapon_settings.orbital:
 		orbitals.position = global_position
+	
+	
+	
 	pass
 
 func _physics_process(delta):
@@ -54,6 +58,7 @@ func _input(event: InputEvent) -> void:
 
 		pass
 
+## fetches where the nearest enemy is located
 func get_nearest_enemy() -> CharacterBody2D:
 	var enemies = get_tree().get_nodes_in_group("enemy")
 	var nearest: CharacterBody2D = null
@@ -99,7 +104,7 @@ func _on_spread_projectile_timeout() -> void:
 		spread_projectile.setup(player_stats, weapon_stat)
 	pass # Replace with function body.
 	
-
+## Fetches a given number of closest enemies
 func get_closest_number_of_enemies():
 	var enemies = get_tree().get_nodes_in_group("enemy")
 	var closest_enemies:Array = []
@@ -114,20 +119,17 @@ func get_closest_number_of_enemies():
 	var count = min(player_stats.multi_hit_count,enemy_distances.size())
 	for i in range(count):
 		closest_enemies.append(enemy_distances[i].enemy)
-	#distances.sort()
-	#distances.resize(player_stats.multi_hit_count)
 	return closest_enemies
-	
-	pass
 
 func fire_multi():
 	var target = get_closest_number_of_enemies()
-	print(target)
+	#print(target)
 	if target == null:
 		return
 	var count = min(player_stats.multi_hit_count,target.size())
+	#print(target.size())
 	for i in range(count):
-		print(i)
+		#print(i)
 		if i == null:
 			return
 		var projectile = PROJECTILE_MULTI_HIT.instantiate()
@@ -137,6 +139,9 @@ func fire_multi():
 		projectile.setup(player_stats, weapon_stat)
 
 func _on_multi_hit_timer_timeout() -> void:
+	#if multi_hit_timer.is_stopped():
+		#multi_hit_projectiles = 
+		#pass
 	if weapon_settings.multi_hit:
 		fire_multi()
 	pass # Replace with function body.
