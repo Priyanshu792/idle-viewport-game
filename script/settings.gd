@@ -86,7 +86,9 @@ func _on_option_button_item_selected(index: int) -> void:
 
 
 func _on_option_button_2_item_selected(index: int) -> void:
-	var res := RESOLUTIONS[index]
+	WindowsManager.apply_resolution(index)
+	pass
+'''	var res := RESOLUTIONS[index]
 
 	if res == "CUSTOM":
 		custom_res.show()
@@ -98,7 +100,7 @@ func _on_option_button_2_item_selected(index: int) -> void:
 	var size := Vector2i(int(res_split[0]),int(res_split[1]))
 
 	DisplayServer.window_set_size(size)
-	GameEvents.resolution_changed.emit(size.x, size.y)
+	GameEvents.resolution_changed.emit(size.x, size.y)'''
 
 
 func _on_custom_res_val_1_text_submitted(new_text: String) -> void:

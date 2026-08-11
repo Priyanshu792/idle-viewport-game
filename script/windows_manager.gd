@@ -30,8 +30,11 @@ var screen_idx := 0
 var screen_count = DisplayServer.get_screen_count()
 var current_screen = DisplayServer.window_get_current_screen()
 
+var resolution_idx := 0
+
 func _ready():
 	load_settings()
+	set_resolution()
 	apply_window_settings()
 	set_current_screen(screen_idx)
 
@@ -69,6 +72,7 @@ func set_anchor(new_anchor: WindowAnchor):
 
 func save_settings():
 	config.set_value("window", "anchor", anchor)
+	config.set_value("window", "resolution", resolution_idx)
 	config.set_value("window", "screen", screen_idx)
 	config.save(SETTINGS_PATH)
 
@@ -78,6 +82,7 @@ func load_settings():
 	if config.load(SETTINGS_PATH) == OK:
 		anchor = config.get_value("window","anchor",WindowAnchor.BOTTOM_RIGHT)
 		screen_idx = config.get_value("window","screen")
+		resolution_idx = config.get_value("window","resolution")
 
 func get_game_state():
 	
@@ -112,4 +117,21 @@ func set_current_screen(idx:int):
 		DisplayServer.window_set_current_screen(screen_idx)
 		pass
 	save_settings()
+	pass
+
+func apply_resolution(index):
+	resolution_idx = index
+	set_resolution()
+	save_settings()
+	pass
+
+func set_resolution():
+	var res := RESOLUTIONS[resolution_idx]
+	if res == "CUSTOM":
+		#custom_res.show()
+		pass
+	var res_split := res.split("X")
+	var size := Vector2i(int(res_split[0]),int(res_split[1]))
+	DisplayServer.window_set_size(size)
+	GameEvents.resolution_changed.emit(size.x,size.y)
 	pass
