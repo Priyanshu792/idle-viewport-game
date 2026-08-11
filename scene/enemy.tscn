@@ -100,6 +100,7 @@ stat = ExtResource("4_b7koy")
 health_bar = NodePath("../health_bar")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1281163357]
+visible = false
 collision_layer = 4
 collision_mask = 2
 

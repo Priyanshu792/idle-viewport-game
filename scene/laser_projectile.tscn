@@ -2,6 +2,20 @@
 
 [ext_resource type="Script" uid="uid://dhv1lmcuwrcn3" path="res://script/laser_projectile.gd" id="1_cckke"]
 [ext_resource type="Texture2D" uid="uid://cc8epefbko3kw" path="res://assets/sprites/projectile.png" id="2_myx2v"]
+[ext_resource type="Shader" uid="uid://db4f8mouf6h3p" path="res://assets/shaders/laser_projectile.gdshader" id="2_p5esd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0c35b"]
+shader = ExtResource("2_p5esd")
+shader_parameter/color = Color(0.15, 0.8, 1, 1)
+shader_parameter/outline_color = Color(0, 0.25, 1, 1)
+shader_parameter/speed = 12.205
+shader_parameter/energy = 2.0
+shader_parameter/thickness = 0.25000001117647996
+shader_parameter/glow_size = 0.60000002780148
+shader_parameter/noise_strength = 0.06800000323
+shader_parameter/start_fade = 0.5
+shader_parameter/end_fade = 0.0
+shader_parameter/texture_scale = Vector2(10000, 10000)
 
 [sub_resource type="Gradient" id="Gradient_cckke"]
 offsets = PackedFloat32Array(0.55, 1)
@@ -20,15 +34,19 @@ color = Color(0, 1.1704671, 3.4235666, 1)
 [node name="laser_projectile" type="RayCast2D" unique_id=641401130]
 target_position = Vector2(1000, 0)
 collision_mask = 4
-collide_with_areas = true
 script = ExtResource("1_cckke")
 
 [node name="line_2d" type="Line2D" parent="." unique_id=1260943242]
+material = SubResource("ShaderMaterial_0c35b")
+position = Vector2(0, -2.3841858e-07)
+scale = Vector2(1.975, 2.15)
 points = PackedVector2Array(0, 0, 100, 0)
-width = 0.0
+width = 64.0
 gradient = SubResource("Gradient_cckke")
+texture_mode = 2
 
 [node name="Hit_particles" type="GPUParticles2D" parent="." unique_id=1675427551]
+emitting = false
 amount = 44
 texture = ExtResource("2_myx2v")
 lifetime = 1.5

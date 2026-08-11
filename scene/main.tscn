@@ -27,7 +27,6 @@ adjustment_enabled = true
 [sub_resource type="Resource" id="Resource_tqoya"]
 script = ExtResource("5_b5f6u")
 fire_blast = false
-multi_hit = true
 metadata/_custom_type_script = "uid://rw5inik056kt"
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mswub"]
@@ -80,6 +79,7 @@ shape = SubResource("WorldBoundaryShape2D_brvut")
 [node name="spawner" parent="." unique_id=825467392 instance=ExtResource("3_wp4xf")]
 position = Vector2(80, -56)
 spawn_interval = 1.5
+switch_ON_OFF = false
 
 [node name="spawner2" parent="." unique_id=1286613805 instance=ExtResource("3_wp4xf")]
 position = Vector2(432, -40)

@@ -12,6 +12,16 @@ enum WindowAnchor {
 	BOTTOM_RIGHT
 }
 
+var RESOLUTIONS: Array[String] = [
+	"504X504",
+	"320X180",
+	"640X360",
+	"960X540",
+	"1280X720",
+	"1920X1032",
+	"CUSTOM"
+]
+
 const SETTINGS_PATH := "res://configs.cfg"
 var config := ConfigFile.new()
 
@@ -72,8 +82,7 @@ func load_settings():
 func get_game_state():
 	
 	pass
-	
-	
+
 func update_walls(size:Vector2):
 	var walls = get_tree().get_nodes_in_group("walls")
 	#print(walls)
