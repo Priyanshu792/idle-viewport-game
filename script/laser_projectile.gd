@@ -17,14 +17,19 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	cast_point = to_local(get_collision_point())
 	if is_colliding():
-		print(get_collision_point())
-		set_is_casting(true)
-		cast_point = to_local(get_collision_point())
-		line_2d.points[1] = cast_point
+		if not is_casting:
+			set_is_casting(true)
+		#cast_point = to_local(get_collision_point())
+		line_2d.points[1] = cast_point.round()
+		#if get_collision_point().round() == line_2d.points[1]:
+		print(str(get_collision_point().round()) + " " + str(line_2d.points[1]))
 		collider = get_collider()
 		#hit_particles.position = cast_point
 	else:
+		if is_casting:
+			set_is_casting(false)
 		#print(self.)
 		#line_2d.points[1] = Vector2.ZERO
 		line_2d.points[1] = self.target_position
@@ -32,15 +37,17 @@ func _process(_delta: float) -> void:
 	pass
 
 func set_is_casting(cast:bool):
+	if is_casting == cast:
+		return # Prevent redundant calls
 	is_casting = cast
 	if is_casting:
 		appear()
 		#hit_particles.emitting = is_casting
 		pass
 	else:
-		pass
 		disappear()
 		#hit_particles.emitting = is_casting
+		pass
 	pass
 
 func appear():
@@ -55,6 +62,6 @@ func disappear():
 	if tween:
 		tween.kill()
 	tween = create_tween()
-	tween.tween_property(line_2d,"width",0.0,0.1)
+	tween.tween_property(line_2d,"width",10.0,0.1)
 
 	pass

@@ -15,6 +15,6 @@ signal damage
 @warning_ignore("unused_signal")
 signal resolution_changed(width:int,height:int)
 
-
+#signal custom
 @warning_ignore("unused_signal")
 signal orb
