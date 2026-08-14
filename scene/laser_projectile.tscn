@@ -7,7 +7,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0c35b"]
 shader = ExtResource("2_p5esd")
-shader_parameter/color = Color(0.15, 0.8, 1, 1)
+shader_parameter/color = Color(0.6643848, 0.7279995, 0.8782203, 1)
 shader_parameter/outline_color = Color(0, 0.25, 1, 1)
 shader_parameter/speed = 12.205
 shader_parameter/energy = 2.0
@@ -16,7 +16,7 @@ shader_parameter/glow_size = 0.60000002780148
 shader_parameter/noise_strength = 0.06800000323
 shader_parameter/start_fade = 0.5
 shader_parameter/end_fade = 0.0
-shader_parameter/texture_scale = Vector2(10000, 10000)
+shader_parameter/texture_scale = Vector2(4, 1)
 
 [sub_resource type="Gradient" id="Gradient_cckke"]
 offsets = PackedFloat32Array(0.55, 1)
@@ -40,14 +40,13 @@ base_stats = ExtResource("2_0c35b")
 
 [node name="line_2d" type="Line2D" parent="." unique_id=1260943242]
 material = SubResource("ShaderMaterial_0c35b")
-position = Vector2(0, -2.3841858e-07)
-scale = Vector2(1.975, 2.15)
 points = PackedVector2Array(0, 0, 1000, 0)
 width = 64.0
 gradient = SubResource("Gradient_cckke")
 texture_mode = 2
 
 [node name="Hit_particles" type="GPUParticles2D" parent="." unique_id=1675427551]
+visible = false
 emitting = false
 amount = 10
 texture = ExtResource("2_myx2v")

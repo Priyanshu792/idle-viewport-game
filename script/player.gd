@@ -1,4 +1,4 @@
-
+@tool
 extends CharacterBody2D
 
 @export var player_stats: PlayerStats
@@ -13,14 +13,18 @@ const SPREAD_PROJECTILE = preload("uid://ccggqqp0kwq08")
 const ORBITAL_PROJECTILE = preload("uid://dj45eavxxr0yv")
 const PROJECTILE_MULTI_HIT = preload("uid://vq8cujmvgd38")
 const LASER_PROJECTILE = preload("uid://bka4mos6b641n")
-
+const LASER_PROJECTILE_SHADER = preload("uid://db4f8mouf6h3p")
 
 @export var weapon_settings : WeaponSettings
 @export var weapon_stat : WeaponsStat
 var orbitals
 var laser
+var laser_instance
 #var multi_hit_projectiles: Array[Node2D]
 @export var player_health_bar:ProgressBar
+
+
+
 
 func _ready() -> void:
 	if weapon_settings.orbital:
@@ -34,6 +38,26 @@ func _ready() -> void:
 		add_child.call_deferred(laser)
 		await get_tree().process_frame
 		laser.setup(player_stats, weapon_stat)
+		var laser1_line_2d = laser.find_child("line_2d")
+		laser1_line_2d.material = laser1_line_2d.material.duplicate()
+		# Access the shader material
+		var mat = laser1_line_2d.material as ShaderMaterial
+		# Change your parameter (Replace "parameter_name" and the value)
+		mat.set_shader_parameter("outline_color",Color.BLUE)
+		#test
+		laser_instance = LASER_PROJECTILE.instantiate()
+		add_child.call_deferred(laser_instance)
+		await get_tree().process_frame
+		laser_instance.setup(player_stats, weapon_stat)
+		var laser2_line_2d = laser_instance.find_child("line_2d")
+		laser1_line_2d.material = laser1_line_2d.material.duplicate()
+		# Access the shader material
+		var mat2 = laser2_line_2d.material as ShaderMaterial
+		# Change your parameter (Replace "parameter_name" and the value)
+		mat2.set_shader_parameter("outline_color",Color.RED)
+	
+	GameEvents.laser_hit.connect(laser_bounce)
+	GameEvents.laser_hit_lost.connect(laser_hit_lost)
 	pass
 
 func _process(_delta: float) -> void:
@@ -42,16 +66,16 @@ func _process(_delta: float) -> void:
 	#if weapon_settings.laser:
 		#laser.global_position = global_position
 	
-	
+	laser_bounce()
 	pass
 
 func _physics_process(delta):
-	var input_direction = Input.get_vector("move_left","move_right","move_forward","move_backward")
-	
-	if input_direction != Vector2.ZERO:
-		velocity = velocity.move_toward(input_direction * player_stats.move_speed,player_stats.acceleration * delta)
-	else:
-		velocity = velocity.move_toward(Vector2.ZERO,player_stats.friction * delta)
+	#var input_direction = Input.get_vector("move_left","move_right","move_forward","move_backward")
+	#
+	#if input_direction != Vector2.ZERO:
+		#velocity = velocity.move_toward(input_direction * player_stats.move_speed,player_stats.acceleration * delta)
+	#else:
+		#velocity = velocity.move_toward(Vector2.ZERO,player_stats.friction * delta)
 	var target = get_nearest_enemy()
 	if target:
 		var target_angle = (target.global_position - global_position).angle()
@@ -157,10 +181,32 @@ func _on_multi_hit_timer_timeout() -> void:
 	pass # Replace with function body.
 
 #test
-#func laser_bounce():
-	#var laser_instance_point = LASER_PROJECTILE.instantiate()
-	#var laser_bounce_point = laser_instance_point.get_bounce_point()
-	#var laser_instance = LASER_PROJECTILE.instantiate()
-	#get_tree().current_scene.add_child(laser_instance)
-	#laser_instance.global_position = laser_bounce_point
-	#pass
+func laser_bounce():
+	var laser_bounce_point = laser.get_bounce_point()
+	var laser_normal = laser.get_normal_point()
+	#print(deg_to_rad(laser_normal))
+	# Convert collision point to local space relative to the RayCast2D
+	var local_collision: Vector2 = to_local(laser_bounce_point)
+	# 3. Calculate the incoming direction vector
+	var incoming_dir: Vector2 = laser.target_position.normalized()
+	# 4. Calculate the reflected direction vector
+	var reflect_dir: Vector2 = incoming_dir.bounce(laser_normal)
+	
+	laser_instance_damn(laser_bounce_point,reflect_dir)
+	pass
+
+func laser_instance_damn(laser_bounce_point,reflect_dir):
+	laser_instance.visible = true
+	laser_instance.position = to_local(laser_bounce_point)
+	laser_instance.rotation = reflect_dir.angle()
+	if laser_instance.current_enemy != null:
+		print("yo")
+		pass
+	print(reflect_dir.angle())
+	#laser_instance.target_position = Vector2.RIGHT * laser.target_position.length()
+
+func laser_hit_lost():
+	if is_instance_valid(laser_instance):
+		laser_instance.visible = false
+		pass
+	pass

@@ -49,8 +49,5 @@ func die() -> void:
 	if get_parent().is_in_group("enemy"):
 		var orb = DROPPED_ORB.instantiate()
 		orb.global_position = get_parent().global_position
-		get_tree().current_scene.add_child(orb)
-		
-	
-		
+		get_tree().current_scene.get_node("/root/main/Ysort_orbs").add_child(orb)
 	get_parent().queue_free()

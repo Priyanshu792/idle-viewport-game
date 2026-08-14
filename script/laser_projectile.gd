@@ -1,4 +1,4 @@
-#@tool
+@tool
 extends RayCast2D
 
 var collider
@@ -25,29 +25,32 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if is_colliding():
+		GameEvents.emit_signal("laser_hit")
 		if not is_casting:
 			set_is_casting(true)
 		cast_point = to_local(get_collision_point())
-		line_2d.points[1].x = (cast_point.x)/2
+		line_2d.points[1].x = (cast_point.x)
 		collider = get_collider()
 		hit_particles.position = cast_point
-		if collider.is_in_group("enemy"):
-			if collider != current_enemy:
-				current_enemy = collider
-				damage_timer = base_stats.damage_interval
-			damage_timer -= _delta
-			if damage_timer <= 0.0:
-				damage_timer = base_stats.damage_interval
-				var enemy_health = collider.get_node("health")
-				print(enemy_health)
-				enemy_health.remove_health(damage, is_crit)
-				if enemy_health.current_health<=0.0:
-					var dying_explosion = EXPLOSION_PARTICLE.instantiate()
-					dying_explosion.global_transform = global_transform
-					get_tree().current_scene.add_child(dying_explosion)
-					GameEvents.enemy_killed.emit()
-					collider.queue_free()    # Despawn enemy
-					dying_explosion.explode()
+		if is_instance_valid(collider):
+			if collider.is_in_group("enemy"):
+				if collider != current_enemy:
+					current_enemy = collider
+					damage_timer = base_stats.damage_interval
+				damage_timer -= _delta
+				if damage_timer <= 0.0:
+					damage_timer = base_stats.damage_interval
+					var enemy_health = collider.get_node("health")
+					enemy_health.remove_health(damage, is_crit)
+					if enemy_health.current_health<=0.0:
+						var dying_explosion = EXPLOSION_PARTICLE.instantiate()
+						dying_explosion.global_transform = global_transform
+						get_tree().current_scene.add_child(dying_explosion)
+						GameEvents.enemy_killed.emit()
+						collider.queue_free()    # Despawn enemy
+						dying_explosion.explode()
+		else:
+			return
 	else:
 		if is_casting:
 			set_is_casting(false)
@@ -55,6 +58,8 @@ func _process(_delta: float) -> void:
 		#set_is_casting(false)
 		current_enemy = null
 		damage_timer = 0.0
+		
+		
 	pass
 
 func set_is_casting(cast:bool):
@@ -64,10 +69,12 @@ func set_is_casting(cast:bool):
 	if is_casting:
 		appear()
 		hit_particles.emitting = is_casting
+		
 		pass
 	else:
 		disappear()
 		hit_particles.emitting = is_casting
+		GameEvents.laser_hit_lost.emit()
 		pass
 	pass
 
@@ -89,6 +96,8 @@ func disappear():
 
 func get_bounce_point():
 	return get_collision_point()
+func get_normal_point():
+	return get_collision_normal()
 	
 func setup(player_stats: PlayerStats, weapon_stats: WeaponsStat):
 	base_stats = weapon_stats

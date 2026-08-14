@@ -14,6 +14,13 @@
 [ext_resource type="PackedScene" uid="uid://cny8nefj8h3jr" path="res://scene/dropped_orb.tscn" id="11_k65ib"]
 [ext_resource type="Theme" uid="uid://w87rnglpb5v3" path="res://assets/theme/Theme_global.tres" id="11_wscrc"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mswub"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hybxs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hybxs"]
+bg_color = Color(0, 1, 0, 1)
+
 [sub_resource type="Environment" id="Environment_p1hux"]
 background_mode = 3
 glow_enabled = true
@@ -30,13 +37,6 @@ fire_blast = false
 laser = true
 metadata/_custom_type_script = "uid://rw5inik056kt"
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mswub"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hybxs"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hybxs"]
-bg_color = Color(0, 1, 0, 1)
-
 [node name="main" type="Node2D" unique_id=371940320]
 script = ExtResource("1_brvut")
 
@@ -52,78 +52,9 @@ offset_bottom = 504.0
 texture = ExtResource("2_b5f6u")
 expand_mode = 1
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1290499441]
-environment = SubResource("Environment_p1hux")
-
-[node name="walls" type="StaticBody2D" parent="." unique_id=88702385 groups=["walls"]]
-
-[node name="Left" type="CollisionShape2D" parent="walls" unique_id=2105794058 groups=["walls"]]
-position = Vector2(0, 252)
-rotation = 1.5707964
-shape = SubResource("WorldBoundaryShape2D_brvut")
-
-[node name="Top" type="CollisionShape2D" parent="walls" unique_id=1130602749 groups=["walls"]]
-position = Vector2(252, 0)
-rotation = 3.1415927
-shape = SubResource("WorldBoundaryShape2D_brvut")
-
-[node name="Right" type="CollisionShape2D" parent="walls" unique_id=1867764310 groups=["walls"]]
-position = Vector2(504, 252)
-rotation = 4.712389
-shape = SubResource("WorldBoundaryShape2D_brvut")
-
-[node name="Bottom" type="CollisionShape2D" parent="walls" unique_id=876970093 groups=["walls"]]
-position = Vector2(252, 504)
-rotation = 6.2831855
-shape = SubResource("WorldBoundaryShape2D_brvut")
-
-[node name="spawner" parent="." unique_id=825467392 instance=ExtResource("3_wp4xf")]
-position = Vector2(80, -56)
-spawn_interval = 1.5
-
-[node name="spawner2" parent="." unique_id=1286613805 instance=ExtResource("3_wp4xf")]
-position = Vector2(432, -40)
-spawn_interval = 1.5
-switch_ON_OFF = false
-
-[node name="spawner3" parent="." unique_id=416084391 instance=ExtResource("3_wp4xf")]
-position = Vector2(608, 216)
-spawn_interval = 1.5
-switch_ON_OFF = false
-
-[node name="spawner4" parent="." unique_id=786976420 instance=ExtResource("3_wp4xf")]
-position = Vector2(251, 528)
-spawn_interval = 1.5
-switch_ON_OFF = false
-
-[node name="spawner5" parent="." unique_id=358141832 instance=ExtResource("3_wp4xf")]
-position = Vector2(-112, 208)
-spawn_interval = 1.5
-switch_ON_OFF = false
-
-[node name="spawner6" parent="." unique_id=457930926 instance=ExtResource("3_wp4xf")]
-position = Vector2(-112, 208)
-spawn_interval = 1.5
-switch_ON_OFF = false
-
-[node name="player" parent="." unique_id=1949432662 node_paths=PackedStringArray("player_health_bar") instance=ExtResource("1_itxqv")]
-position = Vector2(248.00003, 224.00002)
-rotation = -2.5861
-scale = Vector2(0.49999988, 0.49999988)
-collision_mask = 9
-player_stats = ExtResource("5_wscrc")
-weapon_settings = SubResource("Resource_tqoya")
-weapon_stat = ExtResource("7_mswub")
-player_health_bar = NodePath("../UI/health_bar_player")
-
-[node name="enemy" parent="." unique_id=839634914 instance=ExtResource("8_mswub")]
-position = Vector2(136, 147)
-
-[node name="dropped_orb" parent="." unique_id=1010418163 instance=ExtResource("11_k65ib")]
-position = Vector2(352, 264)
-
 [node name="UI" type="Control" parent="." unique_id=1980353190]
-z_index = 1
+top_level = true
+z_index = 4096
 layout_mode = 3
 anchors_preset = 0
 offset_right = 504.0
@@ -209,6 +140,80 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/fill = SubResource("StyleBoxFlat_hybxs")
 show_percentage = false
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1290499441]
+environment = SubResource("Environment_p1hux")
+
+[node name="walls" type="StaticBody2D" parent="." unique_id=88702385 groups=["walls"]]
+
+[node name="Left" type="CollisionShape2D" parent="walls" unique_id=2105794058 groups=["walls"]]
+position = Vector2(0, 252)
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_brvut")
+
+[node name="Top" type="CollisionShape2D" parent="walls" unique_id=1130602749 groups=["walls"]]
+position = Vector2(252, 0)
+rotation = 3.1415927
+shape = SubResource("WorldBoundaryShape2D_brvut")
+
+[node name="Right" type="CollisionShape2D" parent="walls" unique_id=1867764310 groups=["walls"]]
+position = Vector2(504, 252)
+rotation = 4.712389
+shape = SubResource("WorldBoundaryShape2D_brvut")
+
+[node name="Bottom" type="CollisionShape2D" parent="walls" unique_id=876970093 groups=["walls"]]
+position = Vector2(252, 504)
+rotation = 6.2831855
+shape = SubResource("WorldBoundaryShape2D_brvut")
+
+[node name="spawner" parent="." unique_id=825467392 instance=ExtResource("3_wp4xf")]
+position = Vector2(80, -56)
+spawn_interval = 5.0
+
+[node name="spawner2" parent="." unique_id=1286613805 instance=ExtResource("3_wp4xf")]
+position = Vector2(432, -40)
+spawn_interval = 1.5
+
+[node name="spawner3" parent="." unique_id=416084391 instance=ExtResource("3_wp4xf")]
+position = Vector2(608, 216)
+spawn_interval = 1.5
+
+[node name="spawner4" parent="." unique_id=786976420 instance=ExtResource("3_wp4xf")]
+position = Vector2(251, 528)
+spawn_interval = 1.5
+
+[node name="spawner5" parent="." unique_id=358141832 instance=ExtResource("3_wp4xf")]
+position = Vector2(-112, 208)
+spawn_interval = 1.5
+
+[node name="spawner6" parent="." unique_id=457930926 instance=ExtResource("3_wp4xf")]
+position = Vector2(-112, 208)
+spawn_interval = 1.5
+
+[node name="player" parent="." unique_id=1949432662 node_paths=PackedStringArray("player_health_bar") instance=ExtResource("1_itxqv")]
+position = Vector2(270, 168)
+rotation = 1.2548268
+scale = Vector2(0.49996778, 0.49996778)
+collision_mask = 9
+player_stats = ExtResource("5_wscrc")
+weapon_settings = SubResource("Resource_tqoya")
+weapon_stat = ExtResource("7_mswub")
+player_health_bar = NodePath("../UI/health_bar_player")
+
+[node name="enemy" parent="." unique_id=839634914 instance=ExtResource("8_mswub")]
+position = Vector2(184, 312)
+
+[node name="enemy2" parent="." unique_id=1538015193 instance=ExtResource("8_mswub")]
+position = Vector2(304, 272)
+
+[node name="dropped_orb" parent="." unique_id=1010418163 instance=ExtResource("11_k65ib")]
+position = Vector2(352, 264)
+
+[node name="Ysort_enemies" type="Node2D" parent="." unique_id=892951496]
+y_sort_enabled = true
+
+[node name="Ysort_orbs" type="Node2D" parent="." unique_id=695307098]
+y_sort_enabled = true
 
 [connection signal="pressed" from="UI/SettingsButton" to="UI" method="_on_settings_button_pressed"]
 [connection signal="pressed" from="UI/Upgrade_Button" to="UI" method="_on_upgrade_button_pressed"]

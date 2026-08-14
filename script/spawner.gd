@@ -16,7 +16,7 @@ func _ready():
 func _on_timer_timeout() -> void:
 	if switch_ON_OFF:
 		var enemy = enemy_scene.instantiate()
-		add_child(enemy)
+		get_tree().current_scene.get_node("/root/main/Ysort_enemies").add_child(enemy)
 		enemy.global_position = get_spawn_position()
 	else:
 		return
