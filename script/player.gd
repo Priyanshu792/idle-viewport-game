@@ -1,3 +1,4 @@
+
 extends CharacterBody2D
 
 @export var player_stats: PlayerStats
@@ -11,10 +12,13 @@ const NUCLEAR_BLAST = preload("uid://shut12leynj3")
 const SPREAD_PROJECTILE = preload("uid://ccggqqp0kwq08")
 const ORBITAL_PROJECTILE = preload("uid://dj45eavxxr0yv")
 const PROJECTILE_MULTI_HIT = preload("uid://vq8cujmvgd38")
+const LASER_PROJECTILE = preload("uid://bka4mos6b641n")
+
 
 @export var weapon_settings : WeaponSettings
 @export var weapon_stat : WeaponsStat
 var orbitals
+var laser
 #var multi_hit_projectiles: Array[Node2D]
 @export var player_health_bar:ProgressBar
 
@@ -25,12 +29,18 @@ func _ready() -> void:
 		await get_tree().process_frame
 		orbitals.setup(player_stats, weapon_stat)
 		orbitals.add_orbiting_object(5)
+	if weapon_settings.laser:
+		laser = LASER_PROJECTILE.instantiate()
+		add_child.call_deferred(laser)
+		await get_tree().process_frame
+		laser.setup(player_stats, weapon_stat)
 	pass
 
 func _process(_delta: float) -> void:
 	if weapon_settings.orbital:
 		orbitals.position = global_position
-	
+	#if weapon_settings.laser:
+		#laser.global_position = global_position
 	
 	
 	pass
@@ -145,3 +155,12 @@ func _on_multi_hit_timer_timeout() -> void:
 	if weapon_settings.multi_hit:
 		fire_multi()
 	pass # Replace with function body.
+
+#test
+#func laser_bounce():
+	#var laser_instance_point = LASER_PROJECTILE.instantiate()
+	#var laser_bounce_point = laser_instance_point.get_bounce_point()
+	#var laser_instance = LASER_PROJECTILE.instantiate()
+	#get_tree().current_scene.add_child(laser_instance)
+	#laser_instance.global_position = laser_bounce_point
+	#pass

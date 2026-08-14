@@ -27,6 +27,7 @@ adjustment_enabled = true
 [sub_resource type="Resource" id="Resource_tqoya"]
 script = ExtResource("5_b5f6u")
 fire_blast = false
+laser = true
 metadata/_custom_type_script = "uid://rw5inik056kt"
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mswub"]
@@ -79,7 +80,6 @@ shape = SubResource("WorldBoundaryShape2D_brvut")
 [node name="spawner" parent="." unique_id=825467392 instance=ExtResource("3_wp4xf")]
 position = Vector2(80, -56)
 spawn_interval = 1.5
-switch_ON_OFF = false
 
 [node name="spawner2" parent="." unique_id=1286613805 instance=ExtResource("3_wp4xf")]
 position = Vector2(432, -40)
@@ -107,7 +107,9 @@ spawn_interval = 1.5
 switch_ON_OFF = false
 
 [node name="player" parent="." unique_id=1949432662 node_paths=PackedStringArray("player_health_bar") instance=ExtResource("1_itxqv")]
-position = Vector2(264, 256)
+position = Vector2(248.00003, 224.00002)
+rotation = -2.5861
+scale = Vector2(0.49999988, 0.49999988)
 collision_mask = 9
 player_stats = ExtResource("5_wscrc")
 weapon_settings = SubResource("Resource_tqoya")
@@ -115,7 +117,7 @@ weapon_stat = ExtResource("7_mswub")
 player_health_bar = NodePath("../UI/health_bar_player")
 
 [node name="enemy" parent="." unique_id=839634914 instance=ExtResource("8_mswub")]
-position = Vector2(216, 368)
+position = Vector2(136, 147)
 
 [node name="dropped_orb" parent="." unique_id=1010418163 instance=ExtResource("11_k65ib")]
 position = Vector2(352, 264)

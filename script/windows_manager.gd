@@ -45,12 +45,17 @@ func apply_window_settings():
 	var pos := Vector2i.ZERO
 	match anchor:
 		WindowAnchor.TOP_LEFT:pos = Vector2i(0, 0)
+		@warning_ignore("integer_division")
 		WindowAnchor.TOP_CENTER:pos = Vector2i((screen.size.x - window_size.x) / 2,0)
 		WindowAnchor.TOP_RIGHT:pos = Vector2i(screen.size.x - window_size.x,0)
+		@warning_ignore("integer_division")
 		WindowAnchor.CENTER_LEFT:pos = Vector2i(0,(screen.size.y - window_size.y) / 2)
+		@warning_ignore("integer_division")
 		WindowAnchor.CENTER:pos = Vector2i((screen.size.x - window_size.x) / 2,(screen.size.y - window_size.y) / 2)
+		@warning_ignore("integer_division")
 		WindowAnchor.CENTER_RIGHT:pos = Vector2i(screen.size.x - window_size.x,(screen.size.y - window_size.y) / 2)
 		WindowAnchor.BOTTOM_LEFT:pos = Vector2i(0,screen.size.y - window_size.y)
+		@warning_ignore("integer_division")
 		WindowAnchor.BOTTOM_CENTER:pos = Vector2i((screen.size.x - window_size.x) / 2,screen.size.y - window_size.y)
 		WindowAnchor.BOTTOM_RIGHT:pos = Vector2i(screen.size.x - window_size.x,screen.size.y - window_size.y)
 	DisplayServer.window_set_position(screen.position + pos)
@@ -70,7 +75,7 @@ func save_settings():
 	config.save(SETTINGS_PATH)
 
 func load_settings():
-	var config := ConfigFile.new()
+	#var config := ConfigFile.new()
 	if config.load(SETTINGS_PATH) == OK:
 		anchor = config.get_value("window","anchor",WindowAnchor.BOTTOM_RIGHT)
 		screen_idx = config.get_value("window","screen")
@@ -110,12 +115,14 @@ func set_current_screen(idx:int):
 func apply_resolution(index):
 	resolution_idx = index
 	set_resolution()
+	apply_window_settings()
 	save_settings()
 	pass
 
 func apply_custom_resolution(custom_res_val_1,custom_res_val_2):
 	#resolution_idx = index
 	set_custom_resolution(custom_res_val_1,custom_res_val_2)
+	apply_window_settings()
 	save_settings()
 	pass
 
