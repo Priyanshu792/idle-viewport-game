@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_8n13c")
 spread_fire_damage = 0.1
+orbital_speed = 2.0
 orbital_damage = 0.5
 damage_interval = 0.1
 laser_smooth_speed = 100.0

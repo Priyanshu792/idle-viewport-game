@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://jfst705qhd8s"]
+
+[ext_resource type="Script" uid="uid://w0gimnbv4iaj" path="res://upgrades/upgrade_tree.gd" id="1_ufmbn"]
+[ext_resource type="PackedScene" uid="uid://bgxgqpb6bvmuc" path="res://upgrades/upgrade_tree_node.tscn" id="2_oy5x8"]
+[ext_resource type="Script" uid="uid://bfwj1umkaiq4" path="res://upgrades/upgrade_data.gd" id="3_oy5x8"]
+[ext_resource type="Script" uid="uid://bs3b56vji6sxo" path="res://script/upgrade_ui.gd" id="4_1n6fo"]
+[ext_resource type="Theme" uid="uid://w87rnglpb5v3" path="res://assets/theme/Theme_global.tres" id="4_b6s0q"]
+
+[sub_resource type="Resource" id="Resource_b6s0q"]
+script = ExtResource("3_oy5x8")
+id = &"orbital_speed"
+name = "Orbital Speed"
+description = "+{x} speed"
+value = 50.0
+metadata/_custom_type_script = "uid://bfwj1umkaiq4"
+
+[sub_resource type="Resource" id="Resource_oy5x8"]
+script = ExtResource("3_oy5x8")
+id = &"orbital_damage"
+name = "Orbital Damage"
+description = "+{x} damge"
+orb_cost = 2
+metadata/_custom_type_script = "uid://bfwj1umkaiq4"
+
+[node name="UpgradeTree" type="Node2D" unique_id=899328632]
+script = ExtResource("4_1n6fo")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=651644449]
+visible = false
+position = Vector2(256, 256)
+enabled = false
+
+[node name="Nodes" type="Node2D" parent="." unique_id=561807909]
+script = ExtResource("1_ufmbn")
+
+[node name="orbital_speed" parent="Nodes" unique_id=746524577 node_paths=PackedStringArray("child_upgrades") instance=ExtResource("2_oy5x8")]
+position = Vector2(256, 256)
+upgrade_data = SubResource("Resource_b6s0q")
+child_upgrades = [NodePath("../upgrade_tree_node")]
+
+[node name="upgrade_tree_node" parent="Nodes" unique_id=228166804 instance=ExtResource("2_oy5x8")]
+position = Vector2(248, 360)
+upgrade_data = SubResource("Resource_oy5x8")
+
+[node name="Control" type="CanvasLayer" parent="." unique_id=1538683622]
+follow_viewport_enabled = true
+
+[node name="Resume_Button" type="Button" parent="Control" unique_id=584191745]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -120.0
+offset_top = -48.0
+offset_right = -10.0
+offset_bottom = -18.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("4_b6s0q")
+text = "RESUME"
+
+[connection signal="pressed" from="Control/Resume_Button" to="." method="_on_resume_button_pressed"]

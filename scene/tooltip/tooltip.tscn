@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://hf7fmrifbfpu"]
+
+[ext_resource type="Script" uid="uid://m30vk68e6nxn" path="res://scene/tooltip/tooltip.gd" id="1_ff0np"]
+[ext_resource type="Theme" uid="uid://w87rnglpb5v3" path="res://assets/theme/Theme_global.tres" id="1_k7ar5"]
+[ext_resource type="Texture2D" uid="uid://cc8epefbko3kw" path="res://assets/sprites/projectile.png" id="3_r8n66"]
+
+[node name="tooltip" type="Panel" unique_id=1272005243]
+custom_minimum_size = Vector2(64, 64)
+script = ExtResource("1_ff0np")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2072966710]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = -32.0
+offset_right = 24.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Panel" type="Panel" parent="VBoxContainer" unique_id=164143897]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="header" type="Label" parent="VBoxContainer/Panel" unique_id=1099973955]
+layout_mode = 0
+offset_right = 50.0
+offset_bottom = 16.0
+theme = ExtResource("1_k7ar5")
+theme_override_font_sizes/font_size = 13
+text = "XXXXX"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1150559945]
+layout_mode = 2
+alignment = 1
+
+[node name="Panel2" type="Panel" parent="VBoxContainer/HBoxContainer" unique_id=2050521909]
+custom_minimum_size = Vector2(20, 34)
+layout_mode = 2
+
+[node name="description" type="Label" parent="VBoxContainer/HBoxContainer/Panel2" unique_id=1093641941]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_k7ar5")
+theme_override_font_sizes/font_size = 13
+text = "XX"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Panel3" type="Panel" parent="VBoxContainer/HBoxContainer" unique_id=436099793]
+custom_minimum_size = Vector2(20, 34)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/Panel3" unique_id=1397807334]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="cost" type="Label" parent="VBoxContainer/HBoxContainer/Panel3/VBoxContainer" unique_id=102136121]
+custom_minimum_size = Vector2(17, 17)
+layout_mode = 2
+theme = ExtResource("1_k7ar5")
+theme_override_font_sizes/font_size = 13
+text = "XX"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/Panel3/VBoxContainer" unique_id=512295284]
+custom_minimum_size = Vector2(4.74, 12.255)
+layout_mode = 2
+texture = ExtResource("3_r8n66")
+expand_mode = 1
+stretch_mode = 3

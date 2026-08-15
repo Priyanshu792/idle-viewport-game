@@ -20,6 +20,8 @@ signal laser_hit
 @warning_ignore("unused_signal")
 signal laser_hit_lost
 
+signal upgrade_buy(upgrade_data:UpgradeData)
+
 #signal custom
 @warning_ignore("unused_signal")
 signal orb

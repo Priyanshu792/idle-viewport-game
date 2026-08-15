@@ -17,7 +17,9 @@ extends Control
 @export var score := 0
 
 @onready var upgrade_button: Button = $Upgrade_Button
-#@onready var upgrade_menu: Control = $upgrade_menu
+
+@onready var upgrade_tree: Node2D = $UpgradeTree
+
 
 var player : CharacterBody2D
 # Called when the node enters the scene tree for the first time.
@@ -62,6 +64,6 @@ func _on_orb_collected():
 
 
 func _on_upgrade_button_pressed() -> void:
-	#upgrade_menu.show()
-	#get_tree().paused = true
+	upgrade_tree.show()
+	get_tree().paused = true
 	pass # Replace with function body.

@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bgxgqpb6bvmuc"]
+
+[ext_resource type="Script" uid="uid://ws02d4tu8pf5" path="res://upgrades/upgrade_tree_node.gd" id="1_6pb2w"]
+[ext_resource type="Texture2D" uid="uid://beotauejmioto" path="res://assets/sprites/enemy_1.png" id="2_tlpvn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6pb2w"]
+
+[node name="upgrade_tree_node" type="Area2D" unique_id=228166804]
+script = ExtResource("1_6pb2w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=128986932]
+shape = SubResource("CircleShape2D_6pb2w")
+
+[node name="scalable" type="Node2D" parent="." unique_id=857330119]
+
+[node name="Sprite2D" type="Sprite2D" parent="scalable" unique_id=156876287]
+texture = ExtResource("2_tlpvn")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

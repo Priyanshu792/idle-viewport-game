@@ -7,6 +7,10 @@ enum projectile_types{
 	orbital
 }
 
+func _init() -> void:
+	GameEvents.connect("upgrade_buy",set_orbital)
+	pass
+
 @export_group("Fire Blast") 
 @export var projectile_speed := 600.0
 @export var projectile_damage := 0.5
@@ -29,3 +33,7 @@ enum projectile_types{
 @export var multi_target_speed := 600.0
 @export var multi_target_damage := 0.5
 @export var multi_target_count := 3
+
+func set_orbital(upgrade_data:UpgradeData):
+	orbital_speed += orbital_speed + upgrade_data.value
+	pass
