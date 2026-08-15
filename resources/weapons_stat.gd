@@ -23,6 +23,7 @@ enum projectile_types{
 @export_group("Laser")
 @export var laser_damage := 0.05
 @export var damage_interval := 0.5
+@export var laser_smooth_speed := 12.0
 
 @export_group("multi_target")
 @export var multi_target_speed := 600.0

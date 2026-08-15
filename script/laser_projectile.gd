@@ -1,4 +1,4 @@
-@tool
+#@tool
 extends RayCast2D
 
 var collider

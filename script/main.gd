@@ -8,10 +8,7 @@ extends Node2D
 #var orb :int
 
 func _ready() -> void:
-	#update_game_bounds()
-	
 	GameEvents.resolution_changed.connect(update_game_bounds)
-	#GameEvents.orb.connect(_on_orb_collected)
 	get_window().mouse_passthrough = false
 	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_TRANSPARENT,true)
 	DisplayServer.window_set_mouse_passthrough([])
@@ -47,14 +44,9 @@ func signal_test():
 	pass
 
 func _process(_delta: float) -> void:
-	#get_window().mouse_passthrough_polygon = $Polygon2D.polygon
 	var game_time = game_timer.wait_time - game_timer.time_left
-	#progress_bar.value = game_time
-	#print(game_timer.wait_time-game_timer.time_left)
 	if game_time == 60:
 		GameEvents.level_mark.emit(game_time)
-	#print(progress_bar.value)
-	#game_timer.time_left
 	pass
 
 func get_enemy_count():

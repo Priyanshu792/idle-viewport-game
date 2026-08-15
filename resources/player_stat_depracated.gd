@@ -14,8 +14,8 @@ extends Resource
 #@export var projectile_speed := 700.0
 #@export var projectile_size := 1.0
 
-@export var pierce := 0
-@export var bounce := 0
+#@export var pierce := 0
+#@export var bounce := 0
 
 @export var crit_chance := 0.0
 @export var crit_multiplier := 2.0

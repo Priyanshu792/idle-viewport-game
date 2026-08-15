@@ -7,4 +7,5 @@ script = ExtResource("1_8n13c")
 spread_fire_damage = 0.1
 orbital_damage = 0.5
 damage_interval = 0.1
+laser_smooth_speed = 100.0
 metadata/_custom_type_script = "uid://dv0pvbhpxfaht"

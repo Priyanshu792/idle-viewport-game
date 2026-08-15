@@ -1,4 +1,4 @@
-@tool
+#@tool
 extends CharacterBody2D
 
 @export var player_stats: PlayerStats
@@ -20,6 +20,11 @@ const LASER_PROJECTILE_SHADER = preload("uid://db4f8mouf6h3p")
 var orbitals
 var laser
 var laser_instance
+var laser_target_position: Vector2
+var laser_target_rotation: float
+var laser_has_target := false
+
+#@export var laser_smooth_speed := 12.0
 #var multi_hit_projectiles: Array[Node2D]
 @export var player_health_bar:ProgressBar
 
@@ -65,21 +70,38 @@ func _process(_delta: float) -> void:
 		orbitals.position = global_position
 	#if weapon_settings.laser:
 		#laser.global_position = global_position
-	
-	laser_bounce()
+	if laser_has_target and is_instance_valid(laser_instance):
+		laser_instance.position = laser_instance.position.lerp(
+			laser_target_position,1.0 - exp(-weapon_stat.laser_smooth_speed * _delta))
+
+		laser_instance.rotation = lerp_angle(laser_instance.rotation,laser_target_rotation,1.0 - exp(-weapon_stat.laser_smooth_speed * _delta))
+	#laser_bounce()
 	pass
 
 func _physics_process(delta):
-	#var input_direction = Input.get_vector("move_left","move_right","move_forward","move_backward")
-	#
-	#if input_direction != Vector2.ZERO:
-		#velocity = velocity.move_toward(input_direction * player_stats.move_speed,player_stats.acceleration * delta)
-	#else:
-		#velocity = velocity.move_toward(Vector2.ZERO,player_stats.friction * delta)
-	var target = get_nearest_enemy()
-	if target:
-		var target_angle = (target.global_position - global_position).angle()
-		rotation = lerp_angle(rotation, target_angle, 5.0 * delta)
+	var input_direction = Input.get_vector("move_left","move_right","move_forward","move_backward")
+	
+	if input_direction != Vector2.ZERO:
+		velocity = velocity.move_toward(input_direction * player_stats.move_speed,player_stats.acceleration * delta)
+	else:
+		velocity = velocity.move_toward(Vector2.ZERO,player_stats.friction * delta)
+	#var target = get_nearest_enemy()
+	#if target:
+		#var target_angle = (target.global_position - global_position).angle()
+		#rotation = lerp_angle(rotation, target_angle, 5.0 * delta)
+	
+	var target_angle:float
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		var mouse_pos = get_global_mouse_position()
+		target_angle = (mouse_pos - global_position).angle()
+	else:
+		var target = get_nearest_enemy()
+		if target:
+			target_angle = (target.global_position - global_position).angle()
+		else:
+			target_angle = rotation
+
+	rotation = lerp_angle(rotation, target_angle, 5.0 * delta)
 	move_and_slide()
 
 func _input(event: InputEvent) -> void:
@@ -184,25 +206,35 @@ func _on_multi_hit_timer_timeout() -> void:
 func laser_bounce():
 	var laser_bounce_point = laser.get_bounce_point()
 	var laser_normal = laser.get_normal_point()
-	#print(deg_to_rad(laser_normal))
-	# Convert collision point to local space relative to the RayCast2D
 	var local_collision: Vector2 = to_local(laser_bounce_point)
-	# 3. Calculate the incoming direction vector
-	var incoming_dir: Vector2 = laser.target_position.normalized()
-	# 4. Calculate the reflected direction vector
-	var reflect_dir: Vector2 = incoming_dir.bounce(laser_normal)
+	#var incoming_dir: Vector2 = laser.target_position.normalized()
+	var incoming_dir: Vector2 = laser.global_transform.basis_xform(
+		laser.target_position.normalized()
+	).normalized()
+	#laser_normal = laser_normal.normalized()
+	var reflect_dir: Vector2 = incoming_dir.bounce(laser_normal).normalized()
+	#var reflect_dir: Vector2 = incoming_dir.bounce(laser_normal)
 	
 	laser_instance_damn(laser_bounce_point,reflect_dir)
 	pass
 
 func laser_instance_damn(laser_bounce_point,reflect_dir):
+	#to do
+	#if laser instance last position is not equal to current bounce position then show laser instance 
+	
+	#laser_instance.visible = true
+	#laser_instance.position = to_local(laser_bounce_point)
+	#laser_instance.rotation = reflect_dir.angle()
+	
 	laser_instance.visible = true
-	laser_instance.position = to_local(laser_bounce_point)
-	laser_instance.rotation = reflect_dir.angle()
-	if laser_instance.current_enemy != null:
-		print("yo")
-		pass
-	print(reflect_dir.angle())
+	laser_target_position = to_local(laser_bounce_point)
+	laser_target_rotation = reflect_dir.angle()
+	laser_has_target = true
+	
+	#if laser_instance.current_enemy != null:
+		#print("yo")
+		#pass
+	#print(reflect_dir.angle())
 	#laser_instance.target_position = Vector2.RIGHT * laser.target_position.length()
 
 func laser_hit_lost():

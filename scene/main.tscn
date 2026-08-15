@@ -173,27 +173,32 @@ spawn_interval = 5.0
 [node name="spawner2" parent="." unique_id=1286613805 instance=ExtResource("3_wp4xf")]
 position = Vector2(432, -40)
 spawn_interval = 1.5
+switch_ON_OFF = false
 
 [node name="spawner3" parent="." unique_id=416084391 instance=ExtResource("3_wp4xf")]
 position = Vector2(608, 216)
 spawn_interval = 1.5
+switch_ON_OFF = false
 
 [node name="spawner4" parent="." unique_id=786976420 instance=ExtResource("3_wp4xf")]
 position = Vector2(251, 528)
 spawn_interval = 1.5
+switch_ON_OFF = false
 
 [node name="spawner5" parent="." unique_id=358141832 instance=ExtResource("3_wp4xf")]
 position = Vector2(-112, 208)
 spawn_interval = 1.5
+switch_ON_OFF = false
 
 [node name="spawner6" parent="." unique_id=457930926 instance=ExtResource("3_wp4xf")]
 position = Vector2(-112, 208)
 spawn_interval = 1.5
+switch_ON_OFF = false
 
 [node name="player" parent="." unique_id=1949432662 node_paths=PackedStringArray("player_health_bar") instance=ExtResource("1_itxqv")]
 position = Vector2(270, 168)
-rotation = 1.2548268
-scale = Vector2(0.49996778, 0.49996778)
+rotation = 1.5707958
+scale = Vector2(0.49995908, 0.49995908)
 collision_mask = 9
 player_stats = ExtResource("5_wscrc")
 weapon_settings = SubResource("Resource_tqoya")
@@ -201,10 +206,10 @@ weapon_stat = ExtResource("7_mswub")
 player_health_bar = NodePath("../UI/health_bar_player")
 
 [node name="enemy" parent="." unique_id=839634914 instance=ExtResource("8_mswub")]
-position = Vector2(184, 312)
+position = Vector2(270, 321)
 
 [node name="enemy2" parent="." unique_id=1538015193 instance=ExtResource("8_mswub")]
-position = Vector2(304, 272)
+position = Vector2(376, 368)
 
 [node name="dropped_orb" parent="." unique_id=1010418163 instance=ExtResource("11_k65ib")]
 position = Vector2(352, 264)
