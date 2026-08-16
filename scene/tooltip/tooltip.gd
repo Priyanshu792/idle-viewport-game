@@ -1,9 +1,9 @@
 extends Panel
 class_name Tooltip
 
-@onready var header: Label = $VBoxContainer/Panel/header
-@onready var description: Label = $VBoxContainer/HBoxContainer/Panel2/description
-@onready var cost: Label = $VBoxContainer/HBoxContainer/Panel3/VBoxContainer/cost
+#@onready var header: Label = $VBoxContainer/Panel/header
+#@onready var description: Label = $VBoxContainer/HBoxContainer/Panel2/description
+#@onready var cost: Label = $VBoxContainer/HBoxContainer/Panel3/VBoxContainer/cost
 
 
 
@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 	pass
 
 func update_tooltip(_head:String,_describe:String,_cost:int):
-	header.text = _head
-	description.text = _describe
-	cost.text = str(_cost)
+	$VBoxContainer/Panel/header.text = _head
+	$VBoxContainer/HBoxContainer/Panel2/description.text = _describe
+	$VBoxContainer/HBoxContainer/Panel3/VBoxContainer/cost.text = str(_cost)
 	pass

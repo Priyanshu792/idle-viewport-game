@@ -34,8 +34,6 @@ adjustment_enabled = true
 
 [sub_resource type="Resource" id="Resource_tqoya"]
 script = ExtResource("5_b5f6u")
-fire_blast = false
-orbital = true
 metadata/_custom_type_script = "uid://rw5inik056kt"
 
 [node name="main" type="Node2D" unique_id=371940320]
@@ -124,12 +122,24 @@ max_value = 300.0
 step = 0.001
 show_percentage = false
 
-[node name="Orbs_Label" type="Label" parent="UI" unique_id=924444067]
+[node name="level_label" type="Label" parent="UI" unique_id=924444067]
 layout_mode = 1
 offset_left = 24.0
 offset_top = 16.0
 offset_right = 34.0
 offset_bottom = 39.0
+text = "0"
+
+[node name="orb_label" type="Label" parent="UI" unique_id=1132912778]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -124.0
+offset_top = 16.0
+offset_right = -112.0
+offset_bottom = 39.0
+grow_horizontal = 2
 text = "0"
 
 [node name="health_bar_player" type="ProgressBar" parent="UI" unique_id=373473404]
@@ -229,3 +239,4 @@ y_sort_enabled = true
 
 [connection signal="pressed" from="UI/SettingsButton" to="UI" method="_on_settings_button_pressed"]
 [connection signal="pressed" from="UI/Upgrade_Button" to="UI" method="_on_upgrade_button_pressed"]
+[connection signal="pressed" from="UI/Upgrade_Button" to="UI/UpgradeTree" method="_on_upgrade_button_pressed"]

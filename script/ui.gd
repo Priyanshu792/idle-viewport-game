@@ -12,7 +12,8 @@ extends Control
 
 @onready var settings_button: Button = $SettingsButton
 
-@onready var orbs_label: Label = $Orbs_Label
+@onready var level_label: Label = $level_label
+@onready var orb_label: Label = $orb_label
 
 @export var score := 0
 
@@ -27,7 +28,7 @@ func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
 	GameEvents.enemy_killed.connect(_on_enemy_killed)
 	GameEvents.orb.connect(_on_orb_collected)
-	orbs_label.text = str(LevelManager.level)
+	level_label.text = str(LevelManager.level)
 	progress_bar.max_value = LevelManager.xp_to_next
 	#health_bar.max_value = player.
 	pass # Replace with function body.
@@ -58,7 +59,8 @@ func _on_enemy_killed():
 	pass
 
 func _on_orb_collected():
-	orbs_label.text = str(LevelManager.level)
+	level_label.text = str(LevelManager.level)
+	orb_label.text = str(LevelManager.orb)
 	progress_bar.max_value = LevelManager.xp_to_next
 	progress_bar.value = LevelManager.xp
 

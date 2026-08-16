@@ -7,13 +7,9 @@ enum projectile_types{
 	orbital
 }
 
-func _init() -> void:
-	GameEvents.connect("upgrade_buy",set_orbital)
-	pass
-
 @export_group("Fire Blast") 
 @export var projectile_speed := 600.0
-@export var projectile_damage := 0.5
+@export var projectile_damage := 0.49
 
 @export_group("Spread Fire")
 @export var spread_fire_speed := 2.0
@@ -22,7 +18,7 @@ func _init() -> void:
 @export_group("Orbital")
 @export var orbital_speed := 10.0
 @export var orbital_damage := 0.2
-@export var orbital_radius := 100
+@export var orbital_radius := 100.0
 
 @export_group("Laser")
 @export var laser_damage := 0.05
@@ -34,6 +30,37 @@ func _init() -> void:
 @export var multi_target_damage := 0.5
 @export var multi_target_count := 3
 
-func set_orbital(upgrade_data:UpgradeData):
-	orbital_speed += orbital_speed + upgrade_data.value
-	pass
+func _init() -> void:
+	GameEvents.upgrade_buy.connect(_on_upgrade_buy)
+
+
+func _on_upgrade_buy(upgrade_data: UpgradeData) -> void:
+	match upgrade_data.id:
+		&"projectile_damage":
+			projectile_damage += upgrade_data.value
+		&"projectile_speed":
+			projectile_speed += upgrade_data.value
+
+		&"spread_fire_damage":
+			spread_fire_damage += upgrade_data.value
+		&"spread_fire_speed":
+			spread_fire_speed += upgrade_data.value
+
+		&"orbital_damage":
+			orbital_damage += upgrade_data.value
+		&"orbital_speed":
+			orbital_speed += upgrade_data.value
+		&"orbital_radius":
+			orbital_radius += upgrade_data.value
+
+		&"laser_damage":
+			laser_damage += upgrade_data.value
+		&"laser_damage_interval":
+			damage_interval += upgrade_data.value
+			
+		&"multi_target_damage":
+			multi_target_damage += upgrade_data.value
+		&"multi_target_speed":
+			multi_target_speed += upgrade_data.value
+		&"multi_target_count":
+			multi_target_count += int(upgrade_data.value)

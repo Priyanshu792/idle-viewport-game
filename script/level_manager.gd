@@ -5,7 +5,7 @@ signal level_up(level)
 var level : int = 1
 var xp:=0
 var xp_to_next:= 5
-
+var orb:=0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GameEvents.orb.connect(_on_orb_collected)
@@ -33,3 +33,4 @@ func get_next_requirement(_level: int) -> int:
 
 func _on_orb_collected():
 	add_xp(1)
+	orb+=1
