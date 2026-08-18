@@ -53,7 +53,7 @@ expand_mode = 1
 
 [node name="UI" type="Control" parent="." unique_id=1980353190]
 top_level = true
-z_index = 4096
+z_index = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -132,12 +132,12 @@ text = "0"
 
 [node name="orb_label" type="Label" parent="UI" unique_id=1132912778]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -124.0
+anchors_preset = -1
+anchor_left = 0.266
+anchor_right = 0.266
+offset_left = -6.0639954
 offset_top = 16.0
-offset_right = -112.0
+offset_right = 5.9360046
 offset_bottom = 39.0
 grow_horizontal = 2
 text = "0"

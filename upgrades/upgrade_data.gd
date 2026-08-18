@@ -11,6 +11,7 @@ enum ValueDisplayType{
 @export var name:String
 @export var icon:Texture2D = null
 @export var description:String
+@export var of_type_unlock:=false
 @export var value:float
 @export var value_diplay_type:ValueDisplayType
 @export var orb_cost:int = 1

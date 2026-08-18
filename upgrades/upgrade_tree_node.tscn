@@ -7,6 +7,7 @@
 
 [node name="upgrade_tree_node" type="Area2D" unique_id=228166804]
 script = ExtResource("1_6pb2w")
+tooltip_offset = Vector2(-64, -150)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=128986932]
 shape = SubResource("CircleShape2D_6pb2w")
