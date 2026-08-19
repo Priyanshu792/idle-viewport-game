@@ -1,6 +1,16 @@
 extends Resource
 class_name WeaponSettings
 
+func _init() -> void:
+	GameEvents.upgrade_buy.connect(_on_upgrade_buy)
+
+
+func _on_upgrade_buy(upgrade_data: UpgradeData) -> void:
+	match upgrade_data.id:
+		&"laser_unlock":
+			laser = true
+	GameEvents.weapon_unlock.emit()
+
 @export var fire_blast := true
 @export var spread_fire := false
 @export var nuclear_blast := false

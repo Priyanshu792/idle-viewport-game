@@ -32,6 +32,15 @@ var laser_has_target := false
 
 
 func _ready() -> void:
+	
+	
+	GameEvents.weapon_unlock.connect(weapon_unlock)
+	
+	#GameEvents.laser_hit.connect(laser_bounce)
+	GameEvents.laser_hit_lost.connect(laser_hit_lost)
+	pass
+
+func weapon_unlock():
 	if weapon_settings.orbital:
 		orbitals = ORBITAL_PROJECTILE.instantiate()
 		get_tree().current_scene.add_child.call_deferred(orbitals)
@@ -50,19 +59,16 @@ func _ready() -> void:
 		# Change your parameter (Replace "parameter_name" and the value)
 		mat.set_shader_parameter("outline_color",Color.BLUE)
 		#test
-		laser_instance = LASER_PROJECTILE.instantiate()
-		add_child.call_deferred(laser_instance)
-		await get_tree().process_frame
-		laser_instance.setup(player_stats, weapon_stat)
-		var laser2_line_2d = laser_instance.find_child("line_2d")
-		laser1_line_2d.material = laser1_line_2d.material.duplicate()
-		# Access the shader material
-		var mat2 = laser2_line_2d.material as ShaderMaterial
-		# Change your parameter (Replace "parameter_name" and the value)
-		mat2.set_shader_parameter("outline_color",Color.RED)
-	
-	GameEvents.laser_hit.connect(laser_bounce)
-	GameEvents.laser_hit_lost.connect(laser_hit_lost)
+		#laser_instance = LASER_PROJECTILE.instantiate()
+		#add_child.call_deferred(laser_instance)
+		#await get_tree().process_frame
+		#laser_instance.setup(player_stats, weapon_stat)
+		#var laser2_line_2d = laser_instance.find_child("line_2d")
+		#laser1_line_2d.material = laser1_line_2d.material.duplicate()
+		## Access the shader material
+		#var mat2 = laser2_line_2d.material as ShaderMaterial
+		## Change your parameter (Replace "parameter_name" and the value)
+		#mat2.set_shader_parameter("outline_color",Color.RED)
 	pass
 
 func _process(_delta: float) -> void:
@@ -215,7 +221,7 @@ func laser_bounce():
 	var reflect_dir: Vector2 = incoming_dir.bounce(laser_normal).normalized()
 	#var reflect_dir: Vector2 = incoming_dir.bounce(laser_normal)
 	
-	laser_instance_damn(laser_bounce_point,reflect_dir)
+	#laser_instance_damn(laser_bounce_point,reflect_dir)
 	pass
 
 func laser_instance_damn(laser_bounce_point,reflect_dir):
@@ -226,16 +232,17 @@ func laser_instance_damn(laser_bounce_point,reflect_dir):
 	#laser_instance.position = to_local(laser_bounce_point)
 	#laser_instance.rotation = reflect_dir.angle()
 	
-	laser_instance.visible = true
-	laser_target_position = to_local(laser_bounce_point)
-	laser_target_rotation = reflect_dir.angle()
-	laser_has_target = true
+	#laser_instance.visible = true
+	#laser_target_position = to_local(laser_bounce_point)
+	#laser_target_rotation = reflect_dir.angle()
+	#laser_has_target = true
 	
 	#if laser_instance.current_enemy != null:
 		#print("yo")
 		#pass
 	#print(reflect_dir.angle())
 	#laser_instance.target_position = Vector2.RIGHT * laser.target_position.length()
+	pass
 
 func laser_hit_lost():
 	if is_instance_valid(laser_instance):

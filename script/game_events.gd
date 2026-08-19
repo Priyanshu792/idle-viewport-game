@@ -20,6 +20,7 @@ signal laser_hit
 @warning_ignore("unused_signal")
 signal laser_hit_lost
 
+signal weapon_unlock
 signal upgrade_buy(upgrade_data:UpgradeData)
 
 #signal custom
