@@ -32,12 +32,10 @@ var laser_has_target := false
 
 
 func _ready() -> void:
-	
-	
 	GameEvents.weapon_unlock.connect(weapon_unlock)
-	
 	#GameEvents.laser_hit.connect(laser_bounce)
 	GameEvents.laser_hit_lost.connect(laser_hit_lost)
+	weapon_unlock()
 	pass
 
 func weapon_unlock():

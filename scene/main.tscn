@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://bk5emitaiug0y" path="res://scene/settings.tscn" id="6_4j5ol"]
 [ext_resource type="PackedScene" uid="uid://jfst705qhd8s" path="res://upgrades/upgrade_tree.tscn" id="7_hybxs"]
 [ext_resource type="Resource" uid="uid://bjadmbcw7rymc" path="res://resources/Base_Weapon_stats.tres" id="7_mswub"]
-[ext_resource type="PackedScene" uid="uid://dlmmnyoqrqnpg" path="res://scene/enemy.tscn" id="8_mswub"]
 [ext_resource type="PackedScene" uid="uid://cny8nefj8h3jr" path="res://scene/dropped_orb.tscn" id="11_k65ib"]
 [ext_resource type="Theme" uid="uid://w87rnglpb5v3" path="res://assets/theme/Theme_global.tres" id="11_wscrc"]
 
@@ -34,6 +33,8 @@ adjustment_enabled = true
 
 [sub_resource type="Resource" id="Resource_tqoya"]
 script = ExtResource("5_b5f6u")
+fire_blast = false
+laser = true
 metadata/_custom_type_script = "uid://rw5inik056kt"
 
 [node name="main" type="Node2D" unique_id=371940320]
@@ -212,7 +213,7 @@ spawn_interval = 1.5
 switch_ON_OFF = false
 
 [node name="player" parent="." unique_id=1949432662 node_paths=PackedStringArray("player_health_bar") instance=ExtResource("1_itxqv")]
-position = Vector2(270, 168)
+position = Vector2(72.000046, 65.00001)
 rotation = 1.5707958
 scale = Vector2(0.49995908, 0.49995908)
 collision_mask = 9
@@ -220,12 +221,6 @@ player_stats = ExtResource("5_wscrc")
 weapon_settings = SubResource("Resource_tqoya")
 weapon_stat = ExtResource("7_mswub")
 player_health_bar = NodePath("../UI/health_bar_player")
-
-[node name="enemy" parent="." unique_id=839634914 instance=ExtResource("8_mswub")]
-position = Vector2(270, 321)
-
-[node name="enemy2" parent="." unique_id=1538015193 instance=ExtResource("8_mswub")]
-position = Vector2(376, 368)
 
 [node name="dropped_orb" parent="." unique_id=1010418163 instance=ExtResource("11_k65ib")]
 position = Vector2(352, 264)

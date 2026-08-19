@@ -25,6 +25,7 @@ var RESOLUTIONS: Array[String] = [
 const SETTINGS_PATH := "res://configs.cfg"
 var config := ConfigFile.new()
 
+
 var anchor: WindowAnchor = WindowAnchor.BOTTOM_RIGHT
 var screen_idx := 0
 var screen_count = DisplayServer.get_screen_count()
@@ -88,7 +89,9 @@ func get_game_state():
 	pass
 
 func update_walls(size:Vector2):
-	var walls = get_tree().get_nodes_in_group("walls")
+	#var walls = get_tree().get_nodes_in_group("walls")
+	var walls_parent:StaticBody2D = get_tree().get_first_node_in_group("walls") 
+	var walls = walls_parent.get_children()
 	for wall in walls:
 		if !(wall is CollisionShape2D):
 			continue
