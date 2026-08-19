@@ -18,12 +18,16 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func connect_line():
-	for child in child_upgrades:
+	for i:UpgradeTreeNode in child_upgrades:
+		upgrade_data.children.append(i)
+		pass
+	for child in upgrade_data.children:
+		print(child)
 		var line := Line2D.new()
 		line.z_index = -1
 		line.width = 9
 		line.gradient = Gradient.new()
-		line.gradient.colors = [Color(random_color, 1.0), Color(child.random_color, 1.0)]
+		#line.gradient.colors = [Color(random_color, 1.0), Color(child.random_color, 1.0)]
 		line.add_point(Vector2.ZERO)
 		line.add_point(child.position - position)
 		lines.append(line)
@@ -31,8 +35,8 @@ func connect_line():
 	pass
 
 func update():
-	for i in child_upgrades.size():
-		child_upgrades[i].update()
+	for i in upgrade_data.children.size():
+		upgrade_data.children[i].update()
 		#lines[i].gradient.set_color(0,Color(0.83, 0.849, 0.0, 1.0))
 		#lines[i].gradient.set_color(1,Color(0.85, 0.0, 0.0, 1.0))
 		pass

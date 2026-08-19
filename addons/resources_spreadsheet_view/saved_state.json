@@ -1,0 +1,57 @@
+{
+  "column_properties": {
+    "res://csv_s/": {
+      "metadata/_custom_type_script": {
+        "visibility": 0
+      },
+      "resource_local_to_scene": {
+        "visibility": 0
+      },
+      "resource_name": {
+        "visibility": 0
+      }
+    },
+    "res://csv_s/Sample1_table_import.tres": {
+      "metadata/_custom_type_script": {
+        "visibility": 0
+      },
+      "resource_local_to_scene": {
+        "visibility": 0
+      },
+      "resource_name": {
+        "visibility": 0
+      }
+    },
+    "res://csv_s/Sample2_table_import.tres": {
+      "metadata/_custom_type_script": {
+        "visibility": 0
+      },
+      "resource_local_to_scene": {
+        "visibility": 0
+      },
+      "resource_name": {
+        "visibility": 0
+      }
+    },
+    "res://resources/upgrade_resources/resources/": {
+      "metadata/_custom_type_script": {
+        "visibility": 0
+      },
+      "resource_local_to_scene": {
+        "visibility": 0
+      },
+      "resource_name": {
+        "visibility": 1
+      },
+      "resource_path": {
+        "visibility": 0
+      }
+    }
+  },
+  "recent_paths": [
+    "res://resources/upgrade_resources/resources/"
+  ],
+  "table_functions": {
+
+  }
+}

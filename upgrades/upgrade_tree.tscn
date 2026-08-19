@@ -3,9 +3,10 @@
 [ext_resource type="Script" uid="uid://w0gimnbv4iaj" path="res://upgrades/upgrade_tree.gd" id="1_ufmbn"]
 [ext_resource type="PackedScene" uid="uid://bgxgqpb6bvmuc" path="res://upgrades/upgrade_tree_node.tscn" id="2_oy5x8"]
 [ext_resource type="Script" uid="uid://bp1kgysihyy5e" path="res://upgrades/upgradetree_camera.gd" id="3_bxfsn"]
-[ext_resource type="Script" uid="uid://bfwj1umkaiq4" path="res://upgrades/upgrade_data.gd" id="3_oy5x8"]
 [ext_resource type="Script" uid="uid://bs3b56vji6sxo" path="res://script/upgrade_ui.gd" id="4_1n6fo"]
 [ext_resource type="Theme" uid="uid://w87rnglpb5v3" path="res://assets/theme/Theme_global.tres" id="4_b6s0q"]
+[ext_resource type="Resource" uid="uid://ckagi3oxuqapr" path="res://resources/upgrade_resources/resources/projectile_damage.tres" id="6_bxfsn"]
+[ext_resource type="Resource" uid="uid://dkrkyqxlkou6g" path="res://resources/upgrade_resources/resources/projectile_damage2.tres" id="7_bxfsn"]
 
 [sub_resource type="Gradient" id="Gradient_n2ous"]
 offsets = PackedFloat32Array(0, 0.33905014, 0.65567285, 1)
@@ -16,60 +17,6 @@ gradient = SubResource("Gradient_n2ous")
 width = 4
 height = 2048
 fill_from = Vector2(1, 1)
-
-[sub_resource type="Resource" id="Resource_vkw5a"]
-script = ExtResource("3_oy5x8")
-id = &"projectile_damage"
-name = "Projectile Damage"
-description = "+{x} damage"
-value = 0.1
-orb_cost = 2
-metadata/_custom_type_script = "uid://bfwj1umkaiq4"
-
-[sub_resource type="Resource" id="Resource_n2ous"]
-script = ExtResource("3_oy5x8")
-id = &"projectile_damage"
-name = "Projectile Damage"
-description = "+{x} damage"
-value = 0.15
-orb_cost = 2
-metadata/_custom_type_script = "uid://bfwj1umkaiq4"
-
-[sub_resource type="Resource" id="Resource_5ey6a"]
-script = ExtResource("3_oy5x8")
-id = &"laser_unlock"
-name = "Laser Unlock"
-description = "Unlock laser with {x} damage"
-of_type_unlock = true
-orb_cost = 2
-metadata/_custom_type_script = "uid://bfwj1umkaiq4"
-
-[sub_resource type="Resource" id="Resource_b6s0q"]
-script = ExtResource("3_oy5x8")
-id = &"orbital_speed"
-name = "Orbital Speed"
-description = "+{x} speed"
-value = 50.0
-metadata/_custom_type_script = "uid://bfwj1umkaiq4"
-
-[sub_resource type="Resource" id="Resource_oy5x8"]
-script = ExtResource("3_oy5x8")
-id = &"orbital_damage"
-name = "Orbital Damage"
-description = "+{x} damage"
-value = 8.0
-orb_cost = 2
-metadata/_custom_type_script = "uid://bfwj1umkaiq4"
-
-[sub_resource type="Resource" id="Resource_bxfsn"]
-script = ExtResource("3_oy5x8")
-id = &"orbital_damage"
-name = "Orbital Damage"
-description = "+{x} damage"
-value = 50.0
-orb_cost = 2
-increment_update = true
-metadata/_custom_type_script = "uid://bfwj1umkaiq4"
 
 [node name="UpgradeTree" type="Node2D" unique_id=899328632]
 z_index = 1
@@ -114,31 +61,13 @@ text = "RESUME"
 [node name="Nodes" type="Node2D" parent="." unique_id=561807909]
 script = ExtResource("1_ufmbn")
 
-[node name="projectile_damage" parent="Nodes" unique_id=228166804 node_paths=PackedStringArray("child_upgrades") instance=ExtResource("2_oy5x8")]
-position = Vector2(256, 256)
-upgrade_data = SubResource("Resource_vkw5a")
-child_upgrades = [NodePath("../orbital_speed"), NodePath("../projectile_damage2"), NodePath("../laser_unlock")]
+[node name="upgrade_tree_node" parent="Nodes" unique_id=228166804 node_paths=PackedStringArray("child_upgrades") instance=ExtResource("2_oy5x8")]
+position = Vector2(208, 224)
+upgrade_data = ExtResource("6_bxfsn")
+child_upgrades = [NodePath("../upgrade_tree_node2")]
 
-[node name="projectile_damage2" parent="Nodes" unique_id=1754625751 instance=ExtResource("2_oy5x8")]
-position = Vector2(384, 256)
-upgrade_data = SubResource("Resource_n2ous")
-
-[node name="laser_unlock" parent="Nodes" unique_id=1186016545 instance=ExtResource("2_oy5x8")]
-position = Vector2(320, 320)
-upgrade_data = SubResource("Resource_5ey6a")
-
-[node name="orbital_speed" parent="Nodes" unique_id=746524577 node_paths=PackedStringArray("child_upgrades") instance=ExtResource("2_oy5x8")]
-position = Vector2(256, 320)
-upgrade_data = SubResource("Resource_b6s0q")
-child_upgrades = [NodePath("../orbital_damage")]
-
-[node name="orbital_damage" parent="Nodes" unique_id=377846331 node_paths=PackedStringArray("child_upgrades") instance=ExtResource("2_oy5x8")]
-position = Vector2(192, 320)
-upgrade_data = SubResource("Resource_oy5x8")
-child_upgrades = [NodePath("../orbital_damage2")]
-
-[node name="orbital_damage2" parent="Nodes" unique_id=1395061057 instance=ExtResource("2_oy5x8")]
-position = Vector2(192, 384)
-upgrade_data = SubResource("Resource_bxfsn")
+[node name="upgrade_tree_node2" parent="Nodes" unique_id=1019817758 instance=ExtResource("2_oy5x8")]
+position = Vector2(312, 248)
+upgrade_data = ExtResource("7_bxfsn")
 
 [connection signal="pressed" from="upgradetree_camera/Control/Resume_Button" to="." method="_on_resume_button_pressed"]

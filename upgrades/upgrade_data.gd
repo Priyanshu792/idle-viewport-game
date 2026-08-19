@@ -6,7 +6,6 @@ enum ValueDisplayType{
 	float
 }
 
-
 @export var id:StringName
 @export var name:String
 @export var icon:Texture2D = null
@@ -18,3 +17,4 @@ enum ValueDisplayType{
 @export var increment_update:=false
 @export var increment_max_value:=2
 @export var current_increment:=0
+@export var children:Array[UpgradeData]=[]
