@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bpush3uayisnn"]
 
-[ext_resource type="Script" uid="uid://c3iietc34ej52" path="res://script/spread_projectile_element.gd" id="1_4fmmp"]
+[ext_resource type="Script" uid="uid://c3iietc34ej52" path="res://projectiles/Spread Fire/spread_projectile_element.gd" id="1_4fmmp"]
 [ext_resource type="Texture2D" uid="uid://cc8epefbko3kw" path="res://assets/sprites/projectile.png" id="1_knt72"]
 [ext_resource type="Script" uid="uid://cu7o4w5xfiup2" path="res://script/damage.gd" id="2_4fmmp"]
 [ext_resource type="Resource" uid="uid://bjadmbcw7rymc" path="res://resources/Base_Weapon_stats.tres" id="2_wp0eq"]

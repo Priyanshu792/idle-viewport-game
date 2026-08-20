@@ -94,12 +94,19 @@ func _physics_process(delta):
 		#var target_angle = (target.global_position - global_position).angle()
 		#rotation = lerp_angle(rotation, target_angle, 5.0 * delta)
 	
-	var target_angle:float
+	var target_angle: float
+	var lowest_health := INF
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		var mouse_pos = get_global_mouse_position()
 		target_angle = (mouse_pos - global_position).angle()
 	else:
-		var target = get_nearest_enemy()
+		var target: CharacterBody2D = null
+		var enemies = get_closest_number_of_enemies(5)
+		for enemy in enemies:
+			var health = enemy.get_node_or_null("health")
+			if health and health.current_health < lowest_health:
+				lowest_health = health.current_health
+				target = enemy
 		if target:
 			target_angle = (target.global_position - global_position).angle()
 		else:
@@ -126,7 +133,7 @@ func get_nearest_enemy() -> CharacterBody2D:
 
 	for enemy in enemies:
 		if enemy is CharacterBody2D:
-			var distance = global_position.distance_to(enemy.global_position)
+			var distance = global_position.distance_squared_to((enemy.global_position))
 			if distance < nearest_distance:
 				nearest_distance = distance
 				nearest = enemy
@@ -165,24 +172,22 @@ func _on_spread_projectile_timeout() -> void:
 	pass # Replace with function body.
 	
 ## Fetches a given number of closest enemies
-func get_closest_number_of_enemies():
+func get_closest_number_of_enemies(count: int) -> Array:
 	var enemies = get_tree().get_nodes_in_group("enemy")
-	var closest_enemies:Array = []
-	var enemy_distances:= []
-	for i in enemies:
-		var distances := global_position.distance_squared_to(i.global_position)
-		enemy_distances.append({
-			"enemy": i,
-			"distance": distances
-		})
-	enemy_distances.sort_custom(func(a,b): return a.distance<b.distance)
-	var count = min(player_stats.multi_hit_count,enemy_distances.size())
+	var closest_enemies: Array = []
+	var enemy_distances := []
+	for enemy in enemies:
+		var distance := global_position.distance_squared_to(enemy.global_position)
+		enemy_distances.append({"enemy": enemy,"distance": distance})
+	enemy_distances.sort_custom(func(a, b): return a.distance < b.distance)
+	count = min(count, enemy_distances.size())
 	for i in range(count):
 		closest_enemies.append(enemy_distances[i].enemy)
 	return closest_enemies
 
+
 func fire_multi():
-	var target = get_closest_number_of_enemies()
+	var target = get_closest_number_of_enemies(player_stats.multi_hit_count)
 	#print(target)
 	if target == null:
 		return

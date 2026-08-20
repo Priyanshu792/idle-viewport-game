@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://vq8cujmvgd38"]
 
-[ext_resource type="Script" uid="uid://byiekw06npvjq" path="res://script/projectile_multi_hit.gd" id="1_q2nps"]
+[ext_resource type="Script" uid="uid://byiekw06npvjq" path="res://projectiles/Multi Hit/projectile_multi_hit.gd" id="1_q2nps"]
 [ext_resource type="Resource" uid="uid://bjadmbcw7rymc" path="res://resources/Base_Weapon_stats.tres" id="2_ht1ih"]
 [ext_resource type="Texture2D" uid="uid://cc8epefbko3kw" path="res://assets/sprites/projectile.png" id="3_5ikcg"]
 [ext_resource type="Script" uid="uid://cu7o4w5xfiup2" path="res://script/damage.gd" id="4_a3wui"]

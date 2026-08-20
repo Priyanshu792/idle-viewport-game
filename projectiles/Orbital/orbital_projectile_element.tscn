@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://q60os21xfer0"]
 
-[ext_resource type="Script" uid="uid://ba8lgahm0hquj" path="res://script/orbital_projectile_element.gd" id="1_14owg"]
+[ext_resource type="Script" uid="uid://ba8lgahm0hquj" path="res://projectiles/Orbital/orbital_projectile_element.gd" id="1_14owg"]
 [ext_resource type="Texture2D" uid="uid://cc8epefbko3kw" path="res://assets/sprites/projectile.png" id="2_k5eat"]
 [ext_resource type="Script" uid="uid://cu7o4w5xfiup2" path="res://script/damage.gd" id="3_i78wk"]
 

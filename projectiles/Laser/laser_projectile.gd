@@ -16,7 +16,7 @@ var is_crit := false
 #var current_enemy = null
 var damage_timer : float = 0.0
 var is_casting :bool = false
-
+var player: CharacterBody2D 
 #@export var max_distance:float = 200.0
 #@export var max_bounces:int = 5
 #@export var ray_offset:float = 1.0
@@ -25,6 +25,7 @@ var hit_particle_nodes: Array[Node] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	player = get_tree().get_first_node_in_group("player")
 	line_2d.clear_points()
 	line_2d.add_point(Vector2.ZERO)
 	line_2d.add_point(Vector2.ZERO)
@@ -53,6 +54,7 @@ func cast_laser(_delta):
 		var query:=PhysicsRayQueryParameters2D.create(start_position,end_postion)
 		#query.collide_with_areas = true
 		query.collide_with_bodies = true
+		query.exclude = [player]
 		var result := space_state.intersect_ray(query)
 		
 		if result.is_empty():
@@ -67,12 +69,20 @@ func cast_laser(_delta):
 		if collider.is_in_group("enemy"):
 			hit_something = true
 			points.append(to_local(hit_position))
+			#points.append(to_local(hit_position))
+			#if bounce_count>=base_stats.laser_max_bounce:
+				#break
+			#bounce_count+=1
+			#var normal:Vector2 = result.normal
+			#direction = direction.bounce(normal).normalized()
+			
 			
 			if not enemies_hit.has(collider):
 				enemies_hit.append(collider)
 				damage_enemy(collider,_delta)
 			
 			start_position = (hit_position+direction*base_stats.laser_ray_offset)
+			#start_position = (hit_position+direction)
 			continue
 		
 		if collider.is_in_group("walls"):

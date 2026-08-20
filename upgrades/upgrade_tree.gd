@@ -1,4 +1,4 @@
-@tool
+#@tool
 extends Node2D
 
 #var line_2d:Line2D

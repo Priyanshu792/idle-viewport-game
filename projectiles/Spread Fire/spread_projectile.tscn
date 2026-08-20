@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ccggqqp0kwq08"]
 
-[ext_resource type="Script" uid="uid://cau7o6cv3dtcg" path="res://script/spread_projectile.gd" id="1_aipai"]
-[ext_resource type="PackedScene" uid="uid://bpush3uayisnn" path="res://scene/spread_projectile_element.tscn" id="2_8x0mt"]
+[ext_resource type="Script" uid="uid://cau7o6cv3dtcg" path="res://projectiles/Spread Fire/spread_projectile.gd" id="1_aipai"]
+[ext_resource type="PackedScene" uid="uid://bpush3uayisnn" path="res://projectiles/Spread Fire/spread_projectile_element.tscn" id="2_8x0mt"]
 [ext_resource type="Resource" uid="uid://bjadmbcw7rymc" path="res://resources/Base_Weapon_stats.tres" id="2_aipai"]
 
 [sub_resource type="Curve2D" id="Curve2D_s00in"]

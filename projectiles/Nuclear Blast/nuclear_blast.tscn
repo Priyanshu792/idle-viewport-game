@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://shut12leynj3"]
 
-[ext_resource type="Script" uid="uid://kr8qqufj2kkk" path="res://script/nuclear_blast.gd" id="1_65qu6"]
+[ext_resource type="Script" uid="uid://kr8qqufj2kkk" path="res://projectiles/Nuclear Blast/nuclear_blast.gd" id="1_65qu6"]
 [ext_resource type="Texture2D" uid="uid://beotauejmioto" path="res://assets/sprites/enemy_1.png" id="3_tuqaj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r5lm3"]

@@ -14,6 +14,16 @@
 [ext_resource type="PackedScene" uid="uid://cny8nefj8h3jr" path="res://scene/dropped_orb.tscn" id="11_k65ib"]
 [ext_resource type="Theme" uid="uid://w87rnglpb5v3" path="res://assets/theme/Theme_global.tres" id="11_wscrc"]
 
+[sub_resource type="Gradient" id="Gradient_n2ous"]
+offsets = PackedFloat32Array(0, 0.33905014, 0.65567285, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.37, 0, 0, 1, 0.35, 0.13416666, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mswub"]
+gradient = SubResource("Gradient_n2ous")
+width = 4
+height = 2048
+fill_from = Vector2(1, 0.9893162)
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mswub"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hybxs"]
@@ -34,7 +44,7 @@ adjustment_enabled = true
 [sub_resource type="Resource" id="Resource_tqoya"]
 script = ExtResource("5_b5f6u")
 fire_blast = false
-laser = true
+orbital = true
 metadata/_custom_type_script = "uid://rw5inik056kt"
 
 [node name="main" type="Node2D" unique_id=371940320]
@@ -44,6 +54,17 @@ script = ExtResource("1_brvut")
 unique_name_in_owner = true
 wait_time = 300.0
 autostart = true
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1579300122]
+z_index = -1
+repeat_size = Vector2(504, 2048)
+repeat_times = 9
+
+[node name="Backround" type="TextureRect" parent="Parallax2D" unique_id=522053177]
+modulate = Color(0.62, 0.62, 0.62, 1)
+offset_right = 504.0
+offset_bottom = 504.0
+texture = SubResource("GradientTexture2D_mswub")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1945818820]
 visible = false
@@ -190,27 +211,42 @@ position = Vector2(80, -56)
 [node name="spawner2" parent="." unique_id=1286613805 instance=ExtResource("3_wp4xf")]
 position = Vector2(432, -40)
 spawn_interval = 1.5
-switch_ON_OFF = false
 
 [node name="spawner3" parent="." unique_id=416084391 instance=ExtResource("3_wp4xf")]
 position = Vector2(608, 216)
 spawn_interval = 1.5
-switch_ON_OFF = false
 
 [node name="spawner4" parent="." unique_id=786976420 instance=ExtResource("3_wp4xf")]
 position = Vector2(251, 528)
 spawn_interval = 1.5
-switch_ON_OFF = false
 
 [node name="spawner5" parent="." unique_id=358141832 instance=ExtResource("3_wp4xf")]
 position = Vector2(-112, 208)
 spawn_interval = 1.5
-switch_ON_OFF = false
 
 [node name="spawner6" parent="." unique_id=457930926 instance=ExtResource("3_wp4xf")]
 position = Vector2(-112, 208)
 spawn_interval = 1.5
-switch_ON_OFF = false
+
+[node name="spawner7" parent="." unique_id=1798355014 instance=ExtResource("3_wp4xf")]
+position = Vector2(432, -40)
+spawn_interval = 1.5
+
+[node name="spawner8" parent="." unique_id=2101017819 instance=ExtResource("3_wp4xf")]
+position = Vector2(608, 216)
+spawn_interval = 1.5
+
+[node name="spawner9" parent="." unique_id=1709258324 instance=ExtResource("3_wp4xf")]
+position = Vector2(251, 528)
+spawn_interval = 1.5
+
+[node name="spawner10" parent="." unique_id=1962475793 instance=ExtResource("3_wp4xf")]
+position = Vector2(-112, 208)
+spawn_interval = 1.5
+
+[node name="spawner11" parent="." unique_id=1934758338 instance=ExtResource("3_wp4xf")]
+position = Vector2(-112, 208)
+spawn_interval = 1.5
 
 [node name="player" parent="." unique_id=1949432662 node_paths=PackedStringArray("player_health_bar") instance=ExtResource("1_itxqv")]
 position = Vector2(72.000046, 65.00001)

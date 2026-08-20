@@ -12,22 +12,23 @@ var tooltip:Tooltip
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	random_color = Color.from_hsv(randf(), randf(), 1.0, 1.0)
-	modulate = random_color
+	#modulate = random_color
 	update_visual()
 	connect_line()
 	pass # Replace with function body.
 
 func connect_line():
 	for i:UpgradeTreeNode in child_upgrades:
-		upgrade_data.children.append(i)
+		upgrade_data.children.append(i.upgrade_data)
+		#print(upgrade_data.children)
 		pass
-	for child in upgrade_data.children:
-		print(child)
+	for child in child_upgrades:
+		#print(child)
 		var line := Line2D.new()
 		line.z_index = -1
 		line.width = 9
 		line.gradient = Gradient.new()
-		#line.gradient.colors = [Color(random_color, 1.0), Color(child.random_color, 1.0)]
+		line.gradient.colors = [Color(random_color, 1.0), Color(child.random_color, 1.0)]
 		line.add_point(Vector2.ZERO)
 		line.add_point(child.position - position)
 		lines.append(line)

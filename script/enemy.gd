@@ -13,9 +13,13 @@ func _ready():
 func _physics_process(_delta):
 	if !is_instance_valid(player):
 		return
+	var distance = global_position.distance_to(player.global_position)
 
-	var direction = (player.global_position - global_position).normalized()
-	velocity = direction * move_speed
+	if distance <= 40.0:
+		velocity = Vector2.ZERO
+	else:
+		var direction = (player.global_position - global_position).normalized()
+		velocity = direction * move_speed
 
 	move_and_slide()
 	
