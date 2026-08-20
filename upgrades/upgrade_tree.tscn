@@ -90,51 +90,43 @@ text = "RESUME"
 script = ExtResource("1_ufmbn")
 
 [node name="upgrade_tree_node" parent="Nodes" unique_id=228166804 node_paths=PackedStringArray("child_upgrades") instance=ExtResource("2_oy5x8")]
-position = Vector2(176, 208)
+position = Vector2(192, 200)
 upgrade_data = ExtResource("6_bxfsn")
 child_upgrades = [NodePath("../upgrade_tree_node2")]
 
 [node name="upgrade_tree_node2" parent="Nodes" unique_id=1019817758 node_paths=PackedStringArray("child_upgrades") instance=ExtResource("2_oy5x8")]
 position = Vector2(256, 256)
 upgrade_data = ExtResource("7_bxfsn")
-child_upgrades = [NodePath("../upgrade_tree_node3"), NodePath("../upgrade_tree_node4")]
-
-[node name="upgrade_tree_node3" parent="Nodes" unique_id=1381568177 node_paths=PackedStringArray("child_upgrades") instance=ExtResource("2_oy5x8")]
-position = Vector2(216, 312)
-upgrade_data = ExtResource("6_bxfsn")
-child_upgrades = [null]
-
-[node name="upgrade_tree_node4" parent="Nodes" unique_id=518163223 node_paths=PackedStringArray("child_upgrades") instance=ExtResource("2_oy5x8")]
-position = Vector2(344, 288)
-upgrade_data = ExtResource("7_bxfsn")
 child_upgrades = [NodePath("../laser_unlock")]
 
 [node name="laser_damage" parent="Nodes" unique_id=1474429881 node_paths=PackedStringArray("child_upgrades") instance=ExtResource("2_oy5x8")]
-position = Vector2(264, 360)
+position = Vector2(384, 320)
 upgrade_data = ExtResource("8_8xelx")
 child_upgrades = [NodePath("../laser_damage2")]
 
-[node name="laser_damage2" parent="Nodes" unique_id=80017077 instance=ExtResource("2_oy5x8")]
-position = Vector2(320, 344)
+[node name="laser_damage2" parent="Nodes" unique_id=80017077 node_paths=PackedStringArray("child_upgrades") instance=ExtResource("2_oy5x8")]
+position = Vector2(448, 320)
 upgrade_data = ExtResource("9_b14l8")
+child_upgrades = [NodePath("../multi_hit_unlock")]
 
 [node name="laser_damage_interval" parent="Nodes" unique_id=1761771345 node_paths=PackedStringArray("child_upgrades") instance=ExtResource("2_oy5x8")]
-position = Vector2(394, 360)
+position = Vector2(320, 384)
 upgrade_data = ExtResource("10_qy2co")
 child_upgrades = [NodePath("../laser_damage_interval2")]
 
 [node name="laser_damage_interval2" parent="Nodes" unique_id=1206709919 instance=ExtResource("2_oy5x8")]
-position = Vector2(328, 432)
+position = Vector2(384, 384)
 upgrade_data = ExtResource("11_0nw6r")
 
 [node name="laser_unlock" parent="Nodes" unique_id=1879352332 node_paths=PackedStringArray("child_upgrades") instance=ExtResource("2_oy5x8")]
-position = Vector2(416, 312)
+position = Vector2(320, 320)
 upgrade_data = ExtResource("12_ppstu")
 child_upgrades = [NodePath("../laser_damage"), NodePath("../laser_damage_interval")]
 
-[node name="multi_hit_unlock" parent="Nodes" unique_id=980755023 instance=ExtResource("2_oy5x8")]
+[node name="multi_hit_unlock" parent="Nodes" unique_id=980755023 node_paths=PackedStringArray("child_upgrades") instance=ExtResource("2_oy5x8")]
 position = Vector2(544, 528)
 upgrade_data = ExtResource("13_s44qp")
+child_upgrades = [NodePath("../multi_target_count"), NodePath("../multi_target_damage")]
 
 [node name="multi_target_count" parent="Nodes" unique_id=1800392678 instance=ExtResource("2_oy5x8")]
 position = Vector2(632, 448)
@@ -160,24 +152,26 @@ upgrade_data = ExtResource("18_i8hac")
 position = Vector2(696, 776)
 upgrade_data = ExtResource("19_gmuoy")
 
-[node name="orbital_damage" parent="Nodes" unique_id=313127440 instance=ExtResource("2_oy5x8")]
+[node name="orbital_damage" parent="Nodes" unique_id=313127440 node_paths=PackedStringArray("child_upgrades") instance=ExtResource("2_oy5x8")]
 position = Vector2(824, 752)
 upgrade_data = ExtResource("20_xrtpd")
+child_upgrades = [NodePath("../orbital_damage2")]
 
 [node name="orbital_damage2" parent="Nodes" unique_id=589055281 instance=ExtResource("2_oy5x8")]
 position = Vector2(712, 840)
 upgrade_data = ExtResource("21_qmmci")
 
-[node name="orbital_radius" parent="Nodes" unique_id=1248045630 instance=ExtResource("2_oy5x8")]
-position = Vector2(800, 840)
+[node name="orbital_radius" parent="Nodes" unique_id=1248045630 node_paths=PackedStringArray("child_upgrades") instance=ExtResource("2_oy5x8")]
+position = Vector2(800, 912)
 upgrade_data = ExtResource("22_uwmw0")
+child_upgrades = [NodePath("../orbital_radius2")]
 
 [node name="orbital_radius2" parent="Nodes" unique_id=1102653554 instance=ExtResource("2_oy5x8")]
-position = Vector2(968, 880)
+position = Vector2(832, 984)
 upgrade_data = ExtResource("23_8o5r0")
 
 [node name="orbital_speed" parent="Nodes" unique_id=2108898981 instance=ExtResource("2_oy5x8")]
-position = Vector2(1024, 800)
+position = Vector2(1008, 864)
 upgrade_data = ExtResource("24_hf8te")
 
 [node name="orbital_speed2" parent="Nodes" unique_id=1342177757 instance=ExtResource("2_oy5x8")]

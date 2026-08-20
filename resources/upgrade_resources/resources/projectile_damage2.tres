@@ -5,8 +5,7 @@
 [resource]
 script = ExtResource("1_mi660")
 id = &"projectile_damage"
-name = "Projectile Damage 2"
+display_name = "node 2"
 description = "+{x} damge"
 value = 0.1
-value_diplay_type = 1
 metadata/_custom_type_script = "uid://bfwj1umkaiq4"

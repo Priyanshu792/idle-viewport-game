@@ -9,19 +9,42 @@ var random_color:Color
 const TOOLTIP = preload("uid://hf7fmrifbfpu")
 var tooltip:Tooltip
 @export var tooltip_offset = Vector2(20.0,20.0)
+var offset := Vector2(0.0,64.0)
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	random_color = Color.from_hsv(randf(), randf(), 1.0, 1.0)
-	#modulate = random_color
+	modulate = random_color
 	update_visual()
-	connect_line()
+	connect_line(self)
 	pass # Replace with function body.
 
-func connect_line():
-	for i:UpgradeTreeNode in child_upgrades:
-		upgrade_data.children.append(i.upgrade_data)
+#connect line and setup position of node
+func connect_line(node:UpgradeTreeNode):
+	var children:=node.child_upgrades
+	if children.is_empty():
+		return
+	children.sort_custom(func(a,b):
+		return a.upgrade_data.id<b.upgrade_data.id)
+	var child_count := children.size()
+	for idx:int in child_count:
+		var child:UpgradeTreeNode = children[idx]
+		node.upgrade_data.children.append(child.upgrade_data)
+		var child_position: Vector2
+		if node.upgrade_data.of_type_unlock == true:
+			var forward:= Vector2(128.0,0.0)
+			var vertical:= 64.0
+			var vertical_offset := (idx - (child_count - 1) / 2.0) * vertical
+			child_position = node.global_position + forward + Vector2(0, vertical_offset)
+			child.global_position = child_position
+		elif child.upgrade_data.id == node.upgrade_data.id:
+			child.global_position = node.position + Vector2(64.0,0)
+		else:
+			child.global_position = node.position + offset * (idx+1)
 		#print(upgrade_data.children)
+		
 		pass
+		connect_line(child)
 	for child in child_upgrades:
 		#print(child)
 		var line := Line2D.new()
@@ -34,6 +57,8 @@ func connect_line():
 		lines.append(line)
 		add_child(line)
 	pass
+
+
 
 func update():
 	for i in upgrade_data.children.size():
@@ -89,7 +114,7 @@ func _on_mouse_entered() -> void:
 		tooltip.position = to_local(global_position)+tooltip_offset
 		pass
 	tooltip.update_tooltip(
-		upgrade_data.name,
+		upgrade_data.display_name,
 		upgrade_data.description.replace("{x}", str(upgrade_data.value)),
 		upgrade_data.orb_cost)
 	add_child(tooltip)
