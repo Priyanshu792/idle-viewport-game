@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://co6nippvp18yt"
+
+[deps]
+
+files=["res://csv_s/Sample2.id.translation", "res://csv_s/Sample2.name.translation", "res://csv_s/Sample2.icon.translation", "res://csv_s/Sample2.description.translation", "res://csv_s/Sample2.of.translation", "res://csv_s/Sample2.value.translation", "res://csv_s/Sample2.value.translation", "res://csv_s/Sample2.orb.translation", "res://csv_s/Sample2.increment.translation", "res://csv_s/Sample2.increment.translation", "res://csv_s/Sample2.current.translation", "res://csv_s/Sample2.children.translation"]
+
+source_file="res://csv_s/Sample2.csv"
+dest_files=["res://csv_s/Sample2.id.translation", "res://csv_s/Sample2.name.translation", "res://csv_s/Sample2.icon.translation", "res://csv_s/Sample2.description.translation", "res://csv_s/Sample2.of.translation", "res://csv_s/Sample2.value.translation", "res://csv_s/Sample2.value.translation", "res://csv_s/Sample2.orb.translation", "res://csv_s/Sample2.increment.translation", "res://csv_s/Sample2.increment.translation", "res://csv_s/Sample2.current.translation", "res://csv_s/Sample2.children.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

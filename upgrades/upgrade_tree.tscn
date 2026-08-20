@@ -7,6 +7,34 @@
 [ext_resource type="Theme" uid="uid://w87rnglpb5v3" path="res://assets/theme/Theme_global.tres" id="4_b6s0q"]
 [ext_resource type="Resource" uid="uid://ckagi3oxuqapr" path="res://resources/upgrade_resources/resources/projectile_damage.tres" id="6_bxfsn"]
 [ext_resource type="Resource" uid="uid://dkrkyqxlkou6g" path="res://resources/upgrade_resources/resources/projectile_damage2.tres" id="7_bxfsn"]
+[ext_resource type="Resource" uid="uid://bqse5okvakhki" path="res://resources/upgrades/laser_damage.tres" id="8_8xelx"]
+[ext_resource type="Resource" uid="uid://e6ickwk7dvh5" path="res://resources/upgrades/laser_damage2.tres" id="9_b14l8"]
+[ext_resource type="Resource" uid="uid://dbdnaawutdf6g" path="res://resources/upgrades/laser_damage_interval.tres" id="10_qy2co"]
+[ext_resource type="Resource" uid="uid://bpncjficd5m0j" path="res://resources/upgrades/laser_damage_interval2.tres" id="11_0nw6r"]
+[ext_resource type="Resource" uid="uid://cavltx4o6kjj2" path="res://resources/upgrades/laser_unlock.tres" id="12_ppstu"]
+[ext_resource type="Resource" uid="uid://rvjn5uc41dvd" path="res://resources/upgrades/multi_hit_unlock.tres" id="13_s44qp"]
+[ext_resource type="Resource" uid="uid://dqeajsjqbqmo1" path="res://resources/upgrades/multi_target_count.tres" id="14_fflmq"]
+[ext_resource type="Resource" uid="uid://bkaog17prm3ui" path="res://resources/upgrades/multi_target_count2.tres" id="15_ayf68"]
+[ext_resource type="Resource" uid="uid://1pv35l8oixe6" path="res://resources/upgrades/multi_target_damage.tres" id="16_vuh24"]
+[ext_resource type="Resource" uid="uid://bteonwl4j4lcr" path="res://resources/upgrades/multi_target_damage2.tres" id="17_db8kb"]
+[ext_resource type="Resource" uid="uid://2rxoh42to72k" path="res://resources/upgrades/multi_target_speed.tres" id="18_i8hac"]
+[ext_resource type="Resource" uid="uid://diijau0xsr8vy" path="res://resources/upgrades/multi_target_speed2.tres" id="19_gmuoy"]
+[ext_resource type="Resource" uid="uid://b4e8qaur63qj6" path="res://resources/upgrades/orbital_damage.tres" id="20_xrtpd"]
+[ext_resource type="Resource" uid="uid://312whhixgg5a" path="res://resources/upgrades/orbital_damage2.tres" id="21_qmmci"]
+[ext_resource type="Resource" uid="uid://wpucrnaurqb3" path="res://resources/upgrades/orbital_radius.tres" id="22_uwmw0"]
+[ext_resource type="Resource" uid="uid://cfdllbdg412vk" path="res://resources/upgrades/orbital_radius2.tres" id="23_8o5r0"]
+[ext_resource type="Resource" uid="uid://bqgd8y256tw56" path="res://resources/upgrades/orbital_speed.tres" id="24_hf8te"]
+[ext_resource type="Resource" uid="uid://v0wvlkusww1q" path="res://resources/upgrades/orbital_speed2.tres" id="25_hfd2l"]
+[ext_resource type="Resource" uid="uid://d175xwsf7j3jk" path="res://resources/upgrades/orbital_unlock.tres" id="26_2j8k2"]
+[ext_resource type="Resource" uid="uid://otyuboyvbjit" path="res://resources/upgrades/projectile_damage.tres" id="27_ayorf"]
+[ext_resource type="Resource" uid="uid://db56aftig3b7w" path="res://resources/upgrades/projectile_damage2.tres" id="28_6v738"]
+[ext_resource type="Resource" uid="uid://cxexxr6ceomyf" path="res://resources/upgrades/projectile_speed.tres" id="29_r84br"]
+[ext_resource type="Resource" uid="uid://dub6v0u2cclm" path="res://resources/upgrades/projectile_speed2.tres" id="30_xfa13"]
+[ext_resource type="Resource" uid="uid://c7576hamnx454" path="res://resources/upgrades/spread_fire_damage.tres" id="31_tbn8y"]
+[ext_resource type="Resource" uid="uid://dpahkqohqk1bo" path="res://resources/upgrades/spread_fire_damage2.tres" id="32_kpbd8"]
+[ext_resource type="Resource" uid="uid://ccl68oytmd47o" path="res://resources/upgrades/spread_fire_speed.tres" id="33_4bksg"]
+[ext_resource type="Resource" uid="uid://bmog6x2ndlx1k" path="res://resources/upgrades/spread_fire_speed2.tres" id="34_u0ekb"]
+[ext_resource type="Resource" uid="uid://bfo4kuypnlhik" path="res://resources/upgrades/spread_fire_unlock.tres" id="35_vslrk"]
 
 [sub_resource type="Gradient" id="Gradient_n2ous"]
 offsets = PackedFloat32Array(0, 0.33905014, 0.65567285, 1)
@@ -62,12 +90,139 @@ text = "RESUME"
 script = ExtResource("1_ufmbn")
 
 [node name="upgrade_tree_node" parent="Nodes" unique_id=228166804 node_paths=PackedStringArray("child_upgrades") instance=ExtResource("2_oy5x8")]
-position = Vector2(208, 224)
+position = Vector2(176, 208)
 upgrade_data = ExtResource("6_bxfsn")
 child_upgrades = [NodePath("../upgrade_tree_node2")]
 
-[node name="upgrade_tree_node2" parent="Nodes" unique_id=1019817758 instance=ExtResource("2_oy5x8")]
-position = Vector2(312, 248)
+[node name="upgrade_tree_node2" parent="Nodes" unique_id=1019817758 node_paths=PackedStringArray("child_upgrades") instance=ExtResource("2_oy5x8")]
+position = Vector2(256, 256)
 upgrade_data = ExtResource("7_bxfsn")
+child_upgrades = [NodePath("../upgrade_tree_node3"), NodePath("../upgrade_tree_node4")]
+
+[node name="upgrade_tree_node3" parent="Nodes" unique_id=1381568177 node_paths=PackedStringArray("child_upgrades") instance=ExtResource("2_oy5x8")]
+position = Vector2(216, 312)
+upgrade_data = ExtResource("6_bxfsn")
+child_upgrades = [null]
+
+[node name="upgrade_tree_node4" parent="Nodes" unique_id=518163223 node_paths=PackedStringArray("child_upgrades") instance=ExtResource("2_oy5x8")]
+position = Vector2(344, 288)
+upgrade_data = ExtResource("7_bxfsn")
+child_upgrades = [NodePath("../laser_unlock")]
+
+[node name="laser_damage" parent="Nodes" unique_id=1474429881 node_paths=PackedStringArray("child_upgrades") instance=ExtResource("2_oy5x8")]
+position = Vector2(264, 360)
+upgrade_data = ExtResource("8_8xelx")
+child_upgrades = [NodePath("../laser_damage2")]
+
+[node name="laser_damage2" parent="Nodes" unique_id=80017077 instance=ExtResource("2_oy5x8")]
+position = Vector2(320, 344)
+upgrade_data = ExtResource("9_b14l8")
+
+[node name="laser_damage_interval" parent="Nodes" unique_id=1761771345 node_paths=PackedStringArray("child_upgrades") instance=ExtResource("2_oy5x8")]
+position = Vector2(394, 360)
+upgrade_data = ExtResource("10_qy2co")
+child_upgrades = [NodePath("../laser_damage_interval2")]
+
+[node name="laser_damage_interval2" parent="Nodes" unique_id=1206709919 instance=ExtResource("2_oy5x8")]
+position = Vector2(328, 432)
+upgrade_data = ExtResource("11_0nw6r")
+
+[node name="laser_unlock" parent="Nodes" unique_id=1879352332 node_paths=PackedStringArray("child_upgrades") instance=ExtResource("2_oy5x8")]
+position = Vector2(416, 312)
+upgrade_data = ExtResource("12_ppstu")
+child_upgrades = [NodePath("../laser_damage"), NodePath("../laser_damage_interval")]
+
+[node name="multi_hit_unlock" parent="Nodes" unique_id=980755023 instance=ExtResource("2_oy5x8")]
+position = Vector2(544, 528)
+upgrade_data = ExtResource("13_s44qp")
+
+[node name="multi_target_count" parent="Nodes" unique_id=1800392678 instance=ExtResource("2_oy5x8")]
+position = Vector2(632, 448)
+upgrade_data = ExtResource("14_fflmq")
+
+[node name="multi_target_count2" parent="Nodes" unique_id=603083889 instance=ExtResource("2_oy5x8")]
+position = Vector2(456, 568)
+upgrade_data = ExtResource("15_ayf68")
+
+[node name="multi_target_damage" parent="Nodes" unique_id=853755909 instance=ExtResource("2_oy5x8")]
+position = Vector2(544, 640)
+upgrade_data = ExtResource("16_vuh24")
+
+[node name="multi_target_damage2" parent="Nodes" unique_id=1891551766 instance=ExtResource("2_oy5x8")]
+position = Vector2(624, 656)
+upgrade_data = ExtResource("17_db8kb")
+
+[node name="multi_target_speed" parent="Nodes" unique_id=947664344 instance=ExtResource("2_oy5x8")]
+position = Vector2(544, 696)
+upgrade_data = ExtResource("18_i8hac")
+
+[node name="multi_target_speed2" parent="Nodes" unique_id=1426894349 instance=ExtResource("2_oy5x8")]
+position = Vector2(696, 776)
+upgrade_data = ExtResource("19_gmuoy")
+
+[node name="orbital_damage" parent="Nodes" unique_id=313127440 instance=ExtResource("2_oy5x8")]
+position = Vector2(824, 752)
+upgrade_data = ExtResource("20_xrtpd")
+
+[node name="orbital_damage2" parent="Nodes" unique_id=589055281 instance=ExtResource("2_oy5x8")]
+position = Vector2(712, 840)
+upgrade_data = ExtResource("21_qmmci")
+
+[node name="orbital_radius" parent="Nodes" unique_id=1248045630 instance=ExtResource("2_oy5x8")]
+position = Vector2(800, 840)
+upgrade_data = ExtResource("22_uwmw0")
+
+[node name="orbital_radius2" parent="Nodes" unique_id=1102653554 instance=ExtResource("2_oy5x8")]
+position = Vector2(968, 880)
+upgrade_data = ExtResource("23_8o5r0")
+
+[node name="orbital_speed" parent="Nodes" unique_id=2108898981 instance=ExtResource("2_oy5x8")]
+position = Vector2(1024, 800)
+upgrade_data = ExtResource("24_hf8te")
+
+[node name="orbital_speed2" parent="Nodes" unique_id=1342177757 instance=ExtResource("2_oy5x8")]
+position = Vector2(712, 936)
+upgrade_data = ExtResource("25_hfd2l")
+
+[node name="orbital_unlock" parent="Nodes" unique_id=601101952 node_paths=PackedStringArray("child_upgrades") instance=ExtResource("2_oy5x8")]
+position = Vector2(888, 960)
+upgrade_data = ExtResource("26_2j8k2")
+child_upgrades = [NodePath("../orbital_speed"), NodePath("../orbital_damage")]
+
+[node name="projectile_damage" parent="Nodes" unique_id=536119136 instance=ExtResource("2_oy5x8")]
+position = Vector2(960, 976)
+upgrade_data = ExtResource("27_ayorf")
+
+[node name="projectile_damage2" parent="Nodes" unique_id=1831338630 instance=ExtResource("2_oy5x8")]
+position = Vector2(1016, 1048)
+upgrade_data = ExtResource("28_6v738")
+
+[node name="projectile_speed" parent="Nodes" unique_id=2089045528 instance=ExtResource("2_oy5x8")]
+position = Vector2(856, 1040)
+upgrade_data = ExtResource("29_r84br")
+
+[node name="projectile_speed2" parent="Nodes" unique_id=1659505522 instance=ExtResource("2_oy5x8")]
+position = Vector2(872, 1096)
+upgrade_data = ExtResource("30_xfa13")
+
+[node name="spread_fire_damage" parent="Nodes" unique_id=749660241 instance=ExtResource("2_oy5x8")]
+position = Vector2(1064, 1208)
+upgrade_data = ExtResource("31_tbn8y")
+
+[node name="spread_fire_damage2" parent="Nodes" unique_id=1328944162 instance=ExtResource("2_oy5x8")]
+position = Vector2(1232, 1024)
+upgrade_data = ExtResource("32_kpbd8")
+
+[node name="spread_fire_speed" parent="Nodes" unique_id=722829284 instance=ExtResource("2_oy5x8")]
+position = Vector2(1320, 1144)
+upgrade_data = ExtResource("33_4bksg")
+
+[node name="spread_fire_speed2" parent="Nodes" unique_id=1215637159 instance=ExtResource("2_oy5x8")]
+position = Vector2(936, 1240)
+upgrade_data = ExtResource("34_u0ekb")
+
+[node name="spread_fire_unlock" parent="Nodes" unique_id=1922527498 instance=ExtResource("2_oy5x8")]
+position = Vector2(1208, 1216)
+upgrade_data = ExtResource("35_vslrk")
 
 [connection signal="pressed" from="upgradetree_camera/Control/Resume_Button" to="." method="_on_resume_button_pressed"]

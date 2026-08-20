@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://bfo4kuypnlhik"]
+
+[ext_resource type="Script" uid="uid://bfwj1umkaiq4" path="res://upgrades/upgrade_data.gd" id="1_voxgk"]
+
+[resource]
+script = ExtResource("1_voxgk")
+id = &"spread_fire_unlock"
+display_name = "Spread Fire"
+description = "Unlock Spread Fire"
+of_type_unlock = true
+orb_cost = 5
+increment_max_value = 1

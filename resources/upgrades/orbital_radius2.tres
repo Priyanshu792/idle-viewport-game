@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://cfdllbdg412vk"]
+
+[ext_resource type="Script" uid="uid://bfwj1umkaiq4" path="res://upgrades/upgrade_data.gd" id="1_b2ely"]
+
+[resource]
+script = ExtResource("1_b2ely")
+id = &"orbital_radius"
+display_name = "Orbital Radius 2"
+description = "+{x} radius"
+value = 10.0

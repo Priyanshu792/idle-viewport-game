@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://d175xwsf7j3jk"]
+
+[ext_resource type="Script" uid="uid://bfwj1umkaiq4" path="res://upgrades/upgrade_data.gd" id="1_6mwac"]
+
+[resource]
+script = ExtResource("1_6mwac")
+id = &"orbital_unlock"
+display_name = "Orbital"
+description = "Unlock Orbital"
+of_type_unlock = true
+orb_cost = 8
+increment_max_value = 1

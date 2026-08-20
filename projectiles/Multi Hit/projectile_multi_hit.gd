@@ -6,14 +6,19 @@ extends Node2D
 const EXPLOSION_PARTICLE = preload("uid://rmf1psipscka")
 var damage := 0.0
 var is_crit := false
-
+var is_firing = false
 var direction := Vector2.ZERO
+
+func set_firing(value: bool) -> void:
+	is_firing = value
 
 func _ready() -> void:
 	#stats = base_stats.duplicate(true)
 	pass
 
 func _physics_process(delta):
+	if not is_firing:
+		return
 	position += direction * base_stats.multi_target_speed * delta
 
 func _on_area_2d_body_entered(body: Node2D) -> void:

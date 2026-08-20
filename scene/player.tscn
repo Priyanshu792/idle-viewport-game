@@ -38,6 +38,20 @@ stat = ExtResource("4_ct4mp")
 [node name="multi_hit_timer" type="Timer" parent="." unique_id=1300433162]
 autostart = true
 
+[node name="projectiles" type="Node2D" parent="." unique_id=891828509]
+
+[node name="projectile1" type="Marker2D" parent="projectiles" unique_id=252485620]
+position = Vector2(0, 48)
+
+[node name="projectile2" type="Marker2D" parent="projectiles" unique_id=260247693]
+position = Vector2(48, 0)
+
+[node name="projectile3" type="Marker2D" parent="projectiles" unique_id=1289648679]
+position = Vector2(0, -48)
+
+[node name="projectile4" type="Marker2D" parent="projectiles" unique_id=1738757519]
+position = Vector2(-48, 0)
+
 [connection signal="timeout" from="fire_timer" to="." method="_on_fire_timer_timeout"]
 [connection signal="timeout" from="spread_projectile" to="." method="_on_spread_projectile_timeout"]
 [connection signal="timeout" from="multi_hit_timer" to="." method="_on_multi_hit_timer_timeout"]

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://bkaog17prm3ui"]
+
+[ext_resource type="Script" uid="uid://bfwj1umkaiq4" path="res://upgrades/upgrade_data.gd" id="1_0idjn"]
+
+[resource]
+script = ExtResource("1_0idjn")
+id = &"multi_target_count"
+display_name = "Target Count 2"
+description = "+{x} targets"
+value = 1.0

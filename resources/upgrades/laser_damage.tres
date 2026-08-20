@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://bqse5okvakhki"]
+
+[ext_resource type="Script" uid="uid://bfwj1umkaiq4" path="res://upgrades/upgrade_data.gd" id="1_b2dyf"]
+
+[resource]
+script = ExtResource("1_b2dyf")
+id = &"laser_damage"
+display_name = "Laser Damage"
+description = "+{x} damage"
+value = 0.01
+orb_cost = 2

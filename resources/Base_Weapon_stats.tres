@@ -5,8 +5,8 @@
 [resource]
 script = ExtResource("1_8n13c")
 spread_fire_damage = 0.1
-laser_damage = 1.0
-damage_interval = 0.2
-laser_max_distance = 1500.0
+damage_interval = 0.1
+laser_max_distance = 4096.0
 multi_target_speed = 150.0
+multi_target_count = 4
 metadata/_custom_type_script = "uid://dv0pvbhpxfaht"

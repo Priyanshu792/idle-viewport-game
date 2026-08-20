@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://v0wvlkusww1q"]
+
+[ext_resource type="Script" uid="uid://bfwj1umkaiq4" path="res://upgrades/upgrade_data.gd" id="1_kmfui"]
+
+[resource]
+script = ExtResource("1_kmfui")
+id = &"orbital_speed"
+display_name = "Orbital Speed 2"
+description = "+{x} speed"
+value = 1.0

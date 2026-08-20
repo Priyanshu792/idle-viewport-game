@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://dub6v0u2cclm"]
+
+[ext_resource type="Script" uid="uid://bfwj1umkaiq4" path="res://upgrades/upgrade_data.gd" id="1_sbh8c"]
+
+[resource]
+script = ExtResource("1_sbh8c")
+id = &"projectile_speed"
+display_name = "Projectile Speed 2"
+description = "+{x} speed"
+value = 50.0

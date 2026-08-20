@@ -7,12 +7,12 @@ enum ValueDisplayType{
 }
 
 @export var id:StringName
-@export var name:String
+@export var display_name:String
 @export var icon:Texture2D = null
 @export var description:String
 @export var of_type_unlock:=false
 @export var value:float
-@export var value_diplay_type:ValueDisplayType
+@export var value_display_type:ValueDisplayType
 @export var orb_cost:int = 1
 @export var increment_update:=false
 @export var increment_max_value:=2

@@ -3,7 +3,6 @@ extends CharacterBody2D
 
 @export var player_stats: PlayerStats
 
-
 @onready var fire_timer: Timer = $fire_timer
 @onready var multi_hit_timer: Timer = $multi_hit_timer
 
@@ -28,14 +27,16 @@ var laser_has_target := false
 #var multi_hit_projectiles: Array[Node2D]
 @export var player_health_bar:ProgressBar
 
-
-
+@onready var projectiles: Node2D = $projectiles
+var multi_hit_projectiles:Array[Node2D] = []
+var projectile_position:Array = []
 
 func _ready() -> void:
 	GameEvents.weapon_unlock.connect(weapon_unlock)
 	#GameEvents.laser_hit.connect(laser_bounce)
 	GameEvents.laser_hit_lost.connect(laser_hit_lost)
 	weapon_unlock()
+	projectile_position = projectiles.get_children()
 	pass
 
 func weapon_unlock():
@@ -80,6 +81,13 @@ func _process(_delta: float) -> void:
 
 		laser_instance.rotation = lerp_angle(laser_instance.rotation,laser_target_rotation,1.0 - exp(-weapon_stat.laser_smooth_speed * _delta))
 	#laser_bounce()
+	for i in range(multi_hit_projectiles.size()):
+		var projectile = multi_hit_projectiles[i]
+		if not is_instance_valid(projectile):
+			continue
+		if i >= projectile_position.size():
+			continue
+		projectile.position = projectile_position[i].position
 	pass
 
 func _physics_process(delta):
@@ -186,30 +194,54 @@ func get_closest_number_of_enemies(count: int) -> Array:
 	return closest_enemies
 
 
-func fire_multi():
-	var target = get_closest_number_of_enemies(player_stats.multi_hit_count)
-	#print(target)
-	if target == null:
+func fire_multi() -> void:
+	var targets := get_closest_number_of_enemies(player_stats.multi_hit_count)
+	if targets.is_empty():
 		return
-	var count = min(player_stats.multi_hit_count,target.size())
-	#print(target.size())
+	for i in range(multi_hit_projectiles.size()):
+		var projectile := multi_hit_projectiles[i]
+		if not is_instance_valid(projectile):
+			continue
+		# Make sure we don't access a target that doesn't exist
+		if i >= targets.size():
+			continue
+		var target = targets[i]
+		if not is_instance_valid(target):
+			continue
+		# Calculate direction from projectile's current position
+		projectile.direction = (target.global_position - projectile.global_position).normalized()
+		projectile.setup(player_stats, weapon_stat)
+		# FIRE!
+		projectile.set_firing(true)
+
+func create_multi_hit_projectile():
+	var count = min(player_stats.multi_hit_count,projectile_position.size())
 	for i in range(count):
-		#print(i)
-		if i == null:
-			return
 		var projectile = PROJECTILE_MULTI_HIT.instantiate()
 		get_tree().current_scene.add_child(projectile)
-		projectile.global_position = global_position
-		projectile.direction = (target[i].global_position - global_position).normalized()
-		projectile.setup(player_stats, weapon_stat)
+		projectile.position = projectile_position[i].position
+		#projectile.setup(player_stats, weapon_stat)
+		projectile.set_firing(false)
+		multi_hit_projectiles.append(projectile)
+		pass
+	pass
 
 func _on_multi_hit_timer_timeout() -> void:
-	#if multi_hit_timer.is_stopped():
-		#multi_hit_projectiles = 
-		#pass
-	if weapon_settings.multi_hit:
-		fire_multi()
+	if not weapon_settings.multi_hit:
+		return
+	# Create the projectiles if they don't exist
+	if not has_valid_multi_hit_projectiles():
+		create_multi_hit_projectile()
+	# Fire ALL projectiles
+	fire_multi()
 	pass # Replace with function body.
+
+func has_valid_multi_hit_projectiles() -> bool:
+	for projectile in multi_hit_projectiles:
+		if is_instance_valid(projectile):
+			return true
+	
+	return false
 
 #test
 func laser_bounce():

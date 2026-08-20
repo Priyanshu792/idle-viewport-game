@@ -19,6 +19,7 @@ var RESOLUTIONS: Array[String] = [
 	"960X540",
 	"1280X720",
 	"1920X1032",
+	"3840X2160",
 	"CUSTOM"
 ]
 
@@ -144,8 +145,8 @@ func set_resolution():
 func set_custom_resolution(custom_res_val_1,custom_res_val_2):
 	var width := int(custom_res_val_1)
 	var height := int(custom_res_val_2)
-	width = clampi(width, 320, 1920)
-	height = clampi(height, 180, 1080)
+	width = clampi(width, 320, 3840)
+	height = clampi(height, 180, 2160)
 	if width <= 0 or height <= 0:
 		return
 	custom_size = Vector2i(width, height)

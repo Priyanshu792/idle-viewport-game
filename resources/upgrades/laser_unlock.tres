@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://cavltx4o6kjj2"]
+
+[ext_resource type="Script" uid="uid://bfwj1umkaiq4" path="res://upgrades/upgrade_data.gd" id="1_vhfu2"]
+
+[resource]
+script = ExtResource("1_vhfu2")
+id = &"laser_unlock"
+display_name = "Laser"
+description = "Unlock Laser"
+of_type_unlock = true
+orb_cost = 5
+increment_max_value = 1

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://ccl68oytmd47o"]
+
+[ext_resource type="Script" uid="uid://bfwj1umkaiq4" path="res://upgrades/upgrade_data.gd" id="1_h1qwb"]
+
+[resource]
+script = ExtResource("1_h1qwb")
+id = &"spread_fire_speed"
+display_name = "Spread Fire Speed"
+description = "+{x} speed"
+value = 0.5
+orb_cost = 2
